@@ -60,7 +60,7 @@
     <Compile Include="Model\ITelnetClient.cs" />
     <Compile Include="Model\MyFlightSimulatorModel.cs" />
     <Compile Include="Model\MyTelnetClient.cs" />
-    <Compile Include="Model\PropertyChangedEventArgs.cs" />
+    <Compile Include="PropertyChangedEventArgs.cs" />
     <Compile Include="View\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>
