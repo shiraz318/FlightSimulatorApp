@@ -60,6 +60,7 @@ namespace FlightSimulatorApp.Model
             if(this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+                //"nili cohen"//
             }
         }
     }
