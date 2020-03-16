@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlightSimulatorApp
+namespace FlightSimulatorApp.Model
 {
     class PropertyChangedEventArgs
     {
@@ -13,7 +13,7 @@ namespace FlightSimulatorApp
         {
             this.propertyName = propName;
         }
-        public string getName()
+        string getName()
         {
             return propertyName;
         }

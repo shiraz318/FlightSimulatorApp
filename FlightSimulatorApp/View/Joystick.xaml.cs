@@ -24,6 +24,7 @@ namespace FlightSimulatorApp.View
         public Joystick()
         {
             InitializeComponent();
+         
         }
 
         private void CenterKnob_Completed(object sender, EventArgs e)

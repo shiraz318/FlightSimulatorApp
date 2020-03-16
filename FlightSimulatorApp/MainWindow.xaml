@@ -8,6 +8,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <View:Joystick></View:Joystick>
+        <View:Joystick x:Name="joystick" Margin="0,10,-0.4,-10"></View:Joystick>
+        <Slider x:Name="throttle" HorizontalAlignment="Left" Margin="581,292,0,0" VerticalAlignment="Top" Width="137" Height="25" ValueChanged="throttle_ValueChanged" Value="{Binding VM_Throttle}"/>
+        <Slider x:Name="aileron" HorizontalAlignment="Left" Margin="581,255,0,0" VerticalAlignment="Top" Width="137" Value="{Binding VM_Aileron}"/>
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="725,292,0,0" TextWrapping="Wrap" Text="Throttle" VerticalAlignment="Top" Width="55"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="723,255,0,0" TextWrapping="Wrap" Text="Aileron" VerticalAlignment="Top" Width="61"/>
     </Grid>
 </Window>

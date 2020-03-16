@@ -61,6 +61,7 @@
     <Compile Include="Model\MyFlightSimulatorModel.cs" />
     <Compile Include="Model\MyTelnetClient.cs" />
     <Compile Include="PropertyChangedEventArgs.cs" />
+    <Compile Include="ViewModel\FlightSimulatorViewModel.cs" />
     <Compile Include="View\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>
@@ -107,8 +108,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

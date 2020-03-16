@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FlightSimulatorApp.Model;
+using FlightSimulatorApp.ViewModel;
+using FlightSimulatorApp.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +23,21 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        FlightSimulatorViewModel vm;
         public MainWindow()
         {
             InitializeComponent();
-           
+            vm = new FlightSimulatorViewModel(new MyFlightSimulatorModel(new MyTelnetClient()));
+            Binding binding = new Binding("VM_Rudder");
+            binding.Source = joystick.knobPosition.X;
+            
+
+            DataContext = vm;
+        }
+
+        private void throttle_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
         }
     }
 }

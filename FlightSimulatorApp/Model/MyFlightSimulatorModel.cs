@@ -23,9 +23,9 @@ namespace FlightSimulatorApp.Model
         }
        
         public double Rudder { get { return rudder; } set { rudder = value; NotifyPropertyChanged("Rudder"); } }
-        public double Elevator { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public double Aileron { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public double Throttle { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public double Elevator { get { return elevator; } set { elevator = value; NotifyPropertyChanged("Elevator"); } }
+        public double Aileron { get { return aileron; } set { aileron = value; NotifyPropertyChanged("Aileron"); } }
+        public double Throttle { get { return throttle; } set { throttle = value; NotifyPropertyChanged("Throttle"); } }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
