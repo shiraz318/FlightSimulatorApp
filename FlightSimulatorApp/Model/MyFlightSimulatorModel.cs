@@ -27,6 +27,7 @@ namespace FlightSimulatorApp.Model
         public double Aileron { get { return aileron; } set { aileron = value; NotifyPropertyChanged("Aileron"); } }
         public double Throttle { get { return throttle; } set { throttle = value; NotifyPropertyChanged("Throttle"); } }
 
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void Connect(string ip, int port)

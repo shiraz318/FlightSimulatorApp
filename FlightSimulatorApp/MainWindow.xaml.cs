@@ -32,7 +32,8 @@ namespace FlightSimulatorApp
             //binding.Source = joystick.knobPosition.X;
             vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                e.getName
+                string name = e.getName();
+
             };
 
             DataContext = vm;
