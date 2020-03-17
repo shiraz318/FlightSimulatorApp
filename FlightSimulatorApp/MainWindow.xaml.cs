@@ -28,8 +28,8 @@ namespace FlightSimulatorApp
         {
             InitializeComponent();
             vm = new FlightSimulatorViewModel(new MyFlightSimulatorModel(new MyTelnetClient()));
-            Binding binding = new Binding("VM_Rudder");
-            binding.Source = joystick.knobPosition.X;
+            //Binding binding = new Binding("VM_Rudder");
+            //binding.Source = joystick.knobPosition.X;
             
 
             DataContext = vm;
