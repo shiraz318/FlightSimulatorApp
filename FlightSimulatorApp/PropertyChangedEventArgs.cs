@@ -9,6 +9,7 @@ namespace FlightSimulatorApp
     class PropertyChangedEventArgs
     {
         private string propertyName;
+        private double value = 0;
         public PropertyChangedEventArgs(string propName)
         {
             this.propertyName = propName;
@@ -16,6 +17,14 @@ namespace FlightSimulatorApp
         public string getName()
         {
             return propertyName;
+        }
+        public void setValue(double val)
+        {
+            value = val;
+        }
+        public double getValue()
+        {
+            return value;
         }
     }
 }

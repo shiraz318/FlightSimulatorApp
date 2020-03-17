@@ -30,7 +30,10 @@ namespace FlightSimulatorApp
             vm = new FlightSimulatorViewModel(new MyFlightSimulatorModel(new MyTelnetClient()));
             //Binding binding = new Binding("VM_Rudder");
             //binding.Source = joystick.knobPosition.X;
-            
+            vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                e.getName
+            };
 
             DataContext = vm;
         }
