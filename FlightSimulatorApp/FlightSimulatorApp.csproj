@@ -61,7 +61,7 @@
     <Compile Include="Model\MyFlightSimulatorModel.cs" />
     <Compile Include="Model\MyTelnetClient.cs" />
     <Compile Include="PropertyChangedEventArgs.cs" />
-    <Compile Include="ViewModel\FlightSimulatorViewModel.cs" />
+    <Compile Include="ViewModel\ViewModel.cs" />
     <Compile Include="View\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>

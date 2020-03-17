@@ -7,14 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,385,0,0" VerticalAlignment="Top" Width="204"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,335,0,0" VerticalAlignment="Top" Width="204"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,292,0,0" VerticalAlignment="Top" Width="204"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,250,0,0" VerticalAlignment="Top" Width="204"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,207,0,0" VerticalAlignment="Top" Width="204"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,166,0,0" VerticalAlignment="Top" Width="204"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,122,0,0" VerticalAlignment="Top" Width="204"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,78,0,0" VerticalAlignment="Top" Width="204"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,385,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Indicated_heading_deg}" SmallChange="1" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,324,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_vertical_speed}" SmallChange="1" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,260,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_ground_speed_kt}" SmallChange="1" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,193,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Airspeed_indicator_indicated_speed_kt}" SmallChange="1" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="241,193,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_altitude_ft}" SmallChange="1" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="238,260,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Attitude_indicator_internal_roll_deg}" SmallChange="1" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="241,324,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Attitude_indicator_internal_pitch_deg}" SmallChange="1" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="238,385,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Altimeter_indicated_altitude_ft}" SmallChange="1" Maximum="102"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="564,357,0,0" TextWrapping="Wrap" Text="indicated-heading-deg" VerticalAlignment="Top" Width="131" TextChanged="TextBox_TextChanged" RenderTransformOrigin="0.525,5.049"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="546,288,0,0" TextWrapping="Wrap" Text="gps_indicated-vertical-speed" VerticalAlignment="Top" Width="170" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="533,232,0,0" TextWrapping="Wrap" Text="gps_indicated-ground-speed-kt" VerticalAlignment="Top" Width="183" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="508,165,0,0" TextWrapping="Wrap" Text="airspeed-indicator_indicated-speed-kt" VerticalAlignment="Top" Width="218" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="262,158,0,0" TextWrapping="Wrap" Text="gps_indicated-altitude-ft" VerticalAlignment="Top" Width="149" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="246,226,0,0" TextWrapping="Wrap" Text="attitude-indicator_internal-roll-deg" VerticalAlignment="Top" Width="199" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="241,296,0,0" TextWrapping="Wrap" Text="attitude-indicator_internal-pitch-deg" VerticalAlignment="Top" Width="211" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="241,352,0,0" TextWrapping="Wrap" Text="altimeter_indicated-altitude-ft" VerticalAlignment="Top" Width="170" TextChanged="TextBox_TextChanged"/>
 
     </Grid>
 </UserControl>
