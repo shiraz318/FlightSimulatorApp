@@ -17,7 +17,7 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="20,134,0,0" TextWrapping="Wrap" Text="Elevator" VerticalAlignment="Top" Width="55" TextChanged="TextBox_TextChanged"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="20,76,0,0" TextWrapping="Wrap" Text="Rudder" VerticalAlignment="Top" Width="55"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="86,76,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="126"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="86,134,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="126"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="86,134,0,0" TextWrapping="Wrap" Text="{Binding ElementName=joystick, Path=PositionY}" VerticalAlignment="Top" Width="126"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="86,184,0,0" TextWrapping="Wrap" Text="{Binding ElementName=aileron, Path=Value}" VerticalAlignment="Top" Width="126"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="85,237,0,0" TextWrapping="Wrap" Text="{Binding ElementName=throttle, Path=Value}" VerticalAlignment="Top" Width="127"/>
     </Grid>

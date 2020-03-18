@@ -10,7 +10,7 @@ namespace FlightSimulatorApp.Model
     {
         public void Connect(string ip, int port)
         {
-            throw new NotImplementedException();
+            ServerSide.ExecuteServer();
         }
 
         public void Disconnect()

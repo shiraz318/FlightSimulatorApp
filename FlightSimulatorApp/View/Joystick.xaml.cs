@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace FlightSimulatorApp.View
 {
@@ -9,7 +11,58 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class Joystick : UserControl
     {
-        bool mousePressed = false;
+        private bool mousePressed = false;
+        private double upBorder = 35;
+        private double downBorder = -35;
+        private double leftBorder = -35;
+        private double rightBorder = 35;
+        private double startX, startY, currentX, currentY, positionX, positionY;
+        public double PositionX { 
+            get
+            {
+                return positionX;
+            }
+            set
+            {
+                //check borders
+                if (value > upBorder)
+                {
+                    positionX = upBorder;
+                }
+                else if (value < downBorder)
+                {
+                    positionX = downBorder;
+                }
+                else
+                {
+                    positionX = value;
+                }
+            }
+        }
+        public double PositionY
+        {
+            get
+            {
+                return positionY;
+            }
+            set
+            {
+                //check borders
+                if (value < leftBorder)
+                {
+                    positionY = leftBorder;
+                }
+                else if (value > rightBorder)
+                {
+                    positionY = rightBorder;
+                }
+                else
+                {
+                    positionY = value;
+                }
+            }
+        }
+      
         public Joystick()
         {
             InitializeComponent();
@@ -26,6 +79,8 @@ namespace FlightSimulatorApp.View
             if (!mousePressed)
             {
                 mousePressed = true;
+                startX = e.GetPosition(this).X;
+                startY = e.GetPosition(this).Y;
             }
         }
 
@@ -40,8 +95,12 @@ namespace FlightSimulatorApp.View
         {
             if (mousePressed)
             {
-                knobPosition.X = -25;
-                knobPosition.Y = -25;
+                currentX = e.GetPosition(this.Parent as UIElement).X;
+                currentY = e.GetPosition(this.Parent as UIElement).Y;
+                PositionX = currentX - startX;
+                PositionY = currentY - startY;
+                knobPosition.X = PositionX;
+                knobPosition.Y = PositionY;
             }
         }
     }
