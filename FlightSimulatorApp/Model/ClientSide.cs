@@ -7,20 +7,50 @@ namespace FlightSimulatorApp.Model
 {
     class ClientSide
     {
+
+        public static string Read(Socket sender)
+        {
+            // Data buffer 
+            byte[] messageReceived = new byte[1024];
+            // We receive the messagge using  
+            // the method Receive(). This  
+            // method returns number of bytes 
+            // received, that we'll use to  
+            // convert them to string 
+            int byteRecv = sender.Receive(messageReceived);
+            string message = Encoding.ASCII.GetString(messageReceived,0, byteRecv);
+
+            Console.WriteLine("Message from Server -> {0}", message);
+            return message;
+        }
+        public static void CloseSocket(Socket sender)
+        {
+            // Close Socket using  
+            // the method Close() 
+            sender.Shutdown(SocketShutdown.Both);
+            sender.Close();
+        }
+        public static string Write(Socket sender, string message)
+        {
+            // Creation of messagge that 
+            // we will send to Server
+            message = "get '/controls/engines/current-engine/throttle'";
+            byte[] messageSent = Encoding.ASCII.GetBytes(message);
+            int byteSent = sender.Send(messageSent);
+            return Read(sender);
+        }
         // ExecuteClient() Method 
-        public static void ExecuteClient(string ip, int port)
+        public static Socket ExecuteClient(string ip, int port)
         {
 
             try
             {
 
                 // Establish the remote endpoint  
-                // for the socket. This example  
-                // uses port 1111 on the local  
-                // computer. 
-                IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
-                IPAddress ipAddr = ipHost.AddressList[0];
-                IPEndPoint localEndPoint = new IPEndPoint(ipAddr, port);
+                // for the socket. This  
+                // uses a given port on a given ip. 
+                IPAddress ipAddr = IPAddress.Parse(ip);
+                IPEndPoint endPoint = new IPEndPoint(ipAddr, port);
 
                 // Creation TCP/IP Socket using  
                 // Socket Class Costructor 
@@ -32,35 +62,18 @@ namespace FlightSimulatorApp.Model
 
                     // Connect Socket to the remote  
                     // endpoint using method Connect() 
-                    sender.Connect(localEndPoint);
+                    sender.Connect(endPoint);
 
                     // We print EndPoint information  
                     // that we are connected 
                     Console.WriteLine("Socket connected to -> {0} ",
                                   sender.RemoteEndPoint.ToString());
+                    //**************************************************//
 
-                    // Creation of messagge that 
-                    // we will send to Server 
-                    byte[] messageSent = Encoding.ASCII.GetBytes("Test Client<EOF>");
-                    int byteSent = sender.Send(messageSent);
 
-                    // Data buffer 
-                    byte[] messageReceived = new byte[1024];
+                   
 
-                    // We receive the messagge using  
-                    // the method Receive(). This  
-                    // method returns number of bytes 
-                    // received, that we'll use to  
-                    // convert them to string 
-                    int byteRecv = sender.Receive(messageReceived);
-                    Console.WriteLine("Message from Server -> {0}",
-                          Encoding.ASCII.GetString(messageReceived,
-                                                     0, byteRecv));
 
-                    // Close Socket using  
-                    // the method Close() 
-                    sender.Shutdown(SocketShutdown.Both);
-                    sender.Close();
                 }
 
                 // Manage of Socket's Exceptions 
@@ -80,6 +93,7 @@ namespace FlightSimulatorApp.Model
                 {
                     Console.WriteLine("Unexpected exception : {0}", e.ToString());
                 }
+                return sender;
             }
 
             catch (Exception e)
@@ -87,6 +101,7 @@ namespace FlightSimulatorApp.Model
 
                 Console.WriteLine(e.ToString());
             }
+            return null;
         }
     }
 }

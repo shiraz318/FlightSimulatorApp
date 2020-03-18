@@ -68,10 +68,14 @@ namespace FlightSimulatorApp.Model
             {
                 while (!stop)
                 {
-                    Rudder = double.Parse(telnetClient.Read());
-                    Aileron = double.Parse(telnetClient.Read());
-                    Elevator = double.Parse(telnetClient.Read());
-                    Throttle = double.Parse(telnetClient.Read());
+                    Gps_indicated_vertical_speed = double.Parse(telnetClient.Read("get /instrumentation/gps/indicated-vertical-speed"));
+                    Airspeed_indicator_indicated_speed_kt = double.Parse(telnetClient.Read("get /instrumentation/airspeed-indicator/indicated-speed-kt"));
+                    Altimeter_indicated_altitude_ft = double.Parse(telnetClient.Read("get /instrumentation/altimeter/indicated-altitude-ft"));
+                    Attitude_indicator_internal_pitch_deg = double.Parse(telnetClient.Read("get /instrumentation/attitude-indicator/internal-pitch-deg"));
+                    Attitude_indicator_internal_roll_deg = double.Parse(telnetClient.Read("get /instrumentation/attitude-indicator/internal-roll-deg"));
+                    Indicated_heading_deg = double.Parse(telnetClient.Read("get /instrumentation/heading-indicator/indicated-heading-deg"));
+                    Gps_indicated_altitude_ft = double.Parse(telnetClient.Read("get /instrumentation/gps/indicated-altitude-ft"));
+                    Gps_indicated_ground_speed_kt = double.Parse(telnetClient.Read("get /instrumentation/gps/indicated-ground-speed-kt"));
                     //need more vars
                     Thread.Sleep(250);
                 }

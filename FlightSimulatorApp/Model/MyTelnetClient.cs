@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,24 +9,27 @@ namespace FlightSimulatorApp.Model
 {
     class MyTelnetClient : ITelnetClient
     {
+        Socket sender;
         public void Connect(string ip, int port)
         {
-            ServerSide.ExecuteServer();
+            //ServerSide.ExecuteServer();
+            sender = ClientSide.ExecuteClient(ip, port);
         }
 
         public void Disconnect()
         {
-            throw new NotImplementedException();
+            ClientSide.CloseSocket(sender);
         }
 
-        public string Read()
+        public string Read(string command)
         {
-            throw new NotImplementedException();
+            command = "get /instrumentation/gps/indicated-vertical-speed";
+            return ClientSide.Write(sender, command);
         }
 
         public void Write(string command)
         {
-            throw new NotImplementedException();
+            ClientSide.Write(sender, command);
         }
     }
 }

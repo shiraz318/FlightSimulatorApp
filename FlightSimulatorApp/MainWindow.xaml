@@ -5,28 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:View="clr-namespace:FlightSimulatorApp.View"
         xmlns:local="clr-namespace:FlightSimulatorApp"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <View:Dashboard x:Name="dashboard" Margin="128,-150,-131.4,150" RenderTransformOrigin="0.5,0.5">
+        <View:Dashboard x:Name="dashboard" Margin="156,-150,-159.4,150" RenderTransformOrigin="0.5,0.5">
             <View:Dashboard.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="0.65" ScaleY="0.65"/>
+                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
                 </TransformGroup>
             </View:Dashboard.RenderTransform>
         </View:Dashboard>
-        <View:Wheel x:Name="wheel" RenderTransformOrigin="0.5,0.5" Margin="197,113,-197.4,-113">
+        <View:Wheel x:Name="wheel" RenderTransformOrigin="0.5,0.5" Margin="215,113,-215.4,-113">
             <View:Wheel.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="0.5" ScaleY="0.54"/>
+                    <ScaleTransform ScaleX="0.45" ScaleY="0.45"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
                 </TransformGroup>
             </View:Wheel.RenderTransform>
         </View:Wheel>
+        <m:Map CredentialsProvider="btkCtE604q5s8DFGKzH5~fNmBQFQbqEDL1GCszg8kJA~AovMeW3MTuA2-2RqtUxt42BNwcwFMGPHif4_AO_fk-jmeTqwEbRo9R9BxATfC7pN" Center="37.806029,-122.407007" ZoomLevel="16" Margin="0,55,-68.4,-77">
+            <m:Map.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.7"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </m:Map.RenderTransform>
+        </m:Map>
     </Grid>
 </Window>
