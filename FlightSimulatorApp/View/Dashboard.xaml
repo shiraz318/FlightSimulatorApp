@@ -23,6 +23,14 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="246,226,0,0" TextWrapping="Wrap" Text="attitude-indicator_internal-roll-deg" VerticalAlignment="Top" Width="199" TextChanged="TextBox_TextChanged"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="241,296,0,0" TextWrapping="Wrap" Text="attitude-indicator_internal-pitch-deg" VerticalAlignment="Top" Width="211" TextChanged="TextBox_TextChanged"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="241,352,0,0" TextWrapping="Wrap" Text="altimeter_indicated-altitude-ft" VerticalAlignment="Top" Width="170" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="731,193,0,0" TextWrapping="Wrap" Text="{Binding VM_Airspeed_indicator_indicated_speed_kt}" VerticalAlignment="Top" Width="59" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="731,259,0,0" TextWrapping="Wrap" Text="{Binding VM_Gps_indicated_ground_speed_kt}" VerticalAlignment="Top" Width="59" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="731,324,0,0" TextWrapping="Wrap" Text="{Binding VM_Gps_indicated_vertical_speed}" VerticalAlignment="Top" Width="59" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="731,383,0,0" TextWrapping="Wrap" Text="{Binding VM_Indicated_heading_deg}" VerticalAlignment="Top" Width="59" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="448,193,0,0" TextWrapping="Wrap" Text="{Binding VM_Gps_indicated_altitude_ft}" VerticalAlignment="Top" Width="59" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="447,259,0,0" TextWrapping="Wrap" Text="{Binding VM_Attitude_indicator_internal_roll_deg}" VerticalAlignment="Top" Width="59" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="447,324,0,0" TextWrapping="Wrap" Text="{Binding VM_Attitude_indicator_internal_pitch_deg}" VerticalAlignment="Top" Width="59" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="447,383,0,0" TextWrapping="Wrap" Text="{Binding VM_Altimeter_indicated_altitude_ft}" VerticalAlignment="Top" Width="59" TextChanged="TextBox_TextChanged"/>
 
     </Grid>
 </UserControl>

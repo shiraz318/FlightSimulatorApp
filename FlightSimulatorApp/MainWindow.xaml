@@ -8,20 +8,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <View:Dashboard x:Name="dashboard" Margin="147,-150,-115.4,150" RenderTransformOrigin="0.5,0.5">
+        <View:Dashboard x:Name="dashboard" Margin="128,-150,-131.4,150" RenderTransformOrigin="0.5,0.5">
             <View:Dashboard.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+                    <ScaleTransform ScaleX="0.65" ScaleY="0.65"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
                 </TransformGroup>
             </View:Dashboard.RenderTransform>
         </View:Dashboard>
-        <View:Wheel x:Name="wheel" RenderTransformOrigin="0.5,0.5" Margin="216,113,-216.4,-113">
+        <View:Wheel x:Name="wheel" RenderTransformOrigin="0.5,0.5" Margin="197,113,-197.4,-113">
             <View:Wheel.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="0.45" ScaleY="0.45"/>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.54"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
