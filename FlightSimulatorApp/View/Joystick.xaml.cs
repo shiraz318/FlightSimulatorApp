@@ -6,17 +6,22 @@ using System.Windows.Media;
 
 namespace FlightSimulatorApp.View
 {
+    
+    public delegate void PositionChanged(Object sender, PositionChangedEventArgs e);
     /// <summary>
     /// Interaction logic for Joystick.xaml
     /// </summary>
     public partial class Joystick : UserControl
     {
+        public const double UP_BOARDER = 35;
+        public const double DOWN_BOARDER = -35;
+        public const double LEFT_BOARDER = -35;
+        public const double RIGHT_BOARDER = 35;
+        public const double RANGE = 35;
         private bool mousePressed = false;
-        private double upBorder = 35;
-        private double downBorder = -35;
-        private double leftBorder = -35;
-        private double rightBorder = 35;
+ 
         private double startX, startY, currentX, currentY, positionX, positionY;
+        public event PositionChanged positionChanged;
         public double PositionX { 
             get
             {
@@ -25,18 +30,19 @@ namespace FlightSimulatorApp.View
             set
             {
                 //check borders
-                if (value > upBorder)
+                if (value > UP_BOARDER)
                 {
-                    positionX = upBorder;
+                    positionX = UP_BOARDER;
                 }
-                else if (value < downBorder)
+                else if (value < DOWN_BOARDER)
                 {
-                    positionX = downBorder;
+                    positionX = DOWN_BOARDER;
                 }
                 else
                 {
                     positionX = value;
                 }
+                positionChanged(this, new PositionChangedEventArgs("X"));
             }
         }
         public double PositionY
@@ -48,18 +54,19 @@ namespace FlightSimulatorApp.View
             set
             {
                 //check borders
-                if (value < leftBorder)
+                if (value < LEFT_BOARDER)
                 {
-                    positionY = leftBorder;
+                    positionY = LEFT_BOARDER;
                 }
-                else if (value > rightBorder)
+                else if (value > RIGHT_BOARDER)
                 {
-                    positionY = rightBorder;
+                    positionY = RIGHT_BOARDER;
                 }
                 else
                 {
                     positionY = value;
                 }
+                positionChanged(this, new PositionChangedEventArgs("Y"));
             }
         }
       
@@ -89,6 +96,9 @@ namespace FlightSimulatorApp.View
             mousePressed = false;
             knobPosition.X = 0;
             knobPosition.Y = 0;
+            //if we want that when the user is in mouseup state - the text field will not be 0, which means it will not reset, so we just delete the following lines.
+            PositionY = 0;
+            PositionX = 0;
         }
 
         private void Joystick_MouseMove(object sender, MouseEventArgs e)

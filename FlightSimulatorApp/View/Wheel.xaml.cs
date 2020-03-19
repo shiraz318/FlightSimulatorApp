@@ -23,6 +23,24 @@ namespace FlightSimulatorApp.View
         public Wheel()
         {
             InitializeComponent();
+            joystick.positionChanged += delegate(Object sender, PositionChangedEventArgs e) {
+                double relativePosition;
+            if (e.getName().Equals("X"))
+                {
+                    //we want the text field to represent the relative position.
+                    relativePosition = joystick.PositionX / Joystick.RANGE;
+                    rudderText.Text = relativePosition.ToString();
+                    //here we need to sent notification to the view model (not notification exactly but viewmodel.setRudder for example)
+                }
+            else if (e.getName().Equals("Y"))
+                {
+                    //for some reason, the y position is the negative.
+                    relativePosition = -joystick.PositionY / Joystick.RANGE;
+                    elevatorText.Text = relativePosition.ToString();
+                    //here we need to sent notification to the view model (not notification exactly but viewmodel.setElevator for example)
+
+                }
+            };
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
