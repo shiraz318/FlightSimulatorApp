@@ -36,8 +36,7 @@ namespace FlightSimulatorApp.ViewModel
                 //"nili cohen"//
             }
         }
-
-        public double VM_Indicated_heading_deg { get { return model.Indicated_heading_deg; } set { vm_indicated_heading_deg = value; /*I think or we do no need a setter or we need to add NotifyPropertyChanged*/} }
+        public double VM_Indicated_heading_deg { get { return model.Indicated_heading_deg; } set { vm_indicated_heading_deg = value; } }//I think we can delete the set.
         public double VM_Gps_indicated_vertical_speed { get { return model.Gps_indicated_vertical_speed; } set { vm_gps_indicated_vertical_speed = value; } }
         public double VM_Gps_indicated_ground_speed_kt { get { return model.Gps_indicated_ground_speed_kt; } set { vm_gps_indicated_ground_speed_kt = value; } }
         public double VM_Airspeed_indicator_indicated_speed_kt { get { return model.Airspeed_indicator_indicated_speed_kt; } set { vm_airspeed_indicator_indicated_speed_kt = value; } }

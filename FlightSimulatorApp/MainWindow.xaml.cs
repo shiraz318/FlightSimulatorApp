@@ -23,20 +23,16 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        FlightSimulatorViewModel vm;
+        DashboardVM dashboardVM;
+        WheelVM wheelVM;
         public MainWindow()
         {
             InitializeComponent();
-            vm = new FlightSimulatorViewModel(new MyFlightSimulatorModel(new MyTelnetClient()));
-            //Binding binding = new Binding("VM_Rudder");
-            //binding.Source = joystick.knobPosition.X;
-            vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
-            {
-                string name = e.getName();
-
-            };
-
-            DataContext = vm;
+            MyTelnetClient mtc = new MyTelnetClient();
+            MyFlightSimulatorModel mfsm = new MyFlightSimulatorModel(mtc);
+            dashboardVM = new DashboardVM(mfsm);
+            wheelVM = new WheelVM(mfsm);
+            DataContext = dashboardVM;
         }
 
         private void throttle_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

@@ -12,11 +12,8 @@ namespace FlightSimulatorApp.Model
         void Connect(string ip, int port);
         void Disconnect();
         void Start();
+        void setSimulator(string var, double value);
         //properties
-        double Rudder { set; get; }
-        double Elevator { set; get; }
-        double Aileron { set; get; }
-        double Throttle { set; get; }
         double Indicated_heading_deg { set; get; }
         double Gps_indicated_vertical_speed { set; get; }
         double Gps_indicated_ground_speed_kt { set; get; }

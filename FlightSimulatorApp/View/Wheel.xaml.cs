@@ -23,7 +23,7 @@ namespace FlightSimulatorApp.View
         public Wheel()
         {
             InitializeComponent();
-            joystick.positionChanged += delegate(Object sender, PositionChangedEventArgs e) {
+            joystick.PositionChanged += delegate(Object sender, PositionChangedEventArgs e) {
                 double relativePosition;
             if (e.getName().Equals("X"))
                 {

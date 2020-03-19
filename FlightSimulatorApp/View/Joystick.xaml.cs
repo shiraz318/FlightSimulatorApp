@@ -21,7 +21,7 @@ namespace FlightSimulatorApp.View
         private bool mousePressed = false;
  
         private double startX, startY, currentX, currentY, positionX, positionY;
-        public event PositionChanged positionChanged;
+        public event PositionChanged PositionChanged;
         public double PositionX { 
             get
             {
@@ -42,7 +42,7 @@ namespace FlightSimulatorApp.View
                 {
                     positionX = value;
                 }
-                positionChanged(this, new PositionChangedEventArgs("X"));
+                PositionChanged(this, new PositionChangedEventArgs("X"));
             }
         }
         public double PositionY
@@ -66,7 +66,7 @@ namespace FlightSimulatorApp.View
                 {
                     positionY = value;
                 }
-                positionChanged(this, new PositionChangedEventArgs("Y"));
+                PositionChanged(this, new PositionChangedEventArgs("Y"));
             }
         }
       

@@ -67,7 +67,8 @@
     <Compile Include="Model\ServerSide.cs" />
     <Compile Include="PositionChangedEventArgs.cs" />
     <Compile Include="PropertyChangedEventArgs.cs" />
-    <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="ViewModel\DashboardVM.cs" />
+    <Compile Include="ViewModel\WheelVM.cs" />
     <Compile Include="View\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>

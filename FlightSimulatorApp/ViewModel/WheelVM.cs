@@ -16,7 +16,7 @@ namespace FlightSimulatorApp.ViewModel
             model = m;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                //NotifyPropertyChanged( e.getName());
+                NotifyPropertyChanged("VM_" + e.getName());
             };
 
         }
@@ -24,13 +24,13 @@ namespace FlightSimulatorApp.ViewModel
         {
             if (this.PropertyChanged != null)
             {
-                //this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
                 //"nili cohen"//
             }
         }
-        public double VM_Rudder { get { return model.Rudder; } }
-        public double VM_Elevator { get { return model.Elevator; } }
-        public double VM_Aileron { get { return model.Aileron; } }
-        public double VM_Throttle { get { return model.Throttle; } }
+        public double VM_Rudder { set { model.setSimulator("rudder", value); } } // I think we should bind it to the text field of rudder (of the view) 
+        public double VM_Elevator { set { model.setSimulator("elevator", value); } }//kanal
+        public double VM_Aileron { set { model.setSimulator("aileton", value); } }//kanal
+        public double VM_Throttle { set { model.setSimulator("throttle", value); } }//kanal
     }
 }

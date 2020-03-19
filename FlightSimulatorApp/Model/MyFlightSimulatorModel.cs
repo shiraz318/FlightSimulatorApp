@@ -11,10 +11,6 @@ namespace FlightSimulatorApp.Model
     {
         ITelnetClient telnetClient;
         volatile bool stop;
-        private double rudder;
-        private double elevator;
-        private double aileron;
-        private double throttle;
         private double indicated_heading_deg;
         private double gps_indicated_vertical_speed;
         private double gps_indicated_ground_speed_kt;
@@ -36,11 +32,6 @@ namespace FlightSimulatorApp.Model
             Attitude_indicator_internal_pitch_deg = 102;
             Altimeter_indicated_altitude_ft = 30;
         }
-       
-        public double Rudder { get { return rudder; } set { rudder = value; NotifyPropertyChanged("Rudder"); } }
-        public double Elevator { get { return elevator; } set { elevator = value; NotifyPropertyChanged("Elevator"); } }
-        public double Aileron { get { return aileron; } set { aileron = value; NotifyPropertyChanged("Aileron"); } }
-        public double Throttle { get { return throttle; } set { throttle = value; NotifyPropertyChanged("Throttle"); } }
         public double Indicated_heading_deg { get { return indicated_heading_deg; } set { indicated_heading_deg = value; NotifyPropertyChanged("Indicated_heading_deg"); } }
         public double Gps_indicated_vertical_speed { get { return gps_indicated_vertical_speed; } set { gps_indicated_vertical_speed = value; NotifyPropertyChanged("Gps_indicated_vertical_speed"); } }
         public double Gps_indicated_ground_speed_kt { get { return gps_indicated_ground_speed_kt; } set { gps_indicated_ground_speed_kt = value; NotifyPropertyChanged("Gps_indicated_ground_speed_kt"); } }
@@ -80,6 +71,10 @@ namespace FlightSimulatorApp.Model
                     Thread.Sleep(250);
                 }
             }).Start();
+        }
+        public void setSimulator(string var, double value)
+        {
+            
         }
         public void NotifyPropertyChanged(string propName)
         {
