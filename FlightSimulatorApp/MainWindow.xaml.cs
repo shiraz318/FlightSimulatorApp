@@ -25,6 +25,7 @@ namespace FlightSimulatorApp
     {
         DashboardVM dashboardVM;
         WheelVM wheelVM;
+        MapVM mapVM;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,12 +33,29 @@ namespace FlightSimulatorApp
             MyFlightSimulatorModel mfsm = new MyFlightSimulatorModel(mtc);
             dashboardVM = new DashboardVM(mfsm);
             wheelVM = new WheelVM(mfsm);
+            mapVM = new MapVM(mfsm);
             DataContext = dashboardVM;
-        }
-
-        private void throttle_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
+            wheel.positionChanged += delegate (Object sender, PositionChangedEventArgs e)
+            {
+                //
+                if (e.getName().Equals("Throttle"))
+                {
+                    wheelVM.VM_Throttle = e.getValue();
+                }//
+                else if (e.getName().Equals("Aileron"))
+                {
+                    wheelVM.VM_Aileron = e.getValue();
+                }
+                else if (e.getName().Equals("Rudder"))
+                {
+                    wheelVM.VM_Rudder = e.getValue();
+                }
+                else if (e.getName().Equals("Elevator"))
+                {
+                    wheelVM.VM_Elevator = e.getValue();
+                }
+            };
+           
         }
     }
 }

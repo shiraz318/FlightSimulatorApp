@@ -42,7 +42,7 @@ namespace FlightSimulatorApp.View
                 {
                     positionX = value;
                 }
-                PositionChanged(this, new PositionChangedEventArgs("X"));
+                PositionChanged(this, new PositionChangedEventArgs("X", positionX));
             }
         }
         public double PositionY
@@ -66,7 +66,7 @@ namespace FlightSimulatorApp.View
                 {
                     positionY = value;
                 }
-                PositionChanged(this, new PositionChangedEventArgs("Y"));
+                PositionChanged(this, new PositionChangedEventArgs("Y", positionY));
             }
         }
       

@@ -9,13 +9,19 @@ namespace FlightSimulatorApp
     public class PositionChangedEventArgs
     {
         private string position;
-        public PositionChangedEventArgs(string pos)
+        private double value;
+        public PositionChangedEventArgs(string pos, double val)
         {
             this.position = pos;
+            this.value = val;
         }
         public string getName()
         {
             return position;
+        }
+        public double getValue()
+        {
+            return value;
         }
     }
 }
