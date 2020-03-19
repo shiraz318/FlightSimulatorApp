@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FlightSimulatorApp.View
+namespace FlightSimulatorApp
 {
     /// <summary>
-    /// Interaction logic for Wheeler.xaml
+    /// Interaction logic for Setting.xaml
     /// </summary>
-    public partial class Wheeler : UserControl
+    public partial class Setting : UserControl
     {
-        public Wheeler()
+        public Setting()
         {
             InitializeComponent();
         }

@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:View="clr-namespace:FlightSimulatorApp.View"
         xmlns:local="clr-namespace:FlightSimulatorApp"
-        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -29,15 +28,16 @@
                 </TransformGroup>
             </View:Wheel.RenderTransform>
         </View:Wheel>
-        <m:Map CredentialsProvider="btkCtE604q5s8DFGKzH5~fNmBQFQbqEDL1GCszg8kJA~AovMeW3MTuA2-2RqtUxt42BNwcwFMGPHif4_AO_fk-jmeTqwEbRo9R9BxATfC7pN" Center="37.806029,-122.407007" ZoomLevel="16" Margin="0,55,-68.4,-77">
-            <m:Map.RenderTransform>
+        <View:MapControl RenderTransformOrigin="0.5,0.5" Margin="-56,19,55.6,-19">
+            <View:MapControl.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="0.5" ScaleY="0.7"/>
+                    <ScaleTransform ScaleX="0.85" ScaleY="0.85"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
                 </TransformGroup>
-            </m:Map.RenderTransform>
-        </m:Map>
+            </View:MapControl.RenderTransform>
+
+        </View:MapControl>
     </Grid>
 </Window>
