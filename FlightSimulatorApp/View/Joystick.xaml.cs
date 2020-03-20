@@ -7,7 +7,7 @@ using System.Windows.Media;
 namespace FlightSimulatorApp.View
 {
     
-    public delegate void PositionChanged(Object sender, PositionChangedEventArgs e);
+    //public delegate void PositionChanged(Object sender, PositionChangedEventArgs e);
     /// <summary>
     /// Interaction logic for Joystick.xaml
     /// </summary>
@@ -21,7 +21,7 @@ namespace FlightSimulatorApp.View
         private bool mousePressed = false;
  
         private double startX, startY, currentX, currentY, positionX, positionY;
-        public event PositionChanged PositionChanged;
+        //public event PositionChanged PositionChanged;
         public double PositionX { 
             get
             {
@@ -42,7 +42,7 @@ namespace FlightSimulatorApp.View
                 {
                     positionX = value;
                 }
-                PositionChanged(this, new PositionChangedEventArgs("X", positionX));
+               // PositionChanged(this, new PositionChangedEventArgs("X", positionX));
             }
         }
         public double PositionY
@@ -66,7 +66,7 @@ namespace FlightSimulatorApp.View
                 {
                     positionY = value;
                 }
-                PositionChanged(this, new PositionChangedEventArgs("Y", positionY));
+               // PositionChanged(this, new PositionChangedEventArgs("Y", positionY));
             }
         }
       

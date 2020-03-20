@@ -66,7 +66,9 @@ namespace FlightSimulatorApp
             mapVM = new MapVM(mfsm);
             connectVM = new ConnectVM(mfsm);
             DataContext = dashboardVM;
-            wheel.positionChanged += delegate (Object sender, PositionChangedEventArgs e)
+            wheel.DataContext = wheelVM;
+            wheel.joystick.DataContext = wheelVM;
+            /*wheel.positionChanged += delegate (Object sender, PositionChangedEventArgs e)
             {
                 //
                 if (e.getName().Equals("Throttle"))
@@ -85,7 +87,7 @@ namespace FlightSimulatorApp
                 {
                     wheelVM.VM_Elevator = e.getValue();
                 }
-            };
+            };*/
 
             ipText.Text = ip;
             portText.Text = port.ToString();

@@ -20,10 +20,11 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class Wheel : UserControl
     {
-        public event PositionChanged positionChanged;
+       // public event PositionChanged positionChanged;
         public Wheel()
         {
             InitializeComponent();
+            /*
             joystick.PositionChanged += delegate(Object sender, PositionChangedEventArgs e) {
                 double relativePosition;
             if (e.getName().Equals("X"))
@@ -44,7 +45,7 @@ namespace FlightSimulatorApp.View
                     //here we need to sent notification to the view model (not notification exactly but viewmodel.setElevator for example)
 
                 }
-            };
+            };*/
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
