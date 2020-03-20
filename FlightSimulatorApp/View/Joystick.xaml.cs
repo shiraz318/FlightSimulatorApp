@@ -95,6 +95,8 @@ namespace FlightSimulatorApp.View
         private void Joystick_MouseUp(object sender, MouseButtonEventArgs e)
         {
             mousePressed = false;
+            UIElement element = (UIElement)Knob;
+            element.ReleaseMouseCapture();
             knobPosition.X = 0;
             knobPosition.Y = 0;
             //if we want that when the user is in mouseup state - the text field will not be 0, which means it will not reset, so we just delete the following lines.
