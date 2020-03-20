@@ -22,27 +22,9 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class MapControl : UserControl
     {
-        private MapVM mapVM;
         public MapControl()
         {
             InitializeComponent();
-            MyTelnetClient mtc = new MyTelnetClient();
-            MyFlightSimulatorModel mfsm = new MyFlightSimulatorModel(mtc);
-            mapVM = new MapVM(mfsm);
-        }
-
-        private void Connect_Click(object sender, RoutedEventArgs e)
-        {
-            //default ip and port
-            string ip = "";
-            int port = 5402;
-            mapVM.connect(ip, port);
-        }
-
-        private void Setting_Click(object sender, RoutedEventArgs e)
-        {
-            //open a window and collect data from user
-            Setting s = new Setting();
         }
     }
 }

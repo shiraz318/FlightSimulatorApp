@@ -18,7 +18,5 @@
                 </TransformGroup>
             </m:Map.RenderTransform>
         </m:Map>
-        <Button Name="Connect" Content="Connect" HorizontalAlignment="Left" Margin="134,48,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click"/>
-        <Button Name="Setting" Content="Setting" HorizontalAlignment="Left" Margin="242,48,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click"/>
     </Grid>
 </UserControl>

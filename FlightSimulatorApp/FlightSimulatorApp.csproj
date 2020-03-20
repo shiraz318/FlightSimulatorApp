@@ -62,21 +62,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConnectValuesChangedEventArgs.cs" />
     <Compile Include="INotifyPropertyChanged.cs" />
     <Compile Include="Model\ClientSide.cs" />
     <Compile Include="Model\IFlightSimulatorModel.cs" />
-    <Compile Include="Model\ITelnetClient.cs" />
     <Compile Include="Model\MyFlightSimulatorModel.cs" />
-    <Compile Include="Model\MyTelnetClient.cs" />
     <Compile Include="Model\ServerSide.cs" />
     <Compile Include="PositionChangedEventArgs.cs" />
     <Compile Include="PropertyChangedEventArgs.cs" />
     <Compile Include="Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ConnectVM.cs" />
     <Compile Include="ViewModel\DashboardVM.cs" />
     <Compile Include="ViewModel\MapVM.cs" />
     <Compile Include="ViewModel\GeneralViewModel.cs" />
+    <Compile Include="ViewModel\SettingWindow.xaml.cs">
+      <DependentUpon>SettingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\WheelVM.cs" />
     <Compile Include="View\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
@@ -115,6 +118,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Setting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewModel\SettingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ namespace FlightSimulatorApp.Model
 {
     class MyFlightSimulatorModel : IFlightSimulatorModel
     {
-        ITelnetClient telnetClient;
+        private TcpClient tcpClient;
+        NetworkStream strm;
         volatile bool stop;
         private double indicated_heading_deg;
         private double gps_indicated_vertical_speed;
@@ -19,9 +21,10 @@ namespace FlightSimulatorApp.Model
         private double attitude_indicator_internal_roll_deg;
         private double attitude_indicator_internal_pitch_deg;
         private double altimeter_indicated_altitude_ft;
-        public MyFlightSimulatorModel(ITelnetClient telnet)
+        public MyFlightSimulatorModel(TcpClient telnet)
         {
-            this.telnetClient = telnet;
+           
+            this.tcpClient = telnet;
             this.stop = false;
             Indicated_heading_deg = 50;
             Gps_indicated_vertical_speed = 60;
@@ -44,12 +47,24 @@ namespace FlightSimulatorApp.Model
 
         public void Connect(string ip, int port)
         {
-            telnetClient.Connect(ip, port);
+            try
+            {
+                Console.WriteLine("Connecting...");
+                tcpClient.Connect(ip, port);
+                strm = tcpClient.GetStream();
+                //use the ipaddress as in thr server program
+                Console.WriteLine("Connected");
+                Start();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error:" + e.StackTrace);
+            }
         }
 
         public void Disconnect()
         {
-            telnetClient.Disconnect();
+            tcpClient.Close();
             stop = true; 
         }
 
@@ -59,21 +74,81 @@ namespace FlightSimulatorApp.Model
             {
                 while (!stop)
                 {
-                    Gps_indicated_vertical_speed = double.Parse(telnetClient.Read("get /instrumentation/gps/indicated-vertical-speed"));
-                    Airspeed_indicator_indicated_speed_kt = double.Parse(telnetClient.Read("get /instrumentation/airspeed-indicator/indicated-speed-kt"));
-                    Altimeter_indicated_altitude_ft = double.Parse(telnetClient.Read("get /instrumentation/altimeter/indicated-altitude-ft"));
-                    Attitude_indicator_internal_pitch_deg = double.Parse(telnetClient.Read("get /instrumentation/attitude-indicator/internal-pitch-deg"));
-                    Attitude_indicator_internal_roll_deg = double.Parse(telnetClient.Read("get /instrumentation/attitude-indicator/internal-roll-deg"));
-                    Indicated_heading_deg = double.Parse(telnetClient.Read("get /instrumentation/heading-indicator/indicated-heading-deg"));
-                    Gps_indicated_altitude_ft = double.Parse(telnetClient.Read("get /instrumentation/gps/indicated-altitude-ft"));
-                    Gps_indicated_ground_speed_kt = double.Parse(telnetClient.Read("get /instrumentation/gps/indicated-ground-speed-kt"));
-                    //need more vars
-                    Thread.Sleep(250);
+                 
+                    /***/
+                    Byte[] data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/gps/indicated-vertical-speed\n");
+                    strm.Write(data, 0, data.Length);
+                    data = new Byte[256];
+                    String responseData = String.Empty;
+                    Int32 bytes = strm.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    Gps_indicated_vertical_speed = double.Parse(responseData);
+                    /***/
+                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
+                    strm.Write(data, 0, data.Length);
+                    data = new Byte[256];
+                    responseData = String.Empty;
+                    bytes = strm.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    Airspeed_indicator_indicated_speed_kt = double.Parse(responseData);
+                    /***/
+                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/altimeter/indicated-altitude-ft\n");
+                    strm.Write(data, 0, data.Length);
+                    data = new Byte[256];
+                    responseData = String.Empty;
+                    bytes = strm.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    Altimeter_indicated_altitude_ft = double.Parse(responseData);
+                    /***/
+                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
+                    strm.Write(data, 0, data.Length);
+                    data = new Byte[256];
+                    responseData = String.Empty;
+                    bytes = strm.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    Attitude_indicator_internal_pitch_deg = double.Parse(responseData);
+                    /***/
+                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/attitude-indicator/internal-roll-deg\n");
+                    strm.Write(data, 0, data.Length);
+                    data = new Byte[256];
+                    responseData = String.Empty;
+                    bytes = strm.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    Attitude_indicator_internal_roll_deg = double.Parse(responseData);
+                    /***/
+                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/heading-indicator/indicated-heading-deg\n");
+                    strm.Write(data, 0, data.Length);
+                    data = new Byte[256];
+                    responseData = String.Empty;
+                    bytes = strm.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    Indicated_heading_deg = double.Parse(responseData);
+                    /***/
+                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/gps/indicated-altitude-ft\n");
+                    strm.Write(data, 0, data.Length);
+                    data = new Byte[256];
+                    responseData = String.Empty;
+                    bytes = strm.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    Gps_indicated_altitude_ft = double.Parse(responseData);
+                    /***/
+                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/gps/indicated-ground-speed-kt\n");
+                    strm.Write(data, 0, data.Length);
+                    data = new Byte[256];
+                    responseData = String.Empty;
+                    bytes = strm.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    Gps_indicated_ground_speed_kt = double.Parse(responseData);
+
+
+            //need more vars
+            Thread.Sleep(100);
                 }
             }).Start();
         }
         public void setSimulator(string var, double value)
         {
+            Console.WriteLine("");
             
         }
         public void NotifyPropertyChanged(string propName)

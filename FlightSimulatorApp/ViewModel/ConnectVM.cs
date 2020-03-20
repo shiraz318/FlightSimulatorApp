@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorApp.ViewModel
 {
-    class MapVM : INotifyPropertyChanged
+    class ConnectVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
-        public MapVM(IFlightSimulatorModel m)
+        public ConnectVM(IFlightSimulatorModel m)
         {
             model = m;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
@@ -28,6 +28,11 @@ namespace FlightSimulatorApp.ViewModel
                 //"nili cohen"//
             }
         }
+        public void connect(string ip, int port)
+        {
+            model.Connect(ip, port);
+        }
     }
-
+    
+    
 }

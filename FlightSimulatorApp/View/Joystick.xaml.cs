@@ -86,6 +86,7 @@ namespace FlightSimulatorApp.View
             if (!mousePressed)
             {
                 mousePressed = true;
+                Knob.CaptureMouse();
                 startX = e.GetPosition(this).X;
                 startY = e.GetPosition(this).Y;
             }
