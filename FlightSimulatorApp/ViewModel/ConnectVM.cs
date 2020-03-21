@@ -9,7 +9,7 @@ namespace FlightSimulatorApp.ViewModel
 {
     class ConnectVM : INotifyPropertyChanged
     {
-        private string port = "5402";
+        private int port = 5402;
         private string ip = "127.0.0.1";
         public string Ip
         {
@@ -23,7 +23,7 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-        public string Port
+        public int Port
         {
             get
             {
@@ -55,7 +55,7 @@ namespace FlightSimulatorApp.ViewModel
         }
         public void connect()
         {
-            model.Connect(Ip, int.Parse(Port));
+            model.Connect(Ip, Port);
         }
     }
     

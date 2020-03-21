@@ -38,7 +38,7 @@ namespace FlightSimulatorApp
             wheelVM = new WheelVM(mfsm);
             mapVM = new MapVM(mfsm);
             connectVM = new ConnectVM(mfsm);
-            DataContext = connectVM;
+            //DataContext = connectVM;
             wheel.DataContext = wheelVM;
             wheel.joystick.DataContext = wheelVM;
             dashboard.DataContext = dashboardVM;
@@ -62,6 +62,8 @@ namespace FlightSimulatorApp
                     wheelVM.VM_Elevator = e.getValue();
                 }
             };*/
+            ipText.Text = connectVM.Ip;
+            portText.Text = connectVM.Port.ToString();
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)
@@ -73,6 +75,13 @@ namespace FlightSimulatorApp
         {
             SettingWindow setting = new SettingWindow();
             setting.DataContext = connectVM;
+            setting.connectValuesChanged += delegate (Object sender1, ConnectValuesChangedEventArgs e1)
+            {
+                connectVM.Ip = e1.getIp();
+                connectVM.Port = e1.getPort();
+                ipText.Text = connectVM.Ip;
+                portText.Text = connectVM.Port.ToString();
+            };
             setting.ShowDialog();
         }
     }
