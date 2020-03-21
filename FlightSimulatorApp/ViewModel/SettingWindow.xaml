@@ -6,14 +6,40 @@
         xmlns:local="clr-namespace:FlightSimulatorApp.ViewModel"
         mc:Ignorable="d"
         Title="SettingWindow" Height="450" Width="800">
-    <Grid RenderTransformOrigin="0.483,0.574">
-        <TextBox Name="ipText" HorizontalAlignment="Left" Height="25" Margin="477,132,0,0" TextWrapping="Wrap" Text="{Binding Ip, Mode=OneWayToSource}" VerticalAlignment="Top" Width="154"/>
-        <TextBox  Name="portText" HorizontalAlignment="Left" Height="25" Margin="477,182,0,0" TextWrapping="Wrap" Text="{Binding Port, Mode=OneWayToSource}" VerticalAlignment="Top" Width="154"/>
-        <Label Content="IP" HorizontalAlignment="Left" Margin="405,135,0,0" VerticalAlignment="Top"/>
-        <Label Content="PORT" HorizontalAlignment="Left" Margin="405,181,0,0" VerticalAlignment="Top"/>
+    <Grid RenderTransformOrigin="0.483,0.574" AutomationProperties.HelpText="nbhvhmbkbjb">
+        <TextBox Name="ipText" HorizontalAlignment="Left" Height="21" Margin="476,90,0,0" TextWrapping="Wrap" Text="{Binding Ip, Mode=OneWayToSource}" VerticalAlignment="Top" Width="154"/>
+        <TextBox  Name="portText" HorizontalAlignment="Left" Height="21" Margin="476,156,0,0" TextWrapping="Wrap" Text="{Binding Port, Mode=OneWayToSource}" VerticalAlignment="Top" Width="154"/>
+        <Label Content="IP" HorizontalAlignment="Left" Margin="437,88,0,0" VerticalAlignment="Top"/>
+        <Label Content="PORT" HorizontalAlignment="Left" Margin="433,155,0,0" VerticalAlignment="Top"/>
         <Button Name="okButton" Content="ok" HorizontalAlignment="Left" Margin="589,254,0,0" VerticalAlignment="Top" Width="79" Height="26" Click="okButton_Click"/>
         <Button Name="cancelButton" Content="cancel" HorizontalAlignment="Left" Margin="477,254,0,0" VerticalAlignment="Top" Width="79" Height="26" Click="cancelButton_Click"/>
         <Label Name="validation" Content="" HorizontalAlignment="Left" Margin="477,218,0,0" VerticalAlignment="Top" Width="154"/>
+        <Expander Header="Info" HorizontalAlignment="Left" Height="59" Margin="410,103,0,0" VerticalAlignment="Top" Width="232" FontSize="10" ExpandDirection="Right" RenderTransformOrigin="0.5,0.5">
+            <Expander.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.75" ScaleY="0.75"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Expander.RenderTransform>
+            <Grid Background="#FFE5E5E5" Margin="0,2,0,0" Width="199" Height="51" VerticalAlignment="Top">
+                <TextBox Width="209" Height="59" Margin="0,-2,-10,-6" VerticalAlignment="Top" Text="An Internet Protocol address is a numerical&#xD;&#xA;lable assigned to each device connected to&#xD;&#xA;a computer network that uses the internet&#xD;&#xA;protocol for communication." FontSize="10" BorderBrush="White"/>
+            </Grid>
+        </Expander>
+        <Expander Header="Info" HorizontalAlignment="Left" Height="59" Margin="410,171,0,0" VerticalAlignment="Top" Width="232" FontSize="10" ExpandDirection="Right" RenderTransformOrigin="0.5,0.5">
+            <Expander.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.75" ScaleY="0.75"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Expander.RenderTransform>
+            <Grid Background="#FFE5E5E5" Margin="0,2,0,0" Width="199" Height="51" VerticalAlignment="Top">
+                <TextBox Width="209" Height="59" Margin="0,-2,-10,-6" VerticalAlignment="Top" Text="An Internet Protocol address is a numerical&#xA;lable addigned to each device connected to&#xA;a conmuter network that uses the internet&#xA;protocol for communication." FontSize="10" BorderBrush="White"/>
+            </Grid>
+        </Expander>
 
     </Grid>
 </Window>
