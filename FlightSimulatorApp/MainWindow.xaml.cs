@@ -28,34 +28,7 @@ namespace FlightSimulatorApp
         private WheelVM wheelVM;
         private MapVM mapVM;
         private ConnectVM connectVM;
-        private string ip = "127.0.0.1";
-        private int port = 5402;
 
-        public string Ip
-        {
-            get
-            {
-                return ip;
-            }
-            set
-            {
-                ip = value;
-                ipText.Text = ip;
-            }
-        }
-
-        public int Port
-        {
-            get
-            {
-                return port;
-            }
-            set
-            {
-                port = value;
-                portText.Text = port.ToString();
-            }
-        }
         public MainWindow()
         {
             InitializeComponent();
@@ -65,9 +38,10 @@ namespace FlightSimulatorApp
             wheelVM = new WheelVM(mfsm);
             mapVM = new MapVM(mfsm);
             connectVM = new ConnectVM(mfsm);
-            DataContext = dashboardVM;
+            DataContext = connectVM;
             wheel.DataContext = wheelVM;
             wheel.joystick.DataContext = wheelVM;
+            dashboard.DataContext = dashboardVM;
             /*wheel.positionChanged += delegate (Object sender, PositionChangedEventArgs e)
             {
                 //
@@ -88,24 +62,17 @@ namespace FlightSimulatorApp
                     wheelVM.VM_Elevator = e.getValue();
                 }
             };*/
-
-            ipText.Text = ip;
-            portText.Text = port.ToString();
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
-            connectVM.connect(ip, port);
+            connectVM.connect();
         }
 
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
             SettingWindow setting = new SettingWindow();
-            setting.connectValuesChanged += delegate (Object sender1, ConnectValuesChangedEventArgs e1)
-            {
-                Ip = e1.getIp();
-                Port = e1.getPort();
-            };
+            setting.DataContext = connectVM;
             setting.ShowDialog();
         }
     }

@@ -9,6 +9,31 @@ namespace FlightSimulatorApp.ViewModel
 {
     class ConnectVM : INotifyPropertyChanged
     {
+        private string port = "5402";
+        private string ip = "127.0.0.1";
+        public string Ip
+        {
+            get
+            {
+                return ip;
+            }
+            set
+            {
+                ip = value;
+            }
+        }
+
+        public string Port
+        {
+            get
+            {
+                return port;
+            }
+            set
+            {
+                port = value;
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
         public ConnectVM(IFlightSimulatorModel m)
@@ -28,9 +53,9 @@ namespace FlightSimulatorApp.ViewModel
                 //"nili cohen"//
             }
         }
-        public void connect(string ip, int port)
+        public void connect()
         {
-            model.Connect(ip, port);
+            model.Connect(Ip, int.Parse(Port));
         }
     }
     

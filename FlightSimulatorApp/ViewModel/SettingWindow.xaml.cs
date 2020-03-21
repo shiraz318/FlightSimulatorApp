@@ -20,7 +20,7 @@ namespace FlightSimulatorApp.ViewModel
     public partial class SettingWindow : Window
     {
         public delegate void ConnectValuesChanged(Object sender, ConnectValuesChangedEventArgs e);
-        public event ConnectValuesChanged connectValuesChanged;
+        //public event ConnectValuesChanged connectValuesChanged;
         public SettingWindow()
         {
             InitializeComponent();
@@ -39,12 +39,14 @@ namespace FlightSimulatorApp.ViewModel
             {
                 port = j;
             }
-           if (port == -1)
+            //and other validation checks if needed
+           if ((port == -1) || (ip == "") || (portText.Text == ""))
             {
-                //invalid
-            }
-            connectValuesChanged(this, new ConnectValuesChangedEventArgs(ip, port));
-            this.Hide();
+                validation.Content = "invalid port or ip, Try again"; //invalid
+            } else
+            {
+                this.Hide();
+            }           
         }
     }
 }
