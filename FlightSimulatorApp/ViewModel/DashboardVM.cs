@@ -11,14 +11,6 @@ namespace FlightSimulatorApp.ViewModel
     class DashboardVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private double vm_indicated_heading_deg;
-        private double vm_gps_indicated_vertical_speed;
-        private double vm_gps_indicated_ground_speed_kt;
-        private double vm_airspeed_indicator_indicated_speed_kt;
-        private double vm_gps_indicated_altitude_ft;
-        private double vm_attitude_indicator_internal_roll_deg;
-        private double vm_attitude_indicator_internal_pitch_deg;
-        private double vm_altimeter_indicated_altitude_ft;
         private IFlightSimulatorModel model;
         public DashboardVM(IFlightSimulatorModel m)
         {
@@ -38,14 +30,13 @@ namespace FlightSimulatorApp.ViewModel
                 //"nili cohen"//
             }
         }
-        public double VM_Indicated_heading_deg { get { return model.Indicated_heading_deg; } set { 
-                vm_indicated_heading_deg = value; } }//I think we can delete the set.
-        public double VM_Gps_indicated_vertical_speed { get { return model.Gps_indicated_vertical_speed; } set { vm_gps_indicated_vertical_speed = value; } }
-        public double VM_Gps_indicated_ground_speed_kt { get { return model.Gps_indicated_ground_speed_kt; } set { vm_gps_indicated_ground_speed_kt = value; } }
-        public double VM_Airspeed_indicator_indicated_speed_kt { get { return model.Airspeed_indicator_indicated_speed_kt; } set { vm_airspeed_indicator_indicated_speed_kt = value; } }
-        public double VM_Gps_indicated_altitude_ft { get { return model.Gps_indicated_altitude_ft; } set { vm_gps_indicated_altitude_ft = value; } }
-        public double VM_Attitude_indicator_internal_roll_deg { get { return model.Attitude_indicator_internal_roll_deg; } set { vm_attitude_indicator_internal_roll_deg = value; } }
-        public double VM_Attitude_indicator_internal_pitch_deg { get { return model.Attitude_indicator_internal_pitch_deg; } set { vm_attitude_indicator_internal_pitch_deg = value; } }
-        public double VM_Altimeter_indicated_altitude_ft { get { return model.Altimeter_indicated_altitude_ft; } set { vm_altimeter_indicated_altitude_ft = value; } }
+        public double VM_Indicated_heading_deg { get { return model.Indicated_heading_deg; } }
+        public double VM_Gps_indicated_vertical_speed { get { return model.Gps_indicated_vertical_speed; } }
+        public double VM_Gps_indicated_ground_speed_kt { get { return model.Gps_indicated_ground_speed_kt; } }
+        public double VM_Airspeed_indicator_indicated_speed_kt { get { return model.Airspeed_indicator_indicated_speed_kt; } }
+        public double VM_Gps_indicated_altitude_ft { get { return model.Gps_indicated_altitude_ft; } }
+        public double VM_Attitude_indicator_internal_roll_deg { get { return model.Attitude_indicator_internal_roll_deg; } }
+        public double VM_Attitude_indicator_internal_pitch_deg { get { return model.Attitude_indicator_internal_pitch_deg; } }
+        public double VM_Altimeter_indicated_altitude_ft { get { return model.Altimeter_indicated_altitude_ft; } }
     }
 }

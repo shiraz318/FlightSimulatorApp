@@ -7,8 +7,16 @@
         xmlns:local="clr-namespace:FlightSimulatorApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Background>
+        <SolidColorBrush Color="#FF0E3411" Opacity="0.93"/>
+    </Window.Background>
     <Grid>
-        <View:Dashboard x:Name="dashboard" Margin="156,-150,-159.4,150" RenderTransformOrigin="0.5,0.5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="162*"/>
+            <ColumnDefinition Width="24*"/>
+            <ColumnDefinition Width="211*"/>
+        </Grid.ColumnDefinitions>
+        <View:Dashboard x:Name="dashboard" Margin="156,-177,-159.4,150" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
             <View:Dashboard.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
@@ -18,17 +26,8 @@
                 </TransformGroup>
             </View:Dashboard.RenderTransform>
         </View:Dashboard>
-        <View:Wheel x:Name="wheel" RenderTransformOrigin="0.5,0.5" Margin="215,113,-215.4,-113">
-            <View:Wheel.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="0.45" ScaleY="0.45"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </View:Wheel.RenderTransform>
-        </View:Wheel>
-        <View:MapControl RenderTransformOrigin="0.5,0.5" Margin="-56,19,55.6,-19">
+       
+        <View:MapControl RenderTransformOrigin="0.5,0.5" Margin="-56,19,55.6,-19" Grid.ColumnSpan="3">
             <View:MapControl.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.85" ScaleY="0.85"/>
@@ -39,6 +38,16 @@
             </View:MapControl.RenderTransform>
 
         </View:MapControl>
+        <View:Wheel x:Name="wheel" RenderTransformOrigin="0.5,0.5" Margin="215,113,-215.4,-113" Grid.ColumnSpan="3">
+            <View:Wheel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.45" ScaleY="0.45"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </View:Wheel.RenderTransform>
+        </View:Wheel>
         <Button Name="Connect" Content="Connect" HorizontalAlignment="Left" Margin="130,87,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click"/>
         <Button Name="Setting" Content="Setting" HorizontalAlignment="Left" Margin="237,87,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click"/>
         <TextBox Name="ipText" HorizontalAlignment="Left" Height="23" Margin="64,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>

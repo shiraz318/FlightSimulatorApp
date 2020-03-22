@@ -91,5 +91,10 @@ namespace FlightSimulatorApp
                 setting.IsOk = false;
             }
         }
+
+        private void MapControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

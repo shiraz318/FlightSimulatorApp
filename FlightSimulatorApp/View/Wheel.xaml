@@ -14,7 +14,7 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="725,184,0,0" TextWrapping="Wrap" Text="Aileron" VerticalAlignment="Top" Width="61"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="20,184,0,0" TextWrapping="Wrap" Text="Aileron" VerticalAlignment="Top" Width="55"/>
         <TextBox HorizontalAlignment="Left" Height="25" Margin="20,237,0,0" TextWrapping="Wrap" Text="Throttle" VerticalAlignment="Top" Width="55"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="20,134,0,0" TextWrapping="Wrap" Text="Elevator" VerticalAlignment="Top" Width="55" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="20,134,0,0" TextWrapping="Wrap" Text="Elevator" VerticalAlignment="Top" Width="55"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="20,76,0,0" TextWrapping="Wrap" Text="Rudder" VerticalAlignment="Top" Width="55"/>
         <TextBox HorizontalAlignment="Left" Height="25" Margin="86,76,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="126" Name="rudderText" FontSize="20"/>
         <TextBox HorizontalAlignment="Left" Height="25" Margin="86,134,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="126" Name="elevatorText" FontSize="20"/>

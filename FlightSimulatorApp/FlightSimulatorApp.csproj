@@ -62,12 +62,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ConnectValuesChangedEventArgs.cs" />
     <Compile Include="Model\ClientSide.cs" />
     <Compile Include="Model\IFlightSimulatorModel.cs" />
     <Compile Include="Model\MyFlightSimulatorModel.cs" />
     <Compile Include="Model\ServerSide.cs" />
-    <Compile Include="PositionChangedEventArgs.cs" />
     <Compile Include="Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
@@ -159,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="View\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
