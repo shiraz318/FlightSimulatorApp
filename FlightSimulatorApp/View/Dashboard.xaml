@@ -7,14 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,385,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Indicated_heading_deg}" Minimum="1" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,324,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_vertical_speed}" Minimum="1" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,260,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_ground_speed_kt}" Minimum="1" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,193,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Airspeed_indicator_indicated_speed_kt}" Minimum="1" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="241,193,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_altitude_ft}" Minimum="1" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="238,260,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Attitude_indicator_internal_roll_deg}" Minimum="1" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="241,324,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Attitude_indicator_internal_pitch_deg}" Minimum="1" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="238,385,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Altimeter_indicated_altitude_ft}" Minimum="1" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,385,0,0" VerticalAlignment="Top" Value="{Binding VM_Indicated_heading_deg}" Width="204" Minimum="0" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,324,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_vertical_speed}" Minimum="0" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,260,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_ground_speed_kt}" Minimum="0" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,193,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Airspeed_indicator_indicated_speed_kt}" Minimum="0" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="241,193,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_altitude_ft}" Minimum="0" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="238,260,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Attitude_indicator_internal_roll_deg}" Minimum="0" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="241,324,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Attitude_indicator_internal_pitch_deg}" Minimum="0" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="238,385,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Altimeter_indicated_altitude_ft}" Minimum="0" Maximum="102"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="564,357,0,0" TextWrapping="Wrap" Text="indicated-heading-deg" VerticalAlignment="Top" Width="131" TextChanged="TextBox_TextChanged" RenderTransformOrigin="0.525,5.049"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="546,288,0,0" TextWrapping="Wrap" Text="gps_indicated-vertical-speed" VerticalAlignment="Top" Width="170" TextChanged="TextBox_TextChanged"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="533,232,0,0" TextWrapping="Wrap" Text="gps_indicated-ground-speed-kt" VerticalAlignment="Top" Width="183" TextChanged="TextBox_TextChanged"/>

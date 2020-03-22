@@ -31,7 +31,7 @@ namespace FlightSimulatorApp.ViewModel
         public double VM_Rudder { set { model.setSimulator("rudder", value); } } // I think we should bind it to the text field of rudder (of the view) 
         public double VM_Elevator { set { model.setSimulator("elevator", value); } }//kanal
         public double VM_Aileron { set {
-                model.setSimulator("aileton", value); } }//kanal
+                model.setSimulator("aileron", value); } }//kanal
         public double VM_Throttle { set { 
                 model.setSimulator("throttle", value); } }//kanal
     }

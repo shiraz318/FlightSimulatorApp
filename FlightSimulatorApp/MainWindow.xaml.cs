@@ -62,6 +62,11 @@ namespace FlightSimulatorApp
                     wheelVM.VM_Elevator = e.getValue();
                 }
             };*/
+            /*dashboardVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                string name = e.getName();
+                dashboard.name
+            };*/
             //We should do Binding!! here but it does not working for some reason
             ipText.Text = connectVM.Ip;
             portText.Text = connectVM.Port.ToString();

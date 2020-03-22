@@ -21,11 +21,17 @@ namespace FlightSimulatorApp.Model
         private double attitude_indicator_internal_roll_deg;
         private double attitude_indicator_internal_pitch_deg;
         private double altimeter_indicated_altitude_ft;
+        private Queue<string> messages = new Queue<string> { };
+        private Dictionary<string, string> pathMap = new Dictionary<string, string> { };
         public MyFlightSimulatorModel(TcpClient telnet)
         {
            
             this.tcpClient = telnet;
             this.stop = false;
+            pathMap.Add("aileron", "/controls/flight/aileron");
+            pathMap.Add("throttle", "/controls/engines/current-engine/throttle");
+            pathMap.Add("rudder", "/controls/flight/rudder");
+            pathMap.Add("elevator", "/controls/flight/elevator");
             Indicated_heading_deg = 50;
             Gps_indicated_vertical_speed = 60;
             Gps_indicated_ground_speed_kt = 70;
@@ -70,84 +76,110 @@ namespace FlightSimulatorApp.Model
 
         public void Start()
         {
-            new Thread(delegate ()
+            // new Thread(delegate ()
+            //   {
+            while (!stop)
             {
-                while (!stop)
+
+                /***/
+                Byte[] data = System.Text.Encoding.ASCII.GetBytes("get /gps_indicated-vertical-speed\nget /airspeed-indicator_indicated-speed-kt\nget /altimeter_indicated-altitude-ft\nget /attitude-indicator_internal-pitch-deg\nget /attitude-indicator_internal-roll-deg\nget /indicated-heading-deg\nget /gps_indicated-altitude-ft\nget /gps_indicated-ground-speed-kt\n");
+                strm.Write(data, 0, data.Length);
+                data = new Byte[256];
+                String responseData = String.Empty;
+                Int32 bytes = strm.Read(data, 0, data.Length);
+                responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                var result = responseData.Split('\n');
+                if (double.TryParse(result[0], out double i1))
                 {
-                 
-                    /***/
-                    Byte[] data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/gps/indicated-vertical-speed\n");
-                    strm.Write(data, 0, data.Length);
-                    data = new Byte[256];
-                    String responseData = String.Empty;
-                    Int32 bytes = strm.Read(data, 0, data.Length);
-                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                    Gps_indicated_vertical_speed = double.Parse(responseData);
-                    /***/
-                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
-                    strm.Write(data, 0, data.Length);
-                    data = new Byte[256];
-                    responseData = String.Empty;
-                    bytes = strm.Read(data, 0, data.Length);
-                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                    Airspeed_indicator_indicated_speed_kt = double.Parse(responseData);
-                    /***/
-                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/altimeter/indicated-altitude-ft\n");
-                    strm.Write(data, 0, data.Length);
-                    data = new Byte[256];
-                    responseData = String.Empty;
-                    bytes = strm.Read(data, 0, data.Length);
-                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                    Altimeter_indicated_altitude_ft = double.Parse(responseData);
-                    /***/
-                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
-                    strm.Write(data, 0, data.Length);
-                    data = new Byte[256];
-                    responseData = String.Empty;
-                    bytes = strm.Read(data, 0, data.Length);
-                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                    Attitude_indicator_internal_pitch_deg = double.Parse(responseData);
-                    /***/
-                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/attitude-indicator/internal-roll-deg\n");
-                    strm.Write(data, 0, data.Length);
-                    data = new Byte[256];
-                    responseData = String.Empty;
-                    bytes = strm.Read(data, 0, data.Length);
-                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                    Attitude_indicator_internal_roll_deg = double.Parse(responseData);
-                    /***/
-                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-                    strm.Write(data, 0, data.Length);
-                    data = new Byte[256];
-                    responseData = String.Empty;
-                    bytes = strm.Read(data, 0, data.Length);
-                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                    Indicated_heading_deg = double.Parse(responseData);
-                    /***/
-                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/gps/indicated-altitude-ft\n");
-                    strm.Write(data, 0, data.Length);
-                    data = new Byte[256];
-                    responseData = String.Empty;
-                    bytes = strm.Read(data, 0, data.Length);
-                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                    Gps_indicated_altitude_ft = double.Parse(responseData);
-                    /***/
-                    data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/gps/indicated-ground-speed-kt\n");
-                    strm.Write(data, 0, data.Length);
-                    data = new Byte[256];
-                    responseData = String.Empty;
-                    bytes = strm.Read(data, 0, data.Length);
-                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                    Gps_indicated_ground_speed_kt = double.Parse(responseData);
-
-
-            //need more vars
-            Thread.Sleep(100);
+                    Gps_indicated_vertical_speed = i1;
+                } else
+                {
+                    //error
                 }
-            }).Start();
+                if (double.TryParse(result[1], out double i2))
+                {
+                    Airspeed_indicator_indicated_speed_kt = i2;
+                }
+                else
+                {
+                    //error
+                }
+                if (double.TryParse(result[2], out double i3))
+                {
+                    Altimeter_indicated_altitude_ft = i3;
+                }
+                else
+                {
+                    //error
+                }
+                if (double.TryParse(result[3], out double i4))
+                {
+                    Attitude_indicator_internal_pitch_deg = i4;
+                }
+                else
+                {
+                    //error
+                }
+                if (double.TryParse(result[4], out double i5))
+                {
+                    Attitude_indicator_internal_roll_deg = i5;
+                }
+                else
+                {
+                    //error
+                }
+                if (double.TryParse(result[5], out double i6))
+                {
+                    Indicated_heading_deg = i6;
+                }
+                else
+                {
+                    //error
+                }
+                if (double.TryParse(result[6], out double i7))
+                {
+                    Gps_indicated_altitude_ft = i7;
+                }
+                else
+                {
+                    //error
+                }
+                if (double.TryParse(result[7], out double i8))
+                {
+                    Gps_indicated_ground_speed_kt = i8;
+                }
+                else
+                {
+                    //error
+                }
+
+                while (messages.Count != 0)
+                {
+                    data = System.Text.Encoding.ASCII.GetBytes("get /controls/engines/current-engine/throttle\n");
+                    strm.Write(data, 0, data.Length);
+                   // data = new Byte[256];
+                    data = new Byte[256];
+                    responseData = String.Empty;
+                    bytes = strm.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    data = System.Text.Encoding.ASCII.GetBytes(messages.Dequeue());
+                    strm.Write(data, 0, data.Length);
+                    data = new Byte[256];
+                    responseData = String.Empty;
+                    bytes = strm.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+
+                }
+            //need more vars
+          //  Thread.Sleep(100);
+                }
+          //  }).Start();
         }
         public void setSimulator(string var, double value)
         {
+            string path = pathMap[var];
+            string message = "set " + path + " " + value.ToString() + "\n";
+            messages.Enqueue(message);
             Console.WriteLine("");
             
         }

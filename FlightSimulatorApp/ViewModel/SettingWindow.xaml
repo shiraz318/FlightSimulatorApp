@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:FlightSimulatorApp.ViewModel"
         mc:Ignorable="d"
         Title="SettingWindow" Height="389.2" Width="616">
+    <Window.Background>
+        <ImageBrush/>
+    </Window.Background>
     <Grid RenderTransformOrigin="0.483,0.574" AutomationProperties.HelpText="nbhvhmbkbjb">
         <Grid.Background>
             <ImageBrush ImageSource="etienne-jong-CYi31XLsxuY-unsplash.jpg"/>
