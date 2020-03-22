@@ -7,14 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="1,0,-1,-0.4">
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="506,385,0,0" VerticalAlignment="Top" Value="{Binding VM_Indicated_heading_deg, Mode=OneWay}" Width="204" Minimum="0" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="506,324,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_vertical_speed, Mode=OneWay}" Minimum="0" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="506,260,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_ground_speed_kt, Mode=OneWay}" Minimum="0" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="506,193,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Airspeed_indicator_indicated_speed_kt, Mode=OneWay}" Minimum="0" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="194,193,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_altitude_ft, Mode=OneWay}" Minimum="0" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="194,260,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Attitude_indicator_internal_roll_deg, Mode=OneWay}" Minimum="0" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="194,324,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Attitude_indicator_internal_pitch_deg, Mode=OneWay}" Minimum="0" Maximum="102"/>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="194,385,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Altimeter_indicated_altitude_ft, Mode=OneWay}" Minimum="0" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="506,385,0,0" VerticalAlignment="Top" Value="{Binding VM_Indicated_heading_deg, Mode=OneWay}" Width="204" Minimum="0" Maximum="102" Foreground="#FFA6B7F3"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="506,324,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_vertical_speed, Mode=OneWay}" Minimum="0" Maximum="102" Foreground="#FFA6B7F3"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="506,260,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_ground_speed_kt, Mode=OneWay}" Minimum="0" Maximum="102" Foreground="#FFA6B7F3"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="506,193,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Airspeed_indicator_indicated_speed_kt, Mode=OneWay}" Minimum="0" Maximum="102" Foreground="#FFA6B7F3"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="194,193,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_altitude_ft, Mode=OneWay}" Minimum="0" Maximum="102" Foreground="#FFA6B7F3"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="194,260,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Attitude_indicator_internal_roll_deg, Mode=OneWay}" Minimum="0" Maximum="102" Foreground="#FFA6B7F3"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="194,324,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Attitude_indicator_internal_pitch_deg, Mode=OneWay}" Minimum="0" Maximum="102" Foreground="#FFA6B7F3"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="194,385,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Altimeter_indicated_altitude_ft, Mode=OneWay}" Minimum="0" Maximum="102" Foreground="#FFA6B7F3"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="716,193,0,0" TextWrapping="Wrap" Text="{Binding VM_Airspeed_indicator_indicated_speed_kt, Mode=OneWay}" VerticalAlignment="Top" Width="59" TextChanged="TextBox_TextChanged"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="716,259,0,0" TextWrapping="Wrap" Text="{Binding VM_Gps_indicated_ground_speed_kt, Mode=OneWay}" VerticalAlignment="Top" Width="59" TextChanged="TextBox_TextChanged"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="716,324,0,0" TextWrapping="Wrap" Text="{Binding VM_Gps_indicated_vertical_speed, Mode=OneWay}" VerticalAlignment="Top" Width="59" TextChanged="TextBox_TextChanged"/>
