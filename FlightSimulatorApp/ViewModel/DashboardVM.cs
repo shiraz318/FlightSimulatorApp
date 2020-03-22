@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace FlightSimulatorApp.ViewModel
 {
@@ -25,7 +26,7 @@ namespace FlightSimulatorApp.ViewModel
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
 
-                NotifyPropertyChanged("VM_" + e.getName());
+                NotifyPropertyChanged("VM_" + e.PropertyName);
             };
           
         }

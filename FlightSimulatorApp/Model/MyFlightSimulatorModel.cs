@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace FlightSimulatorApp.Model
 {
@@ -53,6 +54,9 @@ namespace FlightSimulatorApp.Model
 
         public void Connect(string ip, int port)
         {
+            Gps_indicated_vertical_speed = 0;
+            Airspeed_indicator_indicated_speed_kt = 0;
+            /*
             try
             {
                 Console.WriteLine("Connecting...");
@@ -66,6 +70,7 @@ namespace FlightSimulatorApp.Model
             {
                 Console.WriteLine("Error:" + e.StackTrace);
             }
+            */
         }
 
         public void Disconnect()
@@ -76,15 +81,21 @@ namespace FlightSimulatorApp.Model
 
         public void Start()
         {
-             //new Thread(delegate ()
-            //   {
+
+           
+            /*
+            new Thread(delegate ()
+               {
             while (!stop)
             {
+               
+               
 
-                /***/
+               
                 Byte[] data = System.Text.Encoding.ASCII.GetBytes("get /gps_indicated-vertical-speed\nget /airspeed-indicator_indicated-speed-kt\nget /altimeter_indicated-altitude-ft\nget /attitude-indicator_internal-pitch-deg\nget /attitude-indicator_internal-roll-deg\nget /indicated-heading-deg\nget /gps_indicated-altitude-ft\nget /gps_indicated-ground-speed-kt\n");
+                //Byte[] data = System.Text.Encoding.ASCII.GetBytes("get /instrumentation/gps/indicated-vertical-speed\r\n); // get /airspeed-indicator_indicated-speed-kt\nget /altimeter_indicated-altitude-ft\nget /attitude-indicator_internal-pitch-deg\nget /attitude-indicator_internal-roll-deg\nget /indicated-heading-deg\nget /gps_indicated-altitude-ft\nget /gps_indicated-ground-speed-kt\n");
                 strm.Write(data, 0, data.Length);
-                data = new Byte[256];
+                data = new Byte[1024];
                 String responseData = String.Empty;
                 Int32 bytes = strm.Read(data, 0, data.Length);
                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
@@ -152,7 +163,7 @@ namespace FlightSimulatorApp.Model
                 {
                     //error
                 }
-
+ 
                 while (messages.Count != 0)
                 {
                     data = System.Text.Encoding.ASCII.GetBytes("get /controls/engines/current-engine/throttle\n");
@@ -168,12 +179,13 @@ namespace FlightSimulatorApp.Model
                     responseData = String.Empty;
                     bytes = strm.Read(data, 0, data.Length);
                     responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-
-                }
+                    }
+                
             //need more vars
-          //  Thread.Sleep(100);
+            Thread.Sleep(100);
                 }
-          //  }).Start();
+            }).Start();
+            */
         }
         public void setSimulator(string var, double value)
         {

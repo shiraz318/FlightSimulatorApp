@@ -63,13 +63,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ConnectValuesChangedEventArgs.cs" />
-    <Compile Include="INotifyPropertyChanged.cs" />
     <Compile Include="Model\ClientSide.cs" />
     <Compile Include="Model\IFlightSimulatorModel.cs" />
     <Compile Include="Model\MyFlightSimulatorModel.cs" />
     <Compile Include="Model\ServerSide.cs" />
     <Compile Include="PositionChangedEventArgs.cs" />
-    <Compile Include="PropertyChangedEventArgs.cs" />
     <Compile Include="Setting.xaml.cs">
       <DependentUpon>Setting.xaml</DependentUpon>
     </Compile>
