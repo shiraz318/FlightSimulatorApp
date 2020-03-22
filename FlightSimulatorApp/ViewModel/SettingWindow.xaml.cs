@@ -27,8 +27,6 @@ namespace FlightSimulatorApp.ViewModel
             set { isOk = value; }
         }
 
-        //public delegate void ConnectValuesChanged(Object sender, ConnectValuesChangedEventArgs e);
-        //public event ConnectValuesChanged connectValuesChanged;
         public SettingWindow()
         {
             InitializeComponent();
@@ -51,7 +49,8 @@ namespace FlightSimulatorApp.ViewModel
             //and other validation checks if needed
            if ((port == -1) || (ip == "") || (portText.Text == ""))
             {
-                validation.Content = "invalid port or ip, Try again"; //invalid
+                validation.Content = "Invalid port or ip, please try again";
+                //invalid
             } else
             {
                 IsOk = true;

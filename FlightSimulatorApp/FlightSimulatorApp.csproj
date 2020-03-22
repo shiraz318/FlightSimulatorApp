@@ -90,18 +90,6 @@
     <Compile Include="View\MapControl.xaml.cs">
       <DependentUpon>MapControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Setting.xaml.cs">
-      <DependentUpon>Setting.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SettingMenue.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\SettingMenue.Designer.cs">
-      <DependentUpon>SettingMenue.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\SettingPage.xaml.cs">
-      <DependentUpon>SettingPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Wheel.xaml.cs">
       <DependentUpon>Wheel.xaml</DependentUpon>
     </Compile>
@@ -137,14 +125,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Setting.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SettingPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Wheel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,9 +148,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\SettingMenue.resx">
-      <DependentUpon>SettingMenue.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -179,6 +156,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ViewModel\etienne-jong-CYi31XLsxuY-unsplash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\images\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
