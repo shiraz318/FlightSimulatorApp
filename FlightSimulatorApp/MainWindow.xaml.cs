@@ -42,6 +42,10 @@ namespace FlightSimulatorApp
             wheel.DataContext = wheelVM;
             wheel.joystick.DataContext = wheelVM;
             dashboard.DataContext = dashboardVM;
+            dashboardVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+
+            };
             /*wheel.positionChanged += delegate (Object sender, PositionChangedEventArgs e)
             {
                 //

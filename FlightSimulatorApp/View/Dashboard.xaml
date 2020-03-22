@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,385,0,0" VerticalAlignment="Top" Value="{Binding VM_Indicated_heading_deg}" Width="204" Minimum="0" Maximum="102"/>
+        <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,385,0,0" VerticalAlignment="Top" Value="{Binding VM_Indicated_heading_deg, UpdateSourceTrigger=PropertyChanged}" Width="204" Minimum="0" Maximum="102"/>
         <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,324,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_vertical_speed}" Minimum="0" Maximum="102"/>
         <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,260,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Gps_indicated_ground_speed_kt}" Minimum="0" Maximum="102"/>
         <ProgressBar HorizontalAlignment="Left" Height="23" Margin="522,193,0,0" VerticalAlignment="Top" Width="204"  Value="{Binding VM_Airspeed_indicator_indicated_speed_kt}" Minimum="0" Maximum="102"/>

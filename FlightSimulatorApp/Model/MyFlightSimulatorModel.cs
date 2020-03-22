@@ -76,7 +76,7 @@ namespace FlightSimulatorApp.Model
 
         public void Start()
         {
-            // new Thread(delegate ()
+             //new Thread(delegate ()
             //   {
             while (!stop)
             {

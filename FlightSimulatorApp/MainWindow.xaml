@@ -41,7 +41,7 @@
         </View:MapControl>
         <Button Name="Connect" Content="Connect" HorizontalAlignment="Left" Margin="130,87,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click"/>
         <Button Name="Setting" Content="Setting" HorizontalAlignment="Left" Margin="237,87,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click"/>
-        <TextBox Name="ipText" HorizontalAlignment="Left" Height="23" Margin="64,10,0,0" TextWrapping="Wrap" Text="{Binding Ip}" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="ipText" HorizontalAlignment="Left" Height="23" Margin="64,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="portText" HorizontalAlignment="Left" Height="23" Margin="64,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="IP" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466"/>
         <Label Content="PORT" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466"/>
