@@ -27,7 +27,7 @@
             </View:Dashboard.RenderTransform>
         </View:Dashboard>
 
-        <View:MapControl x:Name="map" RenderTransformOrigin="0.5,0.5" Margin="-69,24,68.6,-24" Grid.ColumnSpan="3">
+        <View:MapControl x:Name="map" RenderTransformOrigin="0.5,0.5" Margin="-69,-25,68.6,25" Grid.ColumnSpan="3">
             <View:MapControl.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.85" ScaleY="0.85"/>
@@ -48,13 +48,13 @@
                 </TransformGroup>
             </View:Wheel.RenderTransform>
         </View:Wheel>
-        <Button Name="Connect" HorizontalAlignment="Left" Margin="97,87,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click">
+        <Button Name="Connect" HorizontalAlignment="Left" Margin="97,380,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Connect"></TextBlock>
                 <Image Source="airplane2.jpg" Width="25"></Image>
             </StackPanel>
         </Button>
-        <Button Name="Setting" HorizontalAlignment="Left" Margin="210,88,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD">
+        <Button Name="Setting" HorizontalAlignment="Left" Margin="210,380,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" Text="Setting"></TextBlock>
                 <Image Source="settingGray.jpg" Width="25"></Image>
