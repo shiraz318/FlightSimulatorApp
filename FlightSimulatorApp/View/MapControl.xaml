@@ -17,6 +17,20 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </m:Map.RenderTransform>
+            <m:Pushpin RenderTransformOrigin="0.5,0.5">
+                <m:Pushpin.Background>
+                    <ImageBrush/>
+                </m:Pushpin.Background>
+                <m:Pushpin.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="2" ScaleY="2"/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.433"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </m:Pushpin.RenderTransform>
+                <m:Location Latitude="37.806029" Longitude="-122.407007"></m:Location>
+            </m:Pushpin>
         </m:Map>
     </Grid>
 </UserControl>

@@ -26,8 +26,8 @@
                 </TransformGroup>
             </View:Dashboard.RenderTransform>
         </View:Dashboard>
-       
-        <View:MapControl RenderTransformOrigin="0.5,0.5" Margin="-56,19,55.6,-19" Grid.ColumnSpan="3">
+
+        <View:MapControl x:Name="map" RenderTransformOrigin="0.5,0.5" Margin="-69,24,68.6,-24" Grid.ColumnSpan="3">
             <View:MapControl.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.85" ScaleY="0.85"/>
@@ -38,21 +38,31 @@
             </View:MapControl.RenderTransform>
 
         </View:MapControl>
-        <View:Wheel x:Name="wheel" RenderTransformOrigin="0.5,0.5" Margin="235,113,-215.4,-113" Grid.ColumnSpan="3">
+        <View:Wheel x:Name="wheel" RenderTransformOrigin="0.5,0.5" Margin="234,86,-214.4,-86" Grid.ColumnSpan="3">
             <View:Wheel.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="0.45" ScaleY="0.45"/>
+                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
                 </TransformGroup>
             </View:Wheel.RenderTransform>
         </View:Wheel>
-        <Button Name="Connect" Content="Connect" HorizontalAlignment="Left" Margin="130,87,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click"/>
-        <Button Name="Setting" Content="Setting" HorizontalAlignment="Left" Margin="237,87,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click"/>
-        <TextBox Name="ipText" HorizontalAlignment="Left" Height="23" Margin="64,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="portText" HorizontalAlignment="Left" Height="23" Margin="64,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="IP" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466"/>
-        <Label Content="PORT" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466"/>
+        <Button Name="Connect" HorizontalAlignment="Left" Margin="97,87,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Connect"></TextBlock>
+                <Image Source="airplane2.jpg" Width="25"></Image>
+            </StackPanel>
+        </Button>
+        <Button Name="Setting" HorizontalAlignment="Left" Margin="210,88,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" Text="Setting"></TextBlock>
+                <Image Source="settingGray.jpg" Width="25"></Image>
+            </StackPanel>
+        </Button>
+        <TextBox Name="ipText" HorizontalAlignment="Left" Height="19" Margin="43,9,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" TextAlignment="Center" FontWeight="Bold" Foreground="#FF0E3411"/>
+        <TextBox Name="portText" HorizontalAlignment="Left" Height="19" Margin="42,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="101" TextAlignment="Center" Foreground="#FF0E3411" FontWeight="Bold"/>
+        <Label Content="IP" HorizontalAlignment="Left" Margin="14,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontSize="11" FontWeight="Bold"/>
+        <Label Content="PORT" HorizontalAlignment="Left" Margin="4,42,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="11"/>
     </Grid>
 </Window>

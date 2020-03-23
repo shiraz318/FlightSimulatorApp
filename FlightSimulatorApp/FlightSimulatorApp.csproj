@@ -161,5 +161,17 @@
   <ItemGroup>
     <Resource Include="images.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\airplane-clip-green-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="settingGray.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="airplane2.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

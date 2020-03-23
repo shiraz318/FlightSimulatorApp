@@ -42,6 +42,7 @@ namespace FlightSimulatorApp
             wheel.DataContext = wheelVM;
             wheel.joystick.DataContext = wheelVM;
             dashboard.DataContext = dashboardVM;
+            map.DataContext = mapVM;
             /*wheel.positionChanged += delegate (Object sender, PositionChangedEventArgs e)
             {
                 //

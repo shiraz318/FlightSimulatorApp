@@ -22,6 +22,9 @@ namespace FlightSimulatorApp.Model
         private double attitude_indicator_internal_roll_deg;
         private double attitude_indicator_internal_pitch_deg;
         private double altimeter_indicated_altitude_ft;
+        private double latitude;
+        private double longtude;
+
         private Queue<string> messages = new Queue<string> { };
         private Dictionary<string, string> pathMap = new Dictionary<string, string> { };
         public MyFlightSimulatorModel(TcpClient telnet)
@@ -33,7 +36,7 @@ namespace FlightSimulatorApp.Model
             pathMap.Add("throttle", "/controls/engines/current-engine/throttle");
             pathMap.Add("rudder", "/controls/flight/rudder");
             pathMap.Add("elevator", "/controls/flight/elevator");
-            Indicated_heading_deg = 50;
+            Indicated_heading_deg = -50;
             Gps_indicated_vertical_speed = 60;
             Gps_indicated_ground_speed_kt = 70;
             Airspeed_indicator_indicated_speed_kt = 80;
@@ -50,6 +53,20 @@ namespace FlightSimulatorApp.Model
         public double Attitude_indicator_internal_roll_deg { get { return attitude_indicator_internal_roll_deg; } set { attitude_indicator_internal_roll_deg = value; NotifyPropertyChanged("Attitude_indicator_internal_roll_deg"); } }
         public double Attitude_indicator_internal_pitch_deg { get { return attitude_indicator_internal_pitch_deg; } set { attitude_indicator_internal_pitch_deg = value; NotifyPropertyChanged("Attitude_indicator_internal_pitch_deg"); } }
         public double Altimeter_indicated_altitude_ft { get { return altimeter_indicated_altitude_ft; } set { altimeter_indicated_altitude_ft = value; NotifyPropertyChanged("Altimeter_indicated_altitude_ft"); } }
+
+
+
+        public double Latitude
+        {
+            get { return latitude; }
+            set { latitude = value; NotifyPropertyChanged("Latitude"); }
+        }
+
+        public double Longtude
+        {
+            get { return longtude; }
+            set { longtude = value; NotifyPropertyChanged("Longtude"); }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void Connect(string ip, int port)
@@ -98,7 +115,7 @@ namespace FlightSimulatorApp.Model
                {
                 while (!stop)
                    {
-                    string message = "get /instrumentation/gps/indicated-vertical-speed\nget /instrumentation/airspeed-indicator/indicated-speed-kt\nget /instrumentation/altimeter/indicated-altitude-ft\nget /instrumentation/attitude-indicator/internal-pitch-deg\nget /instrumentation/attitude-indicator/internal-roll-deg\nget /instrumentation/heading-indicator/indicated-heading-deg\nget /instrumentation/gps/indicated-altitude-ft\nget /instrumentation/gps/indicated-ground-speed-kt\n";
+                    string message = "get /instrumentation/gps/indicated-vertical-speed\nget /instrumentation/airspeed-indicator/indicated-speed-kt\nget /instrumentation/altimeter/indicated-altitude-ft\nget /instrumentation/attitude-indicator/internal-pitch-deg\nget /instrumentation/attitude-indicator/internal-roll-deg\nget /instrumentation/heading-indicator/indicated-heading-deg\nget /instrumentation/gps/indicated-altitude-ft\nget /instrumentation/gps/indicated-ground-speed-kt\n get /position/latitude-deg\nget /position/longitude-deg\n";
                     Write(message);
                     //Separate the read message by \n
                     var result = Read().Split('\n');
@@ -160,6 +177,22 @@ namespace FlightSimulatorApp.Model
                     if (double.TryParse(result[7], out double i8))
                     {
                         Gps_indicated_ground_speed_kt = i8;
+                    }
+                    else
+                    {
+                        //error
+                    }
+                    if (double.TryParse(result[8], out double i9))
+                    {
+                        Latitude = i9;
+                    }
+                    else
+                    {
+                        //error
+                    }
+                    if (double.TryParse(result[9], out double i10))
+                    {
+                        Longtude = i10;
                     }
                     else
                     {

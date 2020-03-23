@@ -8,17 +8,17 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <local:Joystick x:Name="joystick" Margin="32,10,-12,-10.4"></local:Joystick>
-        <Slider x:Name="throttle" HorizontalAlignment="Left" Margin="583,220,0,0" VerticalAlignment="Top" Width="137" Height="25" Minimum="0" Maximum="1" Value="{Binding VM_Throttle, Mode=TwoWay}"/>
-        <Slider x:Name="aileron" HorizontalAlignment="Left" Margin="581,150,0,0" VerticalAlignment="Top" Width="137" Minimum="-1" Maximum="1" Value="{Binding VM_Aileron, Mode=TwoWay}"/>
-        <TextBox HorizontalAlignment="Left" Height="25" Margin="86,76,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="126" Name="rudderText" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Height="25" Margin="86,134,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="126" Name="elevatorText" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Height="25" Margin="86,184,0,0" TextWrapping="Wrap" Text="{Binding ElementName=aileron, Path=Value}" VerticalAlignment="Top" Width="126" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Height="25" Margin="85,237,0,0" TextWrapping="Wrap" Text="{Binding ElementName=throttle, Path=Value}" VerticalAlignment="Top" Width="127" FontSize="20"/>
-        <Label Content="Aileron" HorizontalAlignment="Left" Margin="582,110,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Throttle" HorizontalAlignment="Left" Margin="583,184,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Rudder" HorizontalAlignment="Left" Margin="4,76,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Elevator" HorizontalAlignment="Left" Margin="-4,133,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Aileron" HorizontalAlignment="Left" Margin="2,184,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Throttle" HorizontalAlignment="Left" Margin="-8,235,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+        <Slider x:Name="throttle" HorizontalAlignment="Left" Margin="579,282,0,0" VerticalAlignment="Top" Width="137" Height="25" Minimum="0" Maximum="1" Value="{Binding VM_Throttle, Mode=TwoWay}"/>
+        <Slider x:Name="aileron" HorizontalAlignment="Left" Margin="577,150,0,0" VerticalAlignment="Top" Width="137" Minimum="-1" Maximum="1" Value="{Binding VM_Aileron, Mode=TwoWay}"/>
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="86,128,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="126" Name="rudderText" FontSize="20" TextAlignment="Center" BorderBrush="#FF0E3411" FontWeight="Bold" Foreground="#FF0E3411"/>
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="86,176,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="126" Name="elevatorText" FontSize="20" TextAlignment="Center" FontWeight="Bold" BorderBrush="#FF0E3411" Foreground="#FF0E3411"/>
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="86,226,0,0" TextWrapping="Wrap" Text="{Binding ElementName=aileron, Path=Value}" VerticalAlignment="Top" Width="126" FontSize="20" TextAlignment="Center" BorderBrush="#FF0E3411" FontWeight="Bold" Foreground="#FF0E3411"/>
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="85,277,0,0" TextWrapping="Wrap" Text="{Binding ElementName=throttle, Path=Value}" VerticalAlignment="Top" Width="127" FontSize="20" TextAlignment="Center" FontWeight="Bold" BorderBrush="#FF0E3411" Foreground="#FF0E3411"/>
+        <Label Content="Aileron" HorizontalAlignment="Left" Margin="578,110,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+        <Label Content="Throttle" HorizontalAlignment="Left" Margin="579,246,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+        <Label Content="Rudder" HorizontalAlignment="Left" Margin="4,130,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+        <Label Content="Elevator" HorizontalAlignment="Left" Margin="-4,175,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+        <Label Content="Aileron" HorizontalAlignment="Left" Margin="2,226,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+        <Label Content="Throttle" HorizontalAlignment="Left" Margin="-8,275,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="20" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
     </Grid>
 </UserControl>
