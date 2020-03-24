@@ -100,6 +100,7 @@ namespace FlightSimulatorApp.Model
                 {
                     if (messages.Count != 0)
                     {
+                        //it throws exception of ה wait הסתיים עקב abandended  mutex. it happend when we had an error message (may be connected to the IsErrorAccured property and the condition in the mainwindow
                         string responseData;
                         mutex.WaitOne();
                         Write(messages.Dequeue());

@@ -14,13 +14,11 @@ namespace FlightSimulatorApp.View
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
-        private double vm_Latitude;
 
         public double VM_Latitude
         {
             get { return model.Latitude; }
         }
-        private double vm_Longtude;
 
         public double VM_Longtude
         {
@@ -34,6 +32,13 @@ namespace FlightSimulatorApp.View
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
 
+        }
+        private bool isErrorAccured = false;
+
+        public bool IsErrorAccured
+        {
+            get { return isErrorAccured; }
+            set { isErrorAccured = value; }
         }
         public void NotifyPropertyChanged(string propName)
         {

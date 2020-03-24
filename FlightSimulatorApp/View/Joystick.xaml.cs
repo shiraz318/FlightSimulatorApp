@@ -113,8 +113,8 @@ namespace FlightSimulatorApp.View
                 currentY = e.GetPosition(this).Y;
                 PositionX = currentX - startX;
                 PositionY = currentY - startY;
-                rudderLable.Content = PositionX.ToString();
-                elevatorLable.Content = PositionY.ToString();
+                rudderLable.Content = (PositionX/RANGE).ToString();
+                elevatorLable.Content = (PositionY/-RANGE).ToString();
                 knobPosition.X = PositionX;
                 knobPosition.Y = PositionY;
             }

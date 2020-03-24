@@ -60,8 +60,9 @@ namespace FlightSimulatorApp
 
             mapVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                if (e.PropertyName.Equals("VM_Error"))
+                if (e.PropertyName.Equals("VM_Error") && (!mapVM.IsErrorAccured))
                 {
+                    mapVM.IsErrorAccured = true;
                     Application.Current.Dispatcher.Invoke((Action)delegate {
                         ConnectionError connectionError = new ConnectionError();
                         connectionError.ShowDialog();
