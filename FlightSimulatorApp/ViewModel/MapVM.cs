@@ -8,7 +8,7 @@ using System.ComponentModel;
 using System.Windows;
 using FlightSimulatorApp.View;
 
-namespace FlightSimulatorApp.ViewModel
+namespace FlightSimulatorApp.View
 {
     class MapVM : INotifyPropertyChanged
     {

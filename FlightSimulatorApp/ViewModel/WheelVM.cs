@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace FlightSimulatorApp.ViewModel
+namespace FlightSimulatorApp.View
 {
     class WheelVM : INotifyPropertyChanged
     {

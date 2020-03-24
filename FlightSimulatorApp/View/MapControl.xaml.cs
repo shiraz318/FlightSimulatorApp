@@ -1,5 +1,5 @@
 ﻿using FlightSimulatorApp.Model;
-using FlightSimulatorApp.ViewModel;
+using FlightSimulatorApp.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class MapControl : UserControl
     {
-        public MapControl()
+         public MapControl()
         {
             InitializeComponent();
         }

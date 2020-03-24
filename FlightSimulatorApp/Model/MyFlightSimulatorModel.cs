@@ -11,6 +11,7 @@ namespace FlightSimulatorApp.Model
 {
     class MyFlightSimulatorModel : IFlightSimulatorModel
     {
+        private readonly Mutex mutex = new Mutex();
         private TcpClient tcpClient;
         NetworkStream strm;
         volatile bool stop;
@@ -24,7 +25,8 @@ namespace FlightSimulatorApp.Model
         private double altimeter_indicated_altitude_ft;
         private double latitude;
         private double longtude;
-
+        private bool error = false;
+      
         private Queue<string> messages = new Queue<string> { };
         private Dictionary<string, string> pathMap = new Dictionary<string, string> { };
         public MyFlightSimulatorModel(TcpClient telnet)
@@ -45,6 +47,7 @@ namespace FlightSimulatorApp.Model
             Attitude_indicator_internal_pitch_deg = 102;
             Altimeter_indicated_altitude_ft = 30;
         }
+        public bool Error { get { return error; } set { error = value; NotifyPropertyChanged("Error"); } }
         public double Indicated_heading_deg { get { return indicated_heading_deg; } set { indicated_heading_deg = value; NotifyPropertyChanged("Indicated_heading_deg"); } }
         public double Gps_indicated_vertical_speed { get { return gps_indicated_vertical_speed; } set { gps_indicated_vertical_speed = value; NotifyPropertyChanged("Gps_indicated_vertical_speed"); } }
         public double Gps_indicated_ground_speed_kt { get { return gps_indicated_ground_speed_kt; } set { gps_indicated_ground_speed_kt = value; NotifyPropertyChanged("Gps_indicated_ground_speed_kt"); } }
@@ -97,29 +100,42 @@ namespace FlightSimulatorApp.Model
 
         public void Start()
         {
-            /*new Thread(delegate () {
+            
+            new Thread(delegate () {
 
-                while (messages.Count != 0)
+                while (!stop)
                 {
-                    //just to see the value realy changes
-                    // Write("get /controls/engines/current-engine/throttle\n");
-                    string responseData;// = Read();
-
-                    Write(messages.Dequeue());
-                    responseData = Read();
+                    if (messages.Count != 0)
+                    {
+                        string responseData;
+                        mutex.WaitOne();
+                        Write(messages.Dequeue());
+                        responseData = Read();
+                        mutex.ReleaseMutex();
+                    }
                 }
 
-            }).Start();*/
+            }).Start();
 
             new Thread(delegate ()
                {
                 while (!stop)
                    {
                     string message = "get /instrumentation/gps/indicated-vertical-speed\nget /instrumentation/airspeed-indicator/indicated-speed-kt\nget /instrumentation/altimeter/indicated-altitude-ft\nget /instrumentation/attitude-indicator/internal-pitch-deg\nget /instrumentation/attitude-indicator/internal-roll-deg\nget /instrumentation/heading-indicator/indicated-heading-deg\nget /instrumentation/gps/indicated-altitude-ft\nget /instrumentation/gps/indicated-ground-speed-kt\n get /position/latitude-deg\nget /position/longitude-deg\n";
-                    Write(message);
+                     mutex.WaitOne();
+                     Write(message);
                     //Separate the read message by \n
+                    if (error)
+                       {
+                           break;
+                       }
                     var result = Read().Split('\n');
-                    if (double.TryParse(result[0], out double i1))
+                       if (error)
+                       {
+                           break;
+                       }
+                       mutex.ReleaseMutex();
+                       if (double.TryParse(result[0], out double i1))
                     {
                         Gps_indicated_vertical_speed = i1;
                     } else
@@ -199,16 +215,6 @@ namespace FlightSimulatorApp.Model
                         //error
                     }
 
-                       while (messages.Count != 0)
-                       {
-                           //just to see the value realy changes
-                           // Write("get /controls/engines/current-engine/throttle\n");
-                           string responseData;// = Read();
-
-                            Write(messages.Dequeue());
-                            responseData = Read();
-                       }
-
                        //need more vars
                        Thread.Sleep(100);
                    }
@@ -217,17 +223,34 @@ namespace FlightSimulatorApp.Model
         }
         private string Read()
         {
-            Byte[] data = new Byte[1024];
-            String responseData = String.Empty;
-            Int32 bytes = strm.Read(data, 0, data.Length);
-            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-            return responseData;
+           try
+            {
+                Byte[] data = new Byte[1024];
+                String responseData = String.Empty;
+                Int32 bytes = strm.Read(data, 0, data.Length);
+                responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                
+                return responseData;
+            } catch(Exception e)
+            {
+                //announce error accured
+                Error = true;
+                stop = true;
+                return "";
+            }
         }
         private void Write(string message)
         {
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
-            strm.Write(data, 0, data.Length);
-            Thread.Sleep(20);
+            try
+            {
+                Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
+                strm.Write(data, 0, data.Length);
+                Thread.Sleep(20);
+            } catch(Exception e)
+            {
+                Error = true;
+                stop = true;
+            }
         }
         public void setSimulator(string var, double value)
         {

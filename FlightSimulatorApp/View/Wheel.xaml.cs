@@ -20,10 +20,11 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class Wheel : UserControl
     {
-       // public event PositionChanged positionChanged;
         public Wheel()
         {
+            
             InitializeComponent();
+
         }
     }
 }

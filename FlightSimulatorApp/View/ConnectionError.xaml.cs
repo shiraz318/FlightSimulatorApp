@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FlightSimulatorApp
+namespace FlightSimulatorApp.View
 {
     /// <summary>
-    /// Interaction logic for Setting.xaml
+    /// Interaction logic for ConnectionError.xaml
     /// </summary>
-    public partial class Setting : UserControl
+    public partial class ConnectionError : Window
     {
-        public Setting()
+        public ConnectionError()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

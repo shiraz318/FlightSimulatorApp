@@ -66,14 +66,13 @@
     <Compile Include="Model\IFlightSimulatorModel.cs" />
     <Compile Include="Model\MyFlightSimulatorModel.cs" />
     <Compile Include="Model\ServerSide.cs" />
-    <Compile Include="Setting.xaml.cs">
-      <DependentUpon>Setting.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\ConnectVM.cs" />
     <Compile Include="ViewModel\DashboardVM.cs" />
     <Compile Include="ViewModel\MapVM.cs" />
-    <Compile Include="ViewModel\GeneralViewModel.cs" />
-    <Compile Include="ViewModel\SettingWindow.xaml.cs">
+    <Compile Include="View\ConnectionError.xaml.cs">
+      <DependentUpon>ConnectionError.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\WheelVM.cs" />
@@ -101,11 +100,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Setting.xaml">
+    <Page Include="View\ConnectionError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewModel\SettingWindow.xaml">
+    <Page Include="View\SettingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,28 +152,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ViewModel\etienne-jong-CYi31XLsxuY-unsplash.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\images\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="View\airplane-clip-green-1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="setting.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="settingGray.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\images\paper-plane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="paper-plane.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="airplane2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="paper-plane.png" />
+    <Resource Include="View\etienne-jong-CYi31XLsxuY-unsplash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\error icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\error icon gray1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\icons8-cancel-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

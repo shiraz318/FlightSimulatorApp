@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -20,9 +21,10 @@ namespace FlightSimulatorApp.View
         public const double RANGE = 35;
         private bool mousePressed = false;
  
-        private double startX, startY, currentX, currentY, positionX, positionY;
-        //public event PositionChanged PositionChanged;
-        public double PositionX { 
+        private double startX, startY, currentX, currentY, positionY, positionX;
+        
+        public double PositionX
+        {
             get
             {
                 return positionX;
@@ -42,7 +44,6 @@ namespace FlightSimulatorApp.View
                 {
                     positionX = value;
                 }
-               // PositionChanged(this, new PositionChangedEventArgs("X", positionX));
             }
         }
         public double PositionY
@@ -66,14 +67,11 @@ namespace FlightSimulatorApp.View
                 {
                     positionY = value;
                 }
-               // PositionChanged(this, new PositionChangedEventArgs("Y", positionY));
             }
         }
-      
         public Joystick()
         {
             InitializeComponent();
-
         }
 
         private void CenterKnob_Completed(object sender, EventArgs e)

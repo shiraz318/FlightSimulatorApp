@@ -1,5 +1,5 @@
 ﻿using FlightSimulatorApp.Model;
-using FlightSimulatorApp.ViewModel;
+using FlightSimulatorApp.View;
 using FlightSimulatorApp.View;
 using System;
 using System.Collections.Generic;
@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Threading;
+using System.ComponentModel;
 
 namespace FlightSimulatorApp
 {
@@ -34,7 +35,9 @@ namespace FlightSimulatorApp
 
         public MainWindow()
         {
+
             InitializeComponent();
+
             TcpClient tcpC = new TcpClient();
             MyFlightSimulatorModel mfsm = new MyFlightSimulatorModel(tcpC);
             dashboardVM = new DashboardVM(mfsm);
@@ -43,40 +46,26 @@ namespace FlightSimulatorApp
             connectVM = new ConnectVM(mfsm);
             DataContext = connectVM;
             wheel.DataContext = wheelVM;
-            wheel.joystick.DataContext = wheelVM;
+            //wheel.joystick.DataContext = wheelVM;
             dashboard.DataContext = dashboardVM;
             map.DataContext = mapVM;
             //click animation
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(12);
-            /*wheel.positionChanged += delegate (Object sender, PositionChangedEventArgs e)
-            {
-                //
-                if (e.getName().Equals("Throttle"))
-                {
-                    wheelVM.VM_Throttle = e.getValue();
-                }//
-                else if (e.getName().Equals("Aileron"))
-                {
-                    wheelVM.VM_Aileron = e.getValue();
-                }
-                else if (e.getName().Equals("Rudder"))
-                {
-                    wheelVM.VM_Rudder = e.getValue();
-                }
-                else if (e.getName().Equals("Elevator"))
-                {
-                    wheelVM.VM_Elevator = e.getValue();
-                }
-            };*/
-            /*dashboardVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
-            {
-                string name = e.getName();
-                dashboard.name
-            };*/
+
             //We should do Binding!! here but it does not working for some reason
             ipText.Text = connectVM.Ip;
             portText.Text = connectVM.Port.ToString();
+            mapVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                if (e.PropertyName.Equals("VM_Error")) {
+                    Application.Current.Dispatcher.Invoke((Action)delegate {
+                        ConnectionError connectionError = new ConnectionError();
+                        connectionError.ShowDialog();
+                    });
+                  
+                 }
+            };
 
         }
 

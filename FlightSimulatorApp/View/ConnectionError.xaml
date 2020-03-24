@@ -1,0 +1,18 @@
+﻿<Window x:Class="FlightSimulatorApp.View.ConnectionError"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlightSimulatorApp.View"
+        mc:Ignorable="d"
+        Title="ConnectionError" Height="235.125" Width="408.5">
+    <Grid Background="#FFA39F9F" Margin="0,0,0.4,-3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="197*"/>
+            <ColumnDefinition Width="22*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Error! Connection Has Failed" HorizontalAlignment="Left" Margin="82,67,0,0" VerticalAlignment="Top" Height="45" Width="266" FontWeight="Bold" FontSize="18" Background="{x:Null}" Foreground="#FF050000"/>
+        <Button Content="ok" HorizontalAlignment="Left" Margin="157,161,0,0" VerticalAlignment="Top" Width="91" Height="25" FontSize="16" Click="Button_Click"/>
+        <Image  Margin="47,59,279.6,98.6" Source="icons8-cancel-48.png" Width="35"></Image>
+    </Grid>
+</Window>
