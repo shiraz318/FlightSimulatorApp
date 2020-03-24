@@ -26,7 +26,7 @@ namespace FlightSimulatorApp.Model
         private double latitude;
         private double longtude;
         private bool error = false;
-      
+
         private Queue<string> messages = new Queue<string> { };
         private Dictionary<string, string> pathMap = new Dictionary<string, string> { };
         public MyFlightSimulatorModel(TcpClient telnet)
@@ -100,7 +100,7 @@ namespace FlightSimulatorApp.Model
 
         public void Start()
         {
-            
+
             new Thread(delegate () {
 
                 while (!stop)
@@ -118,27 +118,28 @@ namespace FlightSimulatorApp.Model
             }).Start();
 
             new Thread(delegate ()
-               {
+            {
                 while (!stop)
-                   {
+                {
                     string message = "get /instrumentation/gps/indicated-vertical-speed\nget /instrumentation/airspeed-indicator/indicated-speed-kt\nget /instrumentation/altimeter/indicated-altitude-ft\nget /instrumentation/attitude-indicator/internal-pitch-deg\nget /instrumentation/attitude-indicator/internal-roll-deg\nget /instrumentation/heading-indicator/indicated-heading-deg\nget /instrumentation/gps/indicated-altitude-ft\nget /instrumentation/gps/indicated-ground-speed-kt\n get /position/latitude-deg\nget /position/longitude-deg\n";
-                     mutex.WaitOne();
-                     Write(message);
+                    mutex.WaitOne();
+                    Write(message);
                     //Separate the read message by \n
                     if (error)
-                       {
-                           break;
-                       }
+                    {
+                        break;
+                    }
                     var result = Read().Split('\n');
-                       if (error)
-                       {
-                           break;
-                       }
-                       mutex.ReleaseMutex();
-                       if (double.TryParse(result[0], out double i1))
+                    if (error)
+                    {
+                        break;
+                    }
+                    mutex.ReleaseMutex();
+                    if (double.TryParse(result[0], out double i1))
                     {
                         Gps_indicated_vertical_speed = i1;
-                    } else
+                    }
+                    else
                     {
                         //error
                     }
@@ -215,23 +216,24 @@ namespace FlightSimulatorApp.Model
                         //error
                     }
 
-                       //need more vars
-                       Thread.Sleep(100);
-                   }
-               }).Start();
+                    //need more vars
+                    Thread.Sleep(100);
+                }
+            }).Start();
 
         }
         private string Read()
         {
-           try
+            try
             {
                 Byte[] data = new Byte[1024];
                 String responseData = String.Empty;
                 Int32 bytes = strm.Read(data, 0, data.Length);
                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                
+
                 return responseData;
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 //announce error accured
                 Error = true;
@@ -246,7 +248,8 @@ namespace FlightSimulatorApp.Model
                 Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
                 strm.Write(data, 0, data.Length);
                 Thread.Sleep(20);
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Error = true;
                 stop = true;
@@ -258,11 +261,11 @@ namespace FlightSimulatorApp.Model
             string message = "set " + path + " " + value.ToString() + "\n";
             messages.Enqueue(message);
             Console.WriteLine("");
-            
+
         }
         public void NotifyPropertyChanged(string propName)
         {
-            if(this.PropertyChanged != null)
+            if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
                 //"nili cohen"//

@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace FlightSimulatorApp.View
 {
-    
+
     //public delegate void PositionChanged(Object sender, PositionChangedEventArgs e);
     /// <summary>
     /// Interaction logic for Joystick.xaml
@@ -20,9 +20,9 @@ namespace FlightSimulatorApp.View
         public const double RIGHT_BOARDER = 35;
         public const double RANGE = 35;
         private bool mousePressed = false;
- 
-        private double startX, startY, currentX, currentY, positionY, positionX;
-        
+
+        private double startX, startY, currentX, currentY, positionY = 0, positionX = 0;
+
         public double PositionX
         {
             get
@@ -72,11 +72,12 @@ namespace FlightSimulatorApp.View
         public Joystick()
         {
             InitializeComponent();
+            rudderLable.Content = PositionX;
+            elevatorLable.Content = PositionY;
         }
 
         private void CenterKnob_Completed(object sender, EventArgs e)
         {
-
         }
 
         private void Joystick_MouseDown(object sender, MouseButtonEventArgs e)
@@ -100,16 +101,20 @@ namespace FlightSimulatorApp.View
             //if we want that when the user is in mouseup state - the text field will not be 0, which means it will not reset, so we just delete the following lines.
             PositionY = 0;
             PositionX = 0;
+            rudderLable.Content = PositionX.ToString();
+            elevatorLable.Content = PositionY.ToString();
         }
 
         private void Joystick_MouseMove(object sender, MouseEventArgs e)
         {
             if (mousePressed)
             {
-                currentX = e.GetPosition(this.Parent as UIElement).X;
-                currentY = e.GetPosition(this.Parent as UIElement).Y;
+                currentX = e.GetPosition(this).X;
+                currentY = e.GetPosition(this).Y;
                 PositionX = currentX - startX;
                 PositionY = currentY - startY;
+                rudderLable.Content = PositionX.ToString();
+                elevatorLable.Content = PositionY.ToString();
                 knobPosition.X = PositionX;
                 knobPosition.Y = PositionY;
             }

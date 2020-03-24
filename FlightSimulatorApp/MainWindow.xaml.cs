@@ -45,26 +45,29 @@ namespace FlightSimulatorApp
             mapVM = new MapVM(mfsm);
             connectVM = new ConnectVM(mfsm);
             DataContext = connectVM;
-            wheel.DataContext = wheelVM;
-            //wheel.joystick.DataContext = wheelVM;
+            //wheel.DataContext = wheelVM;
+            joystick.DataContext = wheelVM;
+
             dashboard.DataContext = dashboardVM;
             map.DataContext = mapVM;
             //click animation
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(12);
 
+
             //We should do Binding!! here but it does not working for some reason
             ipText.Text = connectVM.Ip;
             portText.Text = connectVM.Port.ToString();
             mapVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                if (e.PropertyName.Equals("VM_Error")) {
+                if (e.PropertyName.Equals("VM_Error"))
+                {
                     Application.Current.Dispatcher.Invoke((Action)delegate {
                         ConnectionError connectionError = new ConnectionError();
                         connectionError.ShowDialog();
                     });
-                  
-                 }
+
+                }
             };
 
         }
