@@ -15,33 +15,17 @@ namespace FlightSimulatorApp.View
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
         private double vm_Latitude;
-/*
-        // Dependency Property
-        public static readonly DependencyProperty DependencyVM_Latitued =
-             DependencyProperty.Register("VM_Latitude", typeof(double),
-             typeof(MapControl), new PropertyMetadata(double.NaN));
-
-        // .NET Property wrapper
-        public DateTime CurrentTime
-        {
-            get { return (DateTime)GetValue(CurrentTimeProperty); }
-            set { SetValue(CurrentTimeProperty, value); }
-        }
 
         public double VM_Latitude
         {
-            get { return (double)GetValue(DependencyVM_Latitued); }
-            set {SetValue(DependencyVM_Latitued, value); }
+            get { return model.Latitude; }
         }
-
         private double vm_Longtude;
 
         public double VM_Longtude
         {
-            get { return vm_Longtude; }
-            set { vm_Longtude = value; }
-        }*/
-        
+            get { return model.Longtude; }
+        }
         public MapVM(IFlightSimulatorModel m)
         {
             model = m;

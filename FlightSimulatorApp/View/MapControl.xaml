@@ -18,10 +18,7 @@
                 </TransformGroup>
             </m:Map.RenderTransform>
 
-            <m:Pushpin RenderTransformOrigin="0.5,0.5" OpacityMask="Black">
-                <m:Pushpin.Location>
-                    <m:Location Longitude="-122.407007" Latitude="37.806029"/>
-                </m:Pushpin.Location>
+            <m:Pushpin Name="pushPin" RenderTransformOrigin="0.5,0.5" OpacityMask="Black">
                 <m:Pushpin.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="3" ScaleY="3"/>

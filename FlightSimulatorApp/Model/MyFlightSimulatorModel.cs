@@ -47,6 +47,7 @@ namespace FlightSimulatorApp.Model
             Attitude_indicator_internal_pitch_deg = 102;
             Altimeter_indicated_altitude_ft = 30;
         }
+        public double Latitude { get { return latitude; } set { latitude = value; NotifyPropertyChanged("Latitude"); } }
         public bool Error { get { return error; } set { error = value; NotifyPropertyChanged("Error"); } }
         public double Indicated_heading_deg { get { return indicated_heading_deg; } set { indicated_heading_deg = value; NotifyPropertyChanged("Indicated_heading_deg"); } }
         public double Gps_indicated_vertical_speed { get { return gps_indicated_vertical_speed; } set { gps_indicated_vertical_speed = value; NotifyPropertyChanged("Gps_indicated_vertical_speed"); } }
@@ -56,14 +57,6 @@ namespace FlightSimulatorApp.Model
         public double Attitude_indicator_internal_roll_deg { get { return attitude_indicator_internal_roll_deg; } set { attitude_indicator_internal_roll_deg = value; NotifyPropertyChanged("Attitude_indicator_internal_roll_deg"); } }
         public double Attitude_indicator_internal_pitch_deg { get { return attitude_indicator_internal_pitch_deg; } set { attitude_indicator_internal_pitch_deg = value; NotifyPropertyChanged("Attitude_indicator_internal_pitch_deg"); } }
         public double Altimeter_indicated_altitude_ft { get { return altimeter_indicated_altitude_ft; } set { altimeter_indicated_altitude_ft = value; NotifyPropertyChanged("Altimeter_indicated_altitude_ft"); } }
-
-
-
-        public double Latitude
-        {
-            get { return latitude; }
-            set { latitude = value; NotifyPropertyChanged("Latitude"); }
-        }
 
         public double Longtude
         {

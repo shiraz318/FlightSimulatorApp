@@ -13,10 +13,10 @@
         </Grid.ColumnDefinitions>
         <Label Content="Error! Connection Has Failed" HorizontalAlignment="Left" Margin="75,67,0,0" VerticalAlignment="Top" Height="31" Width="250" FontWeight="Bold" FontSize="18" Background="{x:Null}" Foreground="#FF050000"/>
         <Button Content="ok" HorizontalAlignment="Left" Margin="157,161,0,0" VerticalAlignment="Top" Width="91" Height="25" FontSize="16" Click="Button_Click"/>
-        <Image Margin="137,38,55.6,119.6" Source="icons8-cancel-48.png" RenderTransformOrigin="0.975,5.541">
+        <Image Margin="-102,154,108.6,29.6" Source="icons8-cancel-48.png" RenderTransformOrigin="0.975,5.541">
             <Image.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+                    <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform X="-4.986" Y="-77.428"/>

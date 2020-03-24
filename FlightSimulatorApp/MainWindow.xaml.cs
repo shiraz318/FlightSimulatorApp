@@ -29,7 +29,7 @@ namespace FlightSimulatorApp
     {
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         private DashboardVM dashboardVM;
-        private WheelVM wheelVM;
+        private JoystickVM joystickVM;
         private MapVM mapVM;
         private ConnectVM connectVM;
 
@@ -41,12 +41,11 @@ namespace FlightSimulatorApp
             TcpClient tcpC = new TcpClient();
             MyFlightSimulatorModel mfsm = new MyFlightSimulatorModel(tcpC);
             dashboardVM = new DashboardVM(mfsm);
-            wheelVM = new WheelVM(mfsm);
+            joystickVM = new JoystickVM(mfsm);
             mapVM = new MapVM(mfsm);
             connectVM = new ConnectVM(mfsm);
-            DataContext = connectVM;
-            //wheel.DataContext = wheelVM;
-            joystick.DataContext = wheelVM;
+            DataContext = mapVM;
+            joystick.DataContext = joystickVM;
 
             dashboard.DataContext = dashboardVM;
             map.DataContext = mapVM;
@@ -58,6 +57,7 @@ namespace FlightSimulatorApp
             //We should do Binding!! here but it does not working for some reason
             ipText.Text = connectVM.Ip;
             portText.Text = connectVM.Port.ToString();
+
             mapVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 if (e.PropertyName.Equals("VM_Error"))
@@ -67,6 +67,18 @@ namespace FlightSimulatorApp
                         connectionError.ShowDialog();
                     });
 
+                }
+                else if(e.PropertyName.Equals("VM_Latitude"))
+                {
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        //map.pushPin.Location.Latitude = 0;
+                    });
+                
+                }
+                else if (e.PropertyName.Equals("VM_Longtude"))
+                {
+                    //LongitudeText.Text = mapVM.VM_Longtude.ToString();
                 }
             };
 
