@@ -43,7 +43,7 @@ namespace FlightSimulatorApp
             wheelVM = new WheelVM(mfsm);
             mapVM = new MapVM(mfsm);
             connectVM = new ConnectVM(mfsm);
-            DataContext = mapVM;
+            DataContext = connectVM;
             wheel.DataContext = wheelVM;
             isConnected = false;
             dashboard.DataContext = dashboardVM;
@@ -127,7 +127,7 @@ namespace FlightSimulatorApp
                 connectVM.Port = int.Parse(setting.portText.Text);
                 //Binding!!
                 ipLabel.Content = connectVM.Ip;
-                PortLabel.Content = connectVM.Port.ToString();
+                PortLabel.Content = connectVM.Port;
                 setting.IsOk = false;
             }
         }

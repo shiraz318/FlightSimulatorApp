@@ -1,5 +1,6 @@
 ﻿using FlightSimulatorApp.Model;
 using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,9 @@ namespace FlightSimulatorApp.View
 {
     class ConnectVM : INotifyPropertyChanged
     {
-        private int port = 5402;
-        private string ip = "127.0.0.1";
+        private int port = int.Parse(ConfigurationSettings.AppSettings["port"]);
+        //private int port = int.Parse(ConfigurationManager.AppSettings.Get("port"));
+        private string ip = ConfigurationSettings.AppSettings["ip"];
         public string Ip
         {
             get
@@ -42,6 +44,9 @@ namespace FlightSimulatorApp.View
             get { return isErrorAccured; }
             set { isErrorAccured = value; }
         }
+
+        public static object ConfigurationManager { get; private set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
         public ConnectVM(IFlightSimulatorModel m)

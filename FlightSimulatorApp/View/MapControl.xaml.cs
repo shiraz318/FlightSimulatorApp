@@ -72,7 +72,6 @@ namespace FlightSimulatorApp.View
                 {
                         Environment.Exit(0);
                 }
-                    Dispatcher.Invoke(DispatcherPriority.ApplicationIdle, new Action(() => { Thread.Sleep(30); }));
                 }
                 else if (e.PropertyName.Equals("VM_Longtude"))
                 {
@@ -95,7 +94,6 @@ namespace FlightSimulatorApp.View
                     {
                         Environment.Exit(0);
                     }
-                    Dispatcher.Invoke(DispatcherPriority.ApplicationIdle, new Action(() => { Thread.Sleep(30); }));
                 }
             };
         }
