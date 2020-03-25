@@ -18,11 +18,10 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </m:Map.RenderTransform>
-            <m:Pushpin Name="pushPin" RenderTransformOrigin="0.5,0.5" Height="32.8" Margin="497,233,496,266" Background="{x:Null}" Foreground="{x:Null}" Width="33">
-                <Image x:Name="airplanImage" Width="33" Source="airplane-clip-green-1.png" VerticalAlignment="Center" HorizontalAlignment="Center" Height="23" RenderTransformOrigin="0.718,0.462"></Image>
+            <m:Pushpin Name="pushPin" RenderTransformOrigin="0.5,0.5" OpacityMask="Black">
                 <m:Pushpin.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+                        <ScaleTransform ScaleX="3" ScaleY="3"/>
                         <SkewTransform/>
                         <RotateTransform Angle="0.433"/>
                         <TranslateTransform/>
