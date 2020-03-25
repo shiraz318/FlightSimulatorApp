@@ -38,16 +38,16 @@
             </View:MapControl.RenderTransform>
 
         </View:MapControl>
-        <View:Joystick x:Name="joystick" RenderTransformOrigin="0.5,0.5" Margin="227,84,-244.4,-91" Grid.ColumnSpan="3">
-            <View:Joystick.RenderTransform>
+        <View:Wheel x:Name="wheel" Margin="229,108,-238.4,-98" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
+            <View:Wheel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
                 </TransformGroup>
-            </View:Joystick.RenderTransform>
-        </View:Joystick>
+            </View:Wheel.RenderTransform>
+        </View:Wheel>
         <Button Name="Connect" HorizontalAlignment="Left" Margin="97,380,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Connect"></TextBlock>

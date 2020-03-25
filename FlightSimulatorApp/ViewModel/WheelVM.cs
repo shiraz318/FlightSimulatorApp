@@ -8,11 +8,11 @@ using System.ComponentModel;
 
 namespace FlightSimulatorApp.View
 {
-    class JoystickVM : INotifyPropertyChanged
+    public class WheelVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
-        public JoystickVM(IFlightSimulatorModel m)
+        public WheelVM(IFlightSimulatorModel m)
         {
             model = m;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)

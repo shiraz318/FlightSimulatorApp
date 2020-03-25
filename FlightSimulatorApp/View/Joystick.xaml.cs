@@ -69,11 +69,25 @@ namespace FlightSimulatorApp.View
                 }
             }
         }
+
+
+
+        public double RudderX
+        {
+            get { return (double)GetValue(RudderXProperty); }
+            set { SetValue(RudderXProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for RudderX.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty RudderXProperty =
+            DependencyProperty.Register("RudderX", typeof(double), typeof(Joystick));
+
+
         public Joystick()
         {
             InitializeComponent();
-            rudderLable.Content = PositionX;
-            elevatorLable.Content = PositionY;
+            //rudderLable.Content = PositionX;
+            //elevatorLable.Content = PositionY;
         }
 
         private void CenterKnob_Completed(object sender, EventArgs e)
@@ -101,8 +115,8 @@ namespace FlightSimulatorApp.View
             //if we want that when the user is in mouseup state - the text field will not be 0, which means it will not reset, so we just delete the following lines.
             PositionY = 0;
             PositionX = 0;
-            rudderLable.Content = PositionX;
-            elevatorLable.Content = PositionY;
+           // rudderLable.Content = PositionX;
+           // elevatorLable.Content = PositionY;
         }
 
         private void Joystick_MouseMove(object sender, MouseEventArgs e)
@@ -113,8 +127,9 @@ namespace FlightSimulatorApp.View
                 currentY = e.GetPosition(this).Y;
                 PositionX = currentX - startX;
                 PositionY = currentY - startY;
-                rudderLable.Content = PositionX / RANGE;
-                elevatorLable.Content = PositionY / -RANGE;
+                //rudderLable.Content = PositionX / RANGE;
+                //elevatorLable.Content = PositionY / -RANGE;
+                RudderX = PositionX / RANGE;
                 knobPosition.X = PositionX;
                 knobPosition.Y = PositionY;
             }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace FlightSimulatorApp.View
 {
@@ -51,7 +53,7 @@ namespace FlightSimulatorApp.View
             {
                 if (e.PropertyName.Equals("VM_Latitude"))
                 {
-
+                    try { 
                         //throw exception
                         this.Dispatcher.Invoke(() =>
                         {
@@ -61,32 +63,47 @@ namespace FlightSimulatorApp.View
                                 pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(mapVM.VM_Latitude, pushPin.Location.Longitude);
                             } else
                             {
-                                //latitudeLabel.Content = "Invalid Coordinate";
+                                latitudeLabel.Content = "Invalid Coordinate";
                             }
 
                         });
-  
-                   
+                } 
+                    catch (TaskCanceledException e1)
+                {
+                        Environment.Exit(0);
+                }
+                    Dispatcher.Invoke(DispatcherPriority.ApplicationIdle, new Action(() => { Thread.Sleep(30); }));
                 }
                 else if (e.PropertyName.Equals("VM_Longtude"))
                 {
-                   
-                        this.Dispatcher.Invoke(() => { 
-                         double longtude = mapVM.VM_Longtude;
+                    try
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            double longtude = mapVM.VM_Longtude;
                             if (longtude <= LONGTUDE_UP_BORDER && longtude >= LONGTUDE_DOWN_BORDER)
                             {
                                 pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(pushPin.Location.Latitude, mapVM.VM_Longtude);
                             }
                             else
                             {
-                                //longtudeLabel.Content = "Invalid Coordinate";
+                                longtudeLabel.Content = "Invalid Coordinate";
                             }
                         });
-
-                   
+                    }
+                    catch(TaskCanceledException e2)
+                    {
+                        Environment.Exit(0);
+                    }
+                    Dispatcher.Invoke(DispatcherPriority.ApplicationIdle, new Action(() => { Thread.Sleep(30); }));
                 }
             };
         }
-        
+
+        private void UserControl_ContextMenuClosing(object sender, ContextMenuEventArgs e)
+        {
+           
+            Environment.Exit(0);
+        }
     }
 }

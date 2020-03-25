@@ -28,7 +28,7 @@ namespace FlightSimulatorApp
     {
         DispatcherTimer dispatcherTimer;// = new DispatcherTimer();
         private DashboardVM dashboardVM;
-        private JoystickVM joystickVM;
+        private WheelVM wheelVM;
         private MapVM mapVM;
         private ConnectVM connectVM;
         private bool isConnected;
@@ -40,11 +40,11 @@ namespace FlightSimulatorApp
 
             mfsm = new MyFlightSimulatorModel();
             dashboardVM = new DashboardVM(mfsm);
-            joystickVM = new JoystickVM(mfsm);
+            wheelVM = new WheelVM(mfsm);
             mapVM = new MapVM(mfsm);
             connectVM = new ConnectVM(mfsm);
             DataContext = mapVM;
-            joystick.DataContext = joystickVM;
+            wheel.DataContext = wheelVM;
             isConnected = false;
             dashboard.DataContext = dashboardVM;
             map.DataContext = mapVM;
@@ -57,7 +57,7 @@ namespace FlightSimulatorApp
             {
                 if (e.PropertyName.Equals("VM_Error") && (!connectVM.IsErrorAccured))
                 {
-                   // resetViews();
+                    //resetViews();
                     isConnected = false;
                     connectVM.IsErrorAccured = true;
                     Application.Current.Dispatcher.Invoke((Action)delegate {
@@ -71,8 +71,14 @@ namespace FlightSimulatorApp
         }
         private void resetViews()
         {
-            dashboard.reset();
-            map.reset();
+            try
+            {
+                dashboard.reset();
+                map.reset();
+            } catch (TaskCanceledException e)
+            {
+                Environment.Exit(0);
+            }
 
         }
         private void Connect_Click(object sender, RoutedEventArgs e)

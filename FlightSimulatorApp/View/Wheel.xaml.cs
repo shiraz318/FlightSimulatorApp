@@ -20,11 +20,16 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class Wheel : UserControl
     {
+        private WheelVM vm;
         public Wheel()
         {
             
             InitializeComponent();
 
+        }
+        public void SetVM(WheelVM wvm)
+        {
+            vm = wvm;
         }
     }
 }
