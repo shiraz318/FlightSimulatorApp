@@ -51,7 +51,7 @@ namespace FlightSimulatorApp.View
                                 pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(mapVM.VM_Latitude, pushPin.Location.Longitude);
                             } else
                             {
-                                latitudeLabel.Content = "Invalid Coordinate";
+                                //latitudeLabel.Content = "Invalid Coordinate";
                             }
 
                         });
@@ -69,7 +69,7 @@ namespace FlightSimulatorApp.View
                             }
                             else
                             {
-                                longtudeLabel.Content = "Invalid Coordinate";
+                                //longtudeLabel.Content = "Invalid Coordinate";
                             }
                         });
 
