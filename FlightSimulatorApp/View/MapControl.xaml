@@ -18,7 +18,7 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </m:Map.RenderTransform>
-            <m:Pushpin Name="pushPin" RenderTransformOrigin="0.5,0.5" OpacityMask="Black">
+            <m:Pushpin Name="pushPin" RenderTransformOrigin="0.5,0.5" OpacityMask="Black" Height="Auto" Margin="496,249,497,244">
                 <m:Pushpin.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="3" ScaleY="3"/>
@@ -29,5 +29,9 @@
                 </m:Pushpin.RenderTransform>
             </m:Pushpin>
         </m:Map>
+        <Label Content="Latitude :" HorizontalAlignment="Left" Margin="293,55,0,0" VerticalAlignment="Top" Width="70" Foreground="#FFA6B7F3" FontSize="14" FontFamily="Hadassah Friedlaender"/>
+        <Label x:Name="latitudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Latitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="357,55,0,0" VerticalAlignment="Top" Width="173" Foreground="#FFA6B7F3" FontSize="14" Height="26" FontFamily="Hadassah Friedlaender"/>
+        <Label Content="Longtude :" HorizontalAlignment="Left" Margin="77,55,0,0" VerticalAlignment="Top" Width="80" Foreground="#FFA6B7F3" FontSize="14" FontFamily="Hadassah Friedlaender"/>
+        <Label x:Name="longtudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Longitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="146,55,0,0" VerticalAlignment="Top" Width="181" Foreground="#FFA6B7F3" Height="26" FontSize="14" FontFamily="Hadassah Friedlaender"/>
     </Grid>
 </UserControl>

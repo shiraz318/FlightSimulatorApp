@@ -23,6 +23,10 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class MapControl : UserControl
     {
+        public const int LATITUDE_UP_BORDER = 90;
+        public const int LATITUDE_DOWN_BORDER = -90;
+        public const int LONGTUDE_DOWN_BORDER = -180;
+        public const int LONGTUDE_UP_BORDER = 180;
         private MapVM mapVM;
          public MapControl()
         {
@@ -37,20 +41,38 @@ namespace FlightSimulatorApp.View
             {
                 if (e.PropertyName.Equals("VM_Latitude"))
                 {
-                    //throw exception
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(mapVM.VM_Latitude, pushPin.Location.Longitude);
 
-                    });
+                        //throw exception
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            double latitude = mapVM.VM_Latitude;
+                            if (latitude <= LATITUDE_UP_BORDER && latitude >= LATITUDE_DOWN_BORDER)
+                            {
+                                pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(mapVM.VM_Latitude, pushPin.Location.Longitude);
+                            } else
+                            {
+                                latitudeLabel.Content = "Invalid Coordinate";
+                            }
+
+                        });
+  
                    
                 }
                 else if (e.PropertyName.Equals("VM_Longtude"))
                 {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(pushPin.Location.Latitude, mapVM.VM_Longtude);
-                    });
+                   
+                        this.Dispatcher.Invoke(() => { 
+                         double longtude = mapVM.VM_Longtude;
+                            if (longtude <= LONGTUDE_UP_BORDER && longtude >= LONGTUDE_DOWN_BORDER)
+                            {
+                                pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(pushPin.Location.Latitude, mapVM.VM_Longtude);
+                            }
+                            else
+                            {
+                                longtudeLabel.Content = "Invalid Coordinate";
+                            }
+                        });
+
                    
                 }
             };
