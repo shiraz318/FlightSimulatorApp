@@ -1,6 +1,5 @@
 ﻿using FlightSimulatorApp.Model;
 using FlightSimulatorApp.View;
-using FlightSimulatorApp.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,13 +32,13 @@ namespace FlightSimulatorApp
         private MapVM mapVM;
         private ConnectVM connectVM;
         private bool isConnected;
+        private MyFlightSimulatorModel mfsm;
         public MainWindow()
         {
 
             InitializeComponent();
 
-            TcpClient tcpC = new TcpClient();
-            MyFlightSimulatorModel mfsm = new MyFlightSimulatorModel(tcpC);
+            mfsm = new MyFlightSimulatorModel();
             dashboardVM = new DashboardVM(mfsm);
             joystickVM = new JoystickVM(mfsm);
             mapVM = new MapVM(mfsm);
@@ -51,32 +50,37 @@ namespace FlightSimulatorApp
             map.DataContext = mapVM;
             map.setVM(mapVM);
 
-
-            //We should do Binding!! here but it does not working for some reason
             ipLabel.Content = connectVM.Ip;
-            PortLabel.Content = connectVM.Port.ToString();
+            PortLabel.Content = connectVM.Port;
 
-            mapVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            connectVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                if (e.PropertyName.Equals("VM_Error") && (!mapVM.IsErrorAccured))
+                if (e.PropertyName.Equals("VM_Error") && (!connectVM.IsErrorAccured))
                 {
-                    mapVM.IsErrorAccured = true;
+                   // resetViews();
+                    isConnected = false;
+                    connectVM.IsErrorAccured = true;
                     Application.Current.Dispatcher.Invoke((Action)delegate {
-                        ConnectionError connectionError = new ConnectionError();
-                        connectionError.ShowDialog();
+                    ConnectionError connectionError = new ConnectionError();
+                    connectionError.ShowDialog();
                     });
 
                 }
             };
 
         }
+        private void resetViews()
+        {
+            dashboard.reset();
+            map.reset();
 
+        }
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
             if (!isConnected)
             {
                 isConnected = true;
-                mapVM.IsErrorAccured = false;
+                connectVM.IsErrorAccured = false;
                 //animation
                 //click animation
                 Thickness m = flyingAnimation.Margin;

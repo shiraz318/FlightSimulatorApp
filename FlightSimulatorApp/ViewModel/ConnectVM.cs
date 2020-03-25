@@ -35,6 +35,13 @@ namespace FlightSimulatorApp.View
                 port = value;
             }
         }
+        private bool isErrorAccured = false;
+
+        public bool IsErrorAccured
+        {
+            get { return isErrorAccured; }
+            set { isErrorAccured = value; }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
         public ConnectVM(IFlightSimulatorModel m)

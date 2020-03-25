@@ -11,7 +11,7 @@ namespace FlightSimulatorApp.Model
 {
     public class MyFlightSimulatorModel : IFlightSimulatorModel
     {
-        private readonly Mutex mutex = new Mutex();
+        private Mutex mutex = new Mutex();
         private TcpClient tcpClient;
         NetworkStream strm;
         volatile bool stop;
@@ -25,30 +25,29 @@ namespace FlightSimulatorApp.Model
         private double altimeter_indicated_altitude_ft;
         private double latitude;
         private double longtude;
-        private bool error = false;
+        private bool error;
 
         private Queue<string> messages = new Queue<string> { };
         private Dictionary<string, string> pathMap = new Dictionary<string, string> { };
-        public MyFlightSimulatorModel(TcpClient telnet)
+        public MyFlightSimulatorModel()
         {
 
-            this.tcpClient = telnet;
             this.stop = false;
             pathMap.Add("aileron", "/controls/flight/aileron");
             pathMap.Add("throttle", "/controls/engines/current-engine/throttle");
             pathMap.Add("rudder", "/controls/flight/rudder");
             pathMap.Add("elevator", "/controls/flight/elevator");
-            Indicated_heading_deg = -50;
-            Gps_indicated_vertical_speed = 60;
-            Gps_indicated_ground_speed_kt = 70;
-            Airspeed_indicator_indicated_speed_kt = 80;
-            Gps_indicated_altitude_ft = 90;
-            Attitude_indicator_internal_roll_deg = 100;
-            Attitude_indicator_internal_pitch_deg = 102;
-            Altimeter_indicated_altitude_ft = 30;
+            Indicated_heading_deg = 0;
+            Gps_indicated_vertical_speed = 0;
+            Gps_indicated_ground_speed_kt = 0;
+            Airspeed_indicator_indicated_speed_kt = 0;
+            Gps_indicated_altitude_ft = 0;
+            Attitude_indicator_internal_roll_deg = 0;
+            Attitude_indicator_internal_pitch_deg = 0;
+            Altimeter_indicated_altitude_ft = 0;
         }
         public double Latitude { get { return latitude; } set { latitude = value; NotifyPropertyChanged("Latitude"); } }
-        public bool Error { get { return error; } set { error = value; NotifyPropertyChanged("Error"); } }
+        public bool Error { get { return false; } set { Disconnect(); tcpClient.Dispose(); mutex.Dispose(); NotifyPropertyChanged("Error"); } }
         public double Indicated_heading_deg { get { return indicated_heading_deg; } set { indicated_heading_deg = value; NotifyPropertyChanged("Indicated_heading_deg"); } }
         public double Gps_indicated_vertical_speed { get { return gps_indicated_vertical_speed; } set { gps_indicated_vertical_speed = value; NotifyPropertyChanged("Gps_indicated_vertical_speed"); } }
         public double Gps_indicated_ground_speed_kt { get { return gps_indicated_ground_speed_kt; } set { gps_indicated_ground_speed_kt = value; NotifyPropertyChanged("Gps_indicated_ground_speed_kt"); } }
@@ -64,18 +63,17 @@ namespace FlightSimulatorApp.Model
             set { longtude = value; NotifyPropertyChanged("Longtude"); }
         }
         public event PropertyChangedEventHandler PropertyChanged;
-
         public void Connect(string ip, int port)
         {
-
-
             try
             {
-                Console.WriteLine("Connecting...");
+                stop = false;
+                messages = new Queue<string> { };
+                tcpClient = new TcpClient();
+                mutex = new Mutex();
                 tcpClient.Connect(ip, port);
                 strm = tcpClient.GetStream();
                 //use the ipaddress as in thr server program
-                Console.WriteLine("Connected");
                 Start();
             }
             catch (Exception e)
@@ -130,7 +128,7 @@ namespace FlightSimulatorApp.Model
                         break;
                     }
                     var result = Read().Split('\n');
-                    if (Error)
+                    if (Error || result.Length < 10)
                     {
                         break;
                     }

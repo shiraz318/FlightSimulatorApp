@@ -25,5 +25,21 @@ namespace FlightSimulatorApp.View
             InitializeComponent();
            
         }
+        public void reset()
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                airspeed_indicator_indicate_speed.Content = 0;
+                gps_indicated_ground_speed.Content = 0;
+                gps_indicated_vertical_speed.Content = 0;
+                indicated_heading_deg.Content = 0;
+                gps_indicated_altitude.Content = 0;
+                attitude_indicator_internal_roll_deg.Content = 0;
+                attitude_indicator_internal_pitch_deg.Content = 0;
+                altimeter_indicated_altitude.Content = 0;
+            });
+
+           
+        }
     }
 }

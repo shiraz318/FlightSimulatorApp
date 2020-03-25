@@ -33,13 +33,7 @@ namespace FlightSimulatorApp.View
             };
 
         }
-        private bool isErrorAccured = false;
 
-        public bool IsErrorAccured
-        {
-            get { return isErrorAccured; }
-            set { isErrorAccured = value; }
-        }
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)

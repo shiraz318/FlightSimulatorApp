@@ -34,6 +34,16 @@ namespace FlightSimulatorApp.View
             pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(37.806029,-122.407007);
             
         }
+        public void reset()
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(37.806029, -122.407007);
+                latitudeLabel.Content = 37.806029;
+                longtudeLabel.Content = -122.407007;
+            });
+            
+        }
         public void setVM(MapVM vm)
         {
             mapVM = vm;
