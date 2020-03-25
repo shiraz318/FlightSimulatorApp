@@ -37,6 +37,7 @@ namespace FlightSimulatorApp.View
             {
                 if (e.PropertyName.Equals("VM_Latitude"))
                 {
+                    //throw exception
                     this.Dispatcher.Invoke(() =>
                     {
                         pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(mapVM.VM_Latitude, pushPin.Location.Longitude);
