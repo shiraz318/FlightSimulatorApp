@@ -32,7 +32,7 @@ namespace FlightSimulatorApp
         private JoystickVM joystickVM;
         private MapVM mapVM;
         private ConnectVM connectVM;
-
+        private bool isConnected;
         public MainWindow()
         {
 
@@ -46,15 +46,15 @@ namespace FlightSimulatorApp
             connectVM = new ConnectVM(mfsm);
             DataContext = mapVM;
             joystick.DataContext = joystickVM;
-
+            isConnected = false;
             dashboard.DataContext = dashboardVM;
             map.DataContext = mapVM;
             map.setVM(mapVM);
 
 
             //We should do Binding!! here but it does not working for some reason
-            ipText.Text = connectVM.Ip;
-            portText.Text = connectVM.Port.ToString();
+            ipLabel.Content = connectVM.Ip;
+            PortLabel.Content = connectVM.Port.ToString();
 
             mapVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
@@ -67,40 +67,32 @@ namespace FlightSimulatorApp
                     });
 
                 }
-                /*else if(e.PropertyName.Equals("VM_Latitude"))
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        //map.pushPin.Location.Latitude = 0;
-                    });
-                
-                }
-                else if (e.PropertyName.Equals("VM_Longtude"))
-                {
-                    //LongitudeText.Text = mapVM.VM_Longtude.ToString();
-                }*/
             };
 
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
-            mapVM.IsErrorAccured = false;
-            //animation
-            //click animation
-            Thickness m = flyingAnimation.Margin;
-            m.Top = 299;
-            m.Right = 308;
-            flyingAnimation.Margin = m;
-            dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(12);
-            m.Top -= 20;
-            m.Right -= 40;
-            flyingAnimation.Margin = m;
-            dispatcherTimer.Start();
-            //connect to the simulator
-            connectVM.connect();
+            if (!isConnected)
+            {
+                isConnected = true;
+                mapVM.IsErrorAccured = false;
+                //animation
+                //click animation
+                Thickness m = flyingAnimation.Margin;
+                m.Top = 299;
+                m.Right = 308;
+                flyingAnimation.Margin = m;
+                dispatcherTimer = new DispatcherTimer();
+                dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                dispatcherTimer.Interval = TimeSpan.FromMilliseconds(12);
+                m.Top -= 20;
+                m.Right -= 40;
+                flyingAnimation.Margin = m;
+                dispatcherTimer.Start();
+                //connect to the simulator
+                connectVM.connect();
+            }
         }
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
@@ -124,8 +116,8 @@ namespace FlightSimulatorApp
                 connectVM.Ip = setting.ipText.Text;
                 connectVM.Port = int.Parse(setting.portText.Text);
                 //Binding!!
-                ipText.Text = connectVM.Ip;
-                portText.Text = connectVM.Port.ToString();
+                ipLabel.Content = connectVM.Ip;
+                PortLabel.Content = connectVM.Port.ToString();
                 setting.IsOk = false;
             }
         }

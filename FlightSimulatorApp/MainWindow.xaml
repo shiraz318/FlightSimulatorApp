@@ -38,7 +38,7 @@
             </View:MapControl.RenderTransform>
 
         </View:MapControl>
-        <View:Joystick x:Name="joystick" RenderTransformOrigin="0.5,0.5" Margin="236,86,-216.4,-86" Grid.ColumnSpan="3">
+        <View:Joystick x:Name="joystick" RenderTransformOrigin="0.5,0.5" Margin="227,84,-244.4,-91" Grid.ColumnSpan="3">
             <View:Joystick.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
@@ -60,10 +60,8 @@
                 <Image  Width="25" Source="settingGray.jpg"></Image>
             </StackPanel>
         </Button>
-        <TextBox Name="ipText" HorizontalAlignment="Left" Height="19" Margin="42,9,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100" TextAlignment="Center" FontWeight="Bold" Foreground="#FF0E3411"/>
-        <TextBox Name="portText" HorizontalAlignment="Left" Height="19" Margin="42,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="101" TextAlignment="Center" Foreground="#FF0E3411" FontWeight="Bold"/>
-        <Label Content="IP" HorizontalAlignment="Left" Margin="14,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="PORT" HorizontalAlignment="Left" Margin="2,42,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+        <Label Content="IP :" HorizontalAlignment="Left" Margin="23,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14"/>
+        <Label Content="PORT :" HorizontalAlignment="Left" Margin="2,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14"/>
         <Image Name="flyingAnimation" Width="70" Height="70" RenderTransformOrigin="-2.443,0.757" Margin="-54,299,308,51" Source="paper-plane.png">
             <Image.RenderTransform>
                 <TransformGroup>
@@ -74,15 +72,22 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="290,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Name="LatitueText"/>
-        <Label Content="Latitude" HorizontalAlignment="Left" Margin="300,19,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" Grid.ColumnSpan="2" Width="67" FontSize="14"/>
-        <TextBox Height="23" Margin="192,42,50,0" TextWrapping="Wrap" Text="{Binding VM_Longtude, Mode=OneWay}" VerticalAlignment="Top" x:Name="LongitudeText"/>
-        <Label Content="Longitude" HorizontalAlignment="Left" Margin="59,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" Width="77" FontSize="14">
+        <Label x:Name="ipLabel" Height="26" Margin="49,9,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontWeight="Bold" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontSize="14">
             <Label.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.3"/>
+                    <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform/>
+                    <RotateTransform Angle="-0.498"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Label x:Name="PortLabel" Height="26" Margin="50,35,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontSize="14" FontFamily="Hadassah Friedlaender" FontWeight="Bold" Foreground="#FFA6B7F3">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.498"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Label.RenderTransform>
