@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace FlightSimulatorApp.Model
 {
-    interface IFlightSimulatorModel : INotifyPropertyChanged
+    public interface IFlightSimulatorModel : INotifyPropertyChanged
     {
         //connection to the flight simulator 
         void Connect(string ip, int port);

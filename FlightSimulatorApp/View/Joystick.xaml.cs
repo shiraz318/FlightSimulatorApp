@@ -101,8 +101,8 @@ namespace FlightSimulatorApp.View
             //if we want that when the user is in mouseup state - the text field will not be 0, which means it will not reset, so we just delete the following lines.
             PositionY = 0;
             PositionX = 0;
-            rudderLable.Content = PositionX.ToString();
-            elevatorLable.Content = PositionY.ToString();
+            rudderLable.Content = PositionX;
+            elevatorLable.Content = PositionY;
         }
 
         private void Joystick_MouseMove(object sender, MouseEventArgs e)
@@ -113,8 +113,8 @@ namespace FlightSimulatorApp.View
                 currentY = e.GetPosition(this).Y;
                 PositionX = currentX - startX;
                 PositionY = currentY - startY;
-                rudderLable.Content = (PositionX/RANGE).ToString();
-                elevatorLable.Content = (PositionY/-RANGE).ToString();
+                rudderLable.Content = PositionX / RANGE;
+                elevatorLable.Content = PositionY / -RANGE;
                 knobPosition.X = PositionX;
                 knobPosition.Y = PositionY;
             }

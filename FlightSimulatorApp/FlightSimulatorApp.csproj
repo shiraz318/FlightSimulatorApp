@@ -175,5 +175,8 @@
   <ItemGroup>
     <Resource Include="View\icons8-cancel-48.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\airplane-clip-green-1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

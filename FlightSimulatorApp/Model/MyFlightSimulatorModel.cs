@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace FlightSimulatorApp.Model
 {
-    class MyFlightSimulatorModel : IFlightSimulatorModel
+    public class MyFlightSimulatorModel : IFlightSimulatorModel
     {
         private readonly Mutex mutex = new Mutex();
         private TcpClient tcpClient;
@@ -80,7 +80,7 @@ namespace FlightSimulatorApp.Model
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error:" + e.StackTrace);
+                Error = true;
             }
 
         }
@@ -103,8 +103,14 @@ namespace FlightSimulatorApp.Model
                         //it throws exception of ה wait הסתיים עקב abandended  mutex. it happend when we had an error message (may be connected to the IsErrorAccured property and the condition in the mainwindow
                         string responseData;
                         mutex.WaitOne();
-                        Write(messages.Dequeue());
-                        responseData = Read();
+                        if (!Error)
+                        {
+                            Write(messages.Dequeue());
+                        }
+                       if (!Error)
+                        {
+                            responseData = Read();
+                        }
                         mutex.ReleaseMutex();
                     }
                 }
@@ -119,12 +125,12 @@ namespace FlightSimulatorApp.Model
                     mutex.WaitOne();
                     Write(message);
                     //Separate the read message by \n
-                    if (error)
+                    if (Error)
                     {
                         break;
                     }
                     var result = Read().Split('\n');
-                    if (error)
+                    if (Error)
                     {
                         break;
                     }

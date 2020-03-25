@@ -10,7 +10,7 @@ using FlightSimulatorApp.View;
 
 namespace FlightSimulatorApp.View
 {
-    class MapVM : INotifyPropertyChanged
+    public class MapVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;

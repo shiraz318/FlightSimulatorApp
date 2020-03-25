@@ -27,7 +27,7 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        DispatcherTimer dispatcherTimer;// = new DispatcherTimer();
         private DashboardVM dashboardVM;
         private JoystickVM joystickVM;
         private MapVM mapVM;
@@ -49,9 +49,7 @@ namespace FlightSimulatorApp
 
             dashboard.DataContext = dashboardVM;
             map.DataContext = mapVM;
-            //click animation
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(12);
+            map.setVM(mapVM);
 
 
             //We should do Binding!! here but it does not working for some reason
@@ -69,7 +67,7 @@ namespace FlightSimulatorApp
                     });
 
                 }
-                else if(e.PropertyName.Equals("VM_Latitude"))
+                /*else if(e.PropertyName.Equals("VM_Latitude"))
                 {
                     this.Dispatcher.Invoke(() =>
                     {
@@ -80,15 +78,23 @@ namespace FlightSimulatorApp
                 else if (e.PropertyName.Equals("VM_Longtude"))
                 {
                     //LongitudeText.Text = mapVM.VM_Longtude.ToString();
-                }
+                }*/
             };
 
         }
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
+            mapVM.IsErrorAccured = false;
             //animation
+            //click animation
             Thickness m = flyingAnimation.Margin;
+            m.Top = 299;
+            m.Right = 308;
+            flyingAnimation.Margin = m;
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(12);
             m.Top -= 20;
             m.Right -= 40;
             flyingAnimation.Margin = m;
