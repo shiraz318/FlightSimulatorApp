@@ -218,9 +218,6 @@ namespace FlightSimulatorApp.Model
                     {
                         //error
                     }
-
-                    //need more vars
-                    Thread.Sleep(100);
                 }
             }).Start();
 
