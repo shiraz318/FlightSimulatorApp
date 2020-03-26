@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace FlightSimulatorApp.View
 {
-    class ConnectVM : INotifyPropertyChanged
+    public class ConnectVM : INotifyPropertyChanged
     {
         private int port = int.Parse(ConfigurationSettings.AppSettings["port"]);
         //private int port = int.Parse(ConfigurationManager.AppSettings.Get("port"));
@@ -69,6 +69,14 @@ namespace FlightSimulatorApp.View
         public void connect()
         {
             model.Connect(Ip, Port);
+        }
+        public void disconnect()
+        {
+            model.Disconnect();
+        }
+        public void setStop(bool value)
+        {
+            model.setStop(value);
         }
     }
     

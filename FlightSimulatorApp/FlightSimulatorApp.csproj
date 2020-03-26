@@ -86,6 +86,9 @@
     <Compile Include="View\MapControl.xaml.cs">
       <DependentUpon>MapControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\TimeOutError.xaml.cs">
+      <DependentUpon>TimeOutError.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Wheel.xaml.cs">
       <DependentUpon>Wheel.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MapControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeOutError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,6 +185,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\airplane-clip-green-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\deadline.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

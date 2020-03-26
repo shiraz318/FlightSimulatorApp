@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.IO;
 
 namespace FlightSimulatorApp.Model
 {
@@ -47,7 +48,8 @@ namespace FlightSimulatorApp.Model
             Altimeter_indicated_altitude_ft = 0;
         }
         public double Latitude { get { return latitude; } set { latitude = value; NotifyPropertyChanged("Latitude"); } }
-        public bool Error { get { return false; } set { Disconnect(); tcpClient.Dispose(); mutex.Dispose(); NotifyPropertyChanged("Error"); } }
+        public bool Error { get { return false; } set { Disconnect();  NotifyPropertyChanged("Error"); } }
+        public bool TimeOutError { get { return false; } set { NotifyPropertyChanged("TimeOutError"); } }
         public double Indicated_heading_deg { get { return indicated_heading_deg; } set { indicated_heading_deg = value; NotifyPropertyChanged("Indicated_heading_deg"); } }
         public double Gps_indicated_vertical_speed { get { return gps_indicated_vertical_speed; } set { gps_indicated_vertical_speed = value; NotifyPropertyChanged("Gps_indicated_vertical_speed"); } }
         public double Gps_indicated_ground_speed_kt { get { return gps_indicated_ground_speed_kt; } set { gps_indicated_ground_speed_kt = value; NotifyPropertyChanged("Gps_indicated_ground_speed_kt"); } }
@@ -86,6 +88,8 @@ namespace FlightSimulatorApp.Model
         public void Disconnect()
         {
             tcpClient.Close();
+            tcpClient.Dispose();
+            mutex.Dispose();
             stop = true;
         }
 
@@ -119,6 +123,7 @@ namespace FlightSimulatorApp.Model
             {
                 while (!stop)
                 {
+
                     string message = "get /instrumentation/gps/indicated-vertical-speed\nget /instrumentation/airspeed-indicator/indicated-speed-kt\nget /instrumentation/altimeter/indicated-altitude-ft\nget /instrumentation/attitude-indicator/internal-pitch-deg\nget /instrumentation/attitude-indicator/internal-roll-deg\nget /instrumentation/heading-indicator/indicated-heading-deg\nget /instrumentation/gps/indicated-altitude-ft\nget /instrumentation/gps/indicated-ground-speed-kt\n get /position/latitude-deg\nget /position/longitude-deg\n";
                     mutex.WaitOne();
                     Write(message);
@@ -224,12 +229,19 @@ namespace FlightSimulatorApp.Model
         {
             try
             {
+                strm.ReadTimeout = 10000;
                 Byte[] data = new Byte[1024];
                 String responseData = String.Empty;
                 Int32 bytes = strm.Read(data, 0, data.Length);
                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 
                 return responseData;
+            }
+            catch (IOException x)
+            {
+                TimeOutError = true;
+                stop = true;
+                return "";
             }
             catch (Exception e)
             {
@@ -268,6 +280,10 @@ namespace FlightSimulatorApp.Model
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
                 //"nili cohen"//
             }
+        }
+        public void setStop(bool value)
+        {
+            stop = value;
         }
     }
 }

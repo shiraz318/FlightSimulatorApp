@@ -65,6 +65,20 @@ namespace FlightSimulatorApp
                     connectionError.ShowDialog();
                     });
 
+                } else if (e.PropertyName.Equals("VM_TimeOutError"))
+                {
+                    
+                    Application.Current.Dispatcher.Invoke((Action)delegate {
+                        TimeOutError timeOutError = new TimeOutError();
+                        timeOutError.setVM(connectVM);
+                        timeOutError.ShowDialog();
+                        if(!timeOutError.stay)
+                        {
+                            //resetViews();
+                            isConnected = false;
+                            
+                        }
+                    });
                 }
             };
 

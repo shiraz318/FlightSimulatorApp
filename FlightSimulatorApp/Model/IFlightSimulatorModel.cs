@@ -14,6 +14,7 @@ namespace FlightSimulatorApp.Model
         void Disconnect();
         void Start();
         void setSimulator(string var, double value);
+        void setStop(bool value);
         //properties
         double Indicated_heading_deg { set; get; }
         double Gps_indicated_vertical_speed { set; get; }

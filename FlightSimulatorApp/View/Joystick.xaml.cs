@@ -83,6 +83,19 @@ namespace FlightSimulatorApp.View
             DependencyProperty.Register("RudderX", typeof(double), typeof(Joystick));
 
 
+
+        public double ElevatorY
+        {
+            get { return (double)GetValue(ElevatorYProperty); }
+            set { SetValue(ElevatorYProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ElevatorY.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ElevatorYProperty =
+            DependencyProperty.Register("ElevatorY", typeof(double), typeof(Joystick));
+
+
+
         public Joystick()
         {
             InitializeComponent();
@@ -115,6 +128,8 @@ namespace FlightSimulatorApp.View
             //if we want that when the user is in mouseup state - the text field will not be 0, which means it will not reset, so we just delete the following lines.
             PositionY = 0;
             PositionX = 0;
+            RudderX = 0;
+            ElevatorY = 0;
            // rudderLable.Content = PositionX;
            // elevatorLable.Content = PositionY;
         }
@@ -130,6 +145,7 @@ namespace FlightSimulatorApp.View
                 //rudderLable.Content = PositionX / RANGE;
                 //elevatorLable.Content = PositionY / -RANGE;
                 RudderX = PositionX / RANGE;
+                ElevatorY = PositionY / RANGE;
                 knobPosition.X = PositionX;
                 knobPosition.Y = PositionY;
             }
