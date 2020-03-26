@@ -18,6 +18,7 @@
                 </TransformGroup>
             </m:Map.RenderTransform>
             <m:Pushpin Name="pushPin" RenderTransformOrigin="0.5,0.5" OpacityMask="Black" Background="#FF77BAD3">
+                <Image Source="airplane-emoji.png"></Image>
                 <m:Pushpin.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="2.5" ScaleY="2"/>
