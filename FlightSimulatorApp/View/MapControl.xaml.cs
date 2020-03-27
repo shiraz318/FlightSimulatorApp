@@ -37,7 +37,7 @@ namespace FlightSimulatorApp.View
             latitudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(166, 183, 243));
             longtudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(166, 183, 243));
         }
-        public void reset()
+        public void Reset()
         {
             this.Dispatcher.Invoke(() =>
             {
@@ -47,7 +47,7 @@ namespace FlightSimulatorApp.View
             });
             
         }
-        public void setVM(MapVM vm)
+        public void SetVM(MapVM vm)
         {
             mapVM = vm;
             mapVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)

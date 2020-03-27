@@ -27,7 +27,6 @@ namespace FlightSimulatorApp.Model
         private double latitude;
         private double longtude;
         private bool error = false;
-
         private Queue<string> messages = new Queue<string> { };
         private Dictionary<string, string> pathMap = new Dictionary<string, string> { };
         public MyFlightSimulatorModel()
@@ -102,17 +101,23 @@ namespace FlightSimulatorApp.Model
                     if (messages.Count != 0)
                     {
                         //it throws exception of ה wait הסתיים עקב abandended  mutex. it happend when we had an error message (may be connected to the IsErrorAccured property and the condition in the mainwindow
-                        string responseData;
-                        mutex.WaitOne();
-                        if (!Error)
+                        try
                         {
-                            Write(messages.Dequeue());
-                        }
-                       if (!Error)
+                            string responseData;
+                            mutex.WaitOne();
+                            if (!Error)
+                            {
+                                Write(messages.Dequeue());
+                            }
+                            if (!Error)
+                            {
+                                responseData = Read();
+                            }
+                            mutex.ReleaseMutex();
+                        } catch (Exception e)
                         {
-                            responseData = Read();
+
                         }
-                        mutex.ReleaseMutex();
                     }
                 }
 
@@ -254,7 +259,7 @@ namespace FlightSimulatorApp.Model
                 stop = true;
             }
         }
-        public void setSimulator(string var, double value)
+        public void SetSimulator(string var, double value)
         {
             string path = pathMap[var];
             string message = "set " + path + " " + value.ToString() + "\n";

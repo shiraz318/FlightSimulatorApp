@@ -48,7 +48,7 @@ namespace FlightSimulatorApp
             isConnected = false;
             dashboard.DataContext = dashboardVM;
             map.DataContext = mapVM;
-            map.setVM(mapVM);
+            map.SetVM(mapVM);
 
             ipLabel.Content = connectVM.Ip;
             PortLabel.Content = connectVM.Port;
@@ -68,12 +68,12 @@ namespace FlightSimulatorApp
             };
 
         }
-        private void resetViews()
+        private void ResetViews()
         {
             try
             {
-                dashboard.reset();
-                map.reset();
+                dashboard.Reset();
+                map.Reset();
             } catch (TaskCanceledException e)
             {
                 Environment.Exit(0);
@@ -94,17 +94,17 @@ namespace FlightSimulatorApp
                 m.Right = 308;
                 flyingAnimation.Margin = m;
                 dispatcherTimer = new DispatcherTimer();
-                dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
                 dispatcherTimer.Interval = TimeSpan.FromMilliseconds(12);
                 m.Top -= 20;
                 m.Right -= 40;
                 flyingAnimation.Margin = m;
                 dispatcherTimer.Start();
                 //connect to the simulator
-                connectVM.connect();
+                connectVM.Connect();
             }
         }
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             Thickness m = flyingAnimation.Margin;
             m.Top -= 10;

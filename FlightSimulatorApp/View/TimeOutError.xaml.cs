@@ -36,7 +36,7 @@ namespace FlightSimulatorApp.View
         {
             stay = false;
            // connectVM.setStop(false);
-            connectVM.disconnect();
+            connectVM.Disconnect();
             this.Close();
         }
         public void setVM(ConnectVM cvm)

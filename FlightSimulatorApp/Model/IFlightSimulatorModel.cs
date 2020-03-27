@@ -13,7 +13,7 @@ namespace FlightSimulatorApp.Model
         void Connect(string ip, int port);
         void Disconnect();
         void Start();
-        void setSimulator(string var, double value);
+        void SetSimulator(string var, double value);
         //properties
         double Indicated_heading_deg { set; get; }
         double Gps_indicated_vertical_speed { set; get; }

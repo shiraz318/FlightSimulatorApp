@@ -11,9 +11,10 @@ namespace FlightSimulatorApp.View
 {
     public class ConnectVM : INotifyPropertyChanged
     {
-        private int port = int.Parse(ConfigurationSettings.AppSettings["port"]);
-        //private int port = int.Parse(ConfigurationManager.AppSettings.Get("port"));
-        private string ip = ConfigurationSettings.AppSettings["ip"];
+       // private int port = int.Parse(ConfigurationSettings.AppSettings["port"]);
+        private int port = int.Parse(ConfigurationManager.AppSettings.Get("port"));
+        private string ip = ConfigurationManager.AppSettings.Get("ip");
+       // private string ip = ConfigurationSettings.AppSettings["ip"];
         public string Ip
         {
             get
@@ -45,7 +46,7 @@ namespace FlightSimulatorApp.View
             set { isErrorAccured = value; }
         }
 
-        public static object ConfigurationManager { get; private set; }
+        //public static object ConfigurationManager { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
@@ -66,11 +67,11 @@ namespace FlightSimulatorApp.View
                 //"nili cohen"//
             }
         }
-        public void connect()
+        public void Connect()
         {
             model.Connect(Ip, Port);
         }
-        public void disconnect()
+        public void Disconnect()
         {
             model.Disconnect();
         }

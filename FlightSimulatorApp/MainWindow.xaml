@@ -20,7 +20,7 @@
             <ColumnDefinition Width="24*"/>
             <ColumnDefinition Width="211*"/>
         </Grid.ColumnDefinitions>
-        <View:Dashboard x:Name="dashboard" Margin="289,-159,-276.4,266.8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
+        <View:Dashboard x:Name="dashboard" Margin="289,-159,-276.4,263.8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
             <View:Dashboard.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.7" ScaleY="0.72"/>

@@ -25,7 +25,7 @@ namespace FlightSimulatorApp.View
             InitializeComponent();
            
         }
-        public void reset()
+        public void Reset()
         {
             this.Dispatcher.Invoke(() =>
             {
