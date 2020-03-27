@@ -74,10 +74,6 @@ namespace FlightSimulatorApp.View
         {
             model.Disconnect();
         }
-        public void setStop(bool value)
-        {
-            model.setStop(value);
-        }
     }
     
     

@@ -6,20 +6,24 @@
         xmlns:View="clr-namespace:FlightSimulatorApp.View"
         xmlns:local="clr-namespace:FlightSimulatorApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000" ResizeMode="NoResize">
     <Window.Background>
         <SolidColorBrush Color="#FF0E3411" Opacity="0.93"/>
     </Window.Background>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="226*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="162*"/>
             <ColumnDefinition Width="24*"/>
             <ColumnDefinition Width="211*"/>
         </Grid.ColumnDefinitions>
-        <View:Dashboard x:Name="dashboard" Margin="156,-177,-159.4,150" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
+        <View:Dashboard x:Name="dashboard" Margin="289,-159,-276.4,266.8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
             <View:Dashboard.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
+                    <ScaleTransform ScaleX="0.7" ScaleY="0.72"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
@@ -27,7 +31,7 @@
             </View:Dashboard.RenderTransform>
         </View:Dashboard>
 
-        <View:MapControl x:Name="map" RenderTransformOrigin="0.5,0.5" Margin="-69,-25,68.6,25" Grid.ColumnSpan="3">
+        <View:MapControl x:Name="map" RenderTransformOrigin="0.5,0.5" Margin="-79,-53,-13.4,-76.6" Grid.ColumnSpan="3" Grid.RowSpan="2">
             <View:MapControl.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.85" ScaleY="0.85"/>
@@ -38,23 +42,23 @@
             </View:MapControl.RenderTransform>
 
         </View:MapControl>
-        <View:Wheel x:Name="wheel" Margin="229,86,-238.4,-76" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
+        <View:Wheel x:Name="wheel" Margin="401,170,-210.4,-53.6" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3" Grid.RowSpan="2">
             <View:Wheel.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                    <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
                     <SkewTransform/>
                     <RotateTransform/>
                     <TranslateTransform/>
                 </TransformGroup>
             </View:Wheel.RenderTransform>
         </View:Wheel>
-        <Button Name="Connect" HorizontalAlignment="Left" Margin="97,380,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click">
+        <Button Name="Connect" HorizontalAlignment="Left" Margin="147,530,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click" Grid.RowSpan="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Connect"></TextBlock>
                 <Image Width="25" Source="airplane2.jpg" ></Image>
             </StackPanel>
         </Button>
-        <Button Name="Setting" HorizontalAlignment="Left" Margin="210,380,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD">
+        <Button Name="Setting" HorizontalAlignment="Left" Margin="284,530,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD" Grid.RowSpan="2">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" Text="Setting"></TextBlock>
                 <Image  Width="25" Source="settingGray.jpg"></Image>
@@ -62,7 +66,7 @@
         </Button>
         <Label Content="IP :" HorizontalAlignment="Left" Margin="23,-1,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14"/>
         <Label Content="PORT :" HorizontalAlignment="Left" Margin="2,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14"/>
-        <Image Name="flyingAnimation" Width="70" Height="70" RenderTransformOrigin="-2.443,0.757" Margin="-54,299,308,51" Source="paper-plane.png">
+        <Image Name="flyingAnimation" Width="70" Height="70" RenderTransformOrigin="-2.443,0.757" Margin="-66,456,401.6,22.8" Source="paper-plane.png">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -92,5 +96,6 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
+        <Label x:Name="errorLAbel" Content="" HorizontalAlignment="Left" Margin="256,-1,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="273" Foreground="#FFCD3232" FontSize="14" FontWeight="Bold" FontFamily="Segoe Print" Background="#00000000"/>
     </Grid>
 </Window>

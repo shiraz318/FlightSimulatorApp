@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" ContextMenuClosing="UserControl_ContextMenuClosing">
     <Grid>
-        <m:Map CredentialsProvider="btkCtE604q5s8DFGKzH5~fNmBQFQbqEDL1GCszg8kJA~AovMeW3MTuA2-2RqtUxt42BNwcwFMGPHif4_AO_fk-jmeTqwEbRo9R9BxATfC7pN" Center="37.806029,-122.407007" ZoomLevel="1.5" Margin="0,75,-228,-157.4" >
+        <m:Map CredentialsProvider="btkCtE604q5s8DFGKzH5~fNmBQFQbqEDL1GCszg8kJA~AovMeW3MTuA2-2RqtUxt42BNwcwFMGPHif4_AO_fk-jmeTqwEbRo9R9BxATfC7pN" Center="37.806029,-122.407007" ZoomLevel="2" Margin="0,75,-228,-157.4" >
             <m:Map.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.5" ScaleY="0.7"/>
@@ -29,10 +29,10 @@
                 </m:Pushpin.RenderTransform>
             </m:Pushpin>
         </m:Map>
-        <Label Content="Latitude :" HorizontalAlignment="Left" Margin="293,55,0,0" VerticalAlignment="Top" Width="70" Foreground="#FFA6B7F3" FontSize="14" FontFamily="Hadassah Friedlaender"/>
-        <Label x:Name="latitudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Latitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="357,55,0,0" VerticalAlignment="Top" Width="173" Foreground="#FFA6B7F3" FontSize="14" Height="26" FontFamily="Hadassah Friedlaender"/>
-        <Label Content="Longtude :" HorizontalAlignment="Left" Margin="77,55,0,0" VerticalAlignment="Top" Width="80" Foreground="#FFA6B7F3" FontSize="14" FontFamily="Hadassah Friedlaender"/>
-        <Label x:Name="longtudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Longitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="146,55,0,0" VerticalAlignment="Top" Width="181" Foreground="#FFA6B7F3" Height="26" FontSize="14" FontFamily="Hadassah Friedlaender"/>
+        <Label Content="Latitude :" HorizontalAlignment="Left" Margin="444,55,0,0" VerticalAlignment="Top" Width="70" Foreground="#FFA6B7F3" FontSize="14" FontFamily="Hadassah Friedlaender"/>
+        <Label x:Name="latitudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Latitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="506,55,0,0" VerticalAlignment="Top" Width="173" Foreground="#FFA6B7F3" FontSize="14" Height="26" FontFamily="Hadassah Friedlaender"/>
+        <Label Content="Longtude :" HorizontalAlignment="Left" Margin="243,55,0,0" VerticalAlignment="Top" Width="80" Foreground="#FFA6B7F3" FontSize="14" FontFamily="Hadassah Friedlaender"/>
+        <Label x:Name="longtudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Longitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="314,55,0,0" VerticalAlignment="Top" Width="181" Foreground="#FFA6B7F3" Height="26" FontSize="14" FontFamily="Hadassah Friedlaender"/>
     </Grid>
 </UserControl>
     

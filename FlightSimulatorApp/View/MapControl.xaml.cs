@@ -34,7 +34,8 @@ namespace FlightSimulatorApp.View
         {
             InitializeComponent();
             pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(37.806029,-122.407007);
-            
+            latitudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(166, 183, 243));
+            longtudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(166, 183, 243));
         }
         public void reset()
         {
@@ -61,9 +62,13 @@ namespace FlightSimulatorApp.View
                             if (latitude <= LATITUDE_UP_BORDER && latitude >= LATITUDE_DOWN_BORDER)
                             {
                                 pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(mapVM.VM_Latitude, pushPin.Location.Longitude);
-                            } else
+                                latitudeLabel.Content = latitude;
+                                latitudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(166, 183, 243));
+                            }
+                            else
                             {
                                 latitudeLabel.Content = "Invalid Coordinate";
+                                latitudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(205, 50, 50));
                             }
 
                         });
@@ -83,10 +88,13 @@ namespace FlightSimulatorApp.View
                             if (longtude <= LONGTUDE_UP_BORDER && longtude >= LONGTUDE_DOWN_BORDER)
                             {
                                 pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(pushPin.Location.Latitude, mapVM.VM_Longtude);
+                                longtudeLabel.Content = longtude;
+                                longtudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(166, 183, 243));
                             }
                             else
                             {
                                 longtudeLabel.Content = "Invalid Coordinate";
+                                longtudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(205, 50, 50));
                             }
                         });
                     }

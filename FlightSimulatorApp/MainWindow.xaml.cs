@@ -61,25 +61,10 @@ namespace FlightSimulatorApp
                     isConnected = false;
                     connectVM.IsErrorAccured = true;
                     Application.Current.Dispatcher.Invoke((Action)delegate {
-                    ConnectionError connectionError = new ConnectionError();
-                    connectionError.ShowDialog();
+                        errorLAbel.Content = "Connection faulted Error";
                     });
 
-                } else if (e.PropertyName.Equals("VM_TimeOutError"))
-                {
-                    
-                    Application.Current.Dispatcher.Invoke((Action)delegate {
-                        TimeOutError timeOutError = new TimeOutError();
-                        timeOutError.setVM(connectVM);
-                        timeOutError.ShowDialog();
-                        if(!timeOutError.stay)
-                        {
-                            //resetViews();
-                            isConnected = false;
-                            
-                        }
-                    });
-                }
+                } 
             };
 
         }
@@ -101,6 +86,7 @@ namespace FlightSimulatorApp
             {
                 isConnected = true;
                 connectVM.IsErrorAccured = false;
+                errorLAbel.Content = "";
                 //animation
                 //click animation
                 Thickness m = flyingAnimation.Margin;
