@@ -11,45 +11,16 @@ namespace FlightSimulatorApp.View
 {
     public class ConnectVM : INotifyPropertyChanged
     {
-       // private int port = int.Parse(ConfigurationSettings.AppSettings["port"]);
         private int port = int.Parse(ConfigurationManager.AppSettings.Get("port"));
         private string ip = ConfigurationManager.AppSettings.Get("ip");
-       // private string ip = ConfigurationSettings.AppSettings["ip"];
-        public string Ip
-        {
-            get
-            {
-                return ip;
-            }
-            set
-            {
-                ip = value;
-            }
-        }
-
-        public int Port
-        {
-            get
-            {
-                return port;
-            }
-            set
-            {
-                port = value;
-            }
-        }
         private bool isErrorAccured = false;
-
-        public bool IsErrorAccured
-        {
-            get { return isErrorAccured; }
-            set { isErrorAccured = value; }
-        }
-
-        //public static object ConfigurationManager { get; private set; }
-
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
+        // Properties.
+        public string Ip { get { return ip; } set { ip = value; } }
+        public int Port { get { return port; } set { port = value; } }
+        public bool IsErrorAccured { get { return isErrorAccured; } set { isErrorAccured = value; } }
+
         public ConnectVM(IFlightSimulatorModel m)
         {
             model = m;
@@ -57,14 +28,12 @@ namespace FlightSimulatorApp.View
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
-
         }
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-                //"nili cohen"//
             }
         }
         public void Connect()
@@ -76,6 +45,4 @@ namespace FlightSimulatorApp.View
             model.Disconnect();
         }
     }
-    
-    
 }

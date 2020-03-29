@@ -1,21 +1,8 @@
 ﻿using FlightSimulatorApp.Model;
 using FlightSimulatorApp.View;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Net.Sockets;
-using System.Threading;
 using System.Windows.Threading;
 using System.ComponentModel;
 
@@ -26,30 +13,25 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        DispatcherTimer dispatcherTimer;// = new DispatcherTimer();
-        private DashboardVM dashboardVM;
-        private WheelVM wheelVM;
-        private MapVM mapVM;
+        DispatcherTimer dispatcherTimer;
         private ConnectVM connectVM;
         private bool isConnected;
         private MyFlightSimulatorModel mfsm;
+
         public MainWindow()
         {
-
             InitializeComponent();
-
+            // Initialize the model.
             mfsm = new MyFlightSimulatorModel();
-            dashboardVM = new DashboardVM(mfsm);
-            wheelVM = new WheelVM(mfsm);
-            mapVM = new MapVM(mfsm);
+            // Initialize the components with a common model.
+            wheel.Init(mfsm);
+            dashboard.Init(mfsm);
+            map.Init(mfsm);
+            //
             connectVM = new ConnectVM(mfsm);
             DataContext = connectVM;
-            wheel.DataContext = wheelVM;
             isConnected = false;
-            dashboard.DataContext = dashboardVM;
-            map.DataContext = mapVM;
-            map.SetVM(mapVM);
-
+            //
             ipLabel.Content = connectVM.Ip;
             PortLabel.Content = connectVM.Port;
 
@@ -57,52 +39,42 @@ namespace FlightSimulatorApp
             {
                 if (e.PropertyName.Equals("VM_Error") && (!connectVM.IsErrorAccured))
                 {
-                    //resetViews();
                     isConnected = false;
                     connectVM.IsErrorAccured = true;
                     Application.Current.Dispatcher.Invoke((Action)delegate {
                         errorLAbel.Content = "Connection faulted Error";
+                        Connect.IsEnabled = true;
                     });
-
                 } 
             };
-
-        }
-        private void ResetViews()
-        {
-            try
-            {
-                dashboard.Reset();
-                map.Reset();
-            } catch (TaskCanceledException e)
-            {
-                Environment.Exit(0);
-            }
-
         }
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
             if (!isConnected)
             {
+                Connect.IsEnabled = false;
                 isConnected = true;
                 connectVM.IsErrorAccured = false;
                 errorLAbel.Content = "";
-                //animation
-                //click animation
-                Thickness m = flyingAnimation.Margin;
-                m.Top = 299;
-                m.Right = 308;
-                flyingAnimation.Margin = m;
-                dispatcherTimer = new DispatcherTimer();
-                dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
-                dispatcherTimer.Interval = TimeSpan.FromMilliseconds(12);
-                m.Top -= 20;
-                m.Right -= 40;
-                flyingAnimation.Margin = m;
-                dispatcherTimer.Start();
-                //connect to the simulator
+                // Click animation.
+                ClickAnimation();
+                // Connect to the simulator.
                 connectVM.Connect();
             }
+        }
+        private void ClickAnimation()
+        {
+            Thickness m = flyingAnimation.Margin;
+            m.Top = 299;
+            m.Right = 308;
+            flyingAnimation.Margin = m;
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(12);
+            m.Top -= 20;
+            m.Right -= 40;
+            flyingAnimation.Margin = m;
+            dispatcherTimer.Start();
         }
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
@@ -110,7 +82,7 @@ namespace FlightSimulatorApp
             m.Top -= 10;
             m.Right -= 20;
             flyingAnimation.Margin = m;
-            //end of the screen
+            // End of the screen.
             if (flyingAnimation.Margin.Top < -2300 || flyingAnimation.Margin.Right < -2300)
             {
                 dispatcherTimer.Stop();
@@ -121,19 +93,15 @@ namespace FlightSimulatorApp
         {
             SettingWindow setting = new SettingWindow();
             setting.ShowDialog();
+            // If user enteres ip and port to change and pressed ok.
             if (setting.IsOk)
             {
                 connectVM.Ip = setting.ipText.Text;
                 connectVM.Port = int.Parse(setting.portText.Text);
-                //Binding!!
                 ipLabel.Content = connectVM.Ip;
                 PortLabel.Content = connectVM.Port;
                 setting.IsOk = false;
             }
-        }
-        private void MapControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

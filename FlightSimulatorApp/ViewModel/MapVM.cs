@@ -14,16 +14,10 @@ namespace FlightSimulatorApp.View
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
+        // Properties.
+        public string VM_Latitude { get { return model.Latitude; } }
+        public string VM_Longtude { get { return model.Longtude; } }
 
-        public double VM_Latitude
-        {
-            get { return model.Latitude; }
-        }
-
-        public double VM_Longtude
-        {
-            get { return model.Longtude; }
-        }
         public MapVM(IFlightSimulatorModel m)
         {
             model = m;
@@ -31,18 +25,13 @@ namespace FlightSimulatorApp.View
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
-
         }
-
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-                //"nili cohen"//
             }
         }
-        
     }
-
 }

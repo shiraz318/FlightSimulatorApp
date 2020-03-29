@@ -52,7 +52,7 @@
                 </TransformGroup>
             </View:Wheel.RenderTransform>
         </View:Wheel>
-        <Button Name="Connect" HorizontalAlignment="Left" Margin="147,530,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click" Grid.RowSpan="2">
+        <Button Name="Connect" HorizontalAlignment="Left" Margin="147,530,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click" Grid.RowSpan="2" >
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Connect"></TextBlock>
                 <Image Width="25" Source="airplane2.jpg" ></Image>
@@ -76,7 +76,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Label x:Name="ipLabel" Height="26" Margin="49,-3,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontWeight="Bold" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontSize="14">
+        <Label x:Name="ipLabel" Height="26" Margin="49,-3,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontWeight="Bold" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontSize="14" >
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

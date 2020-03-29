@@ -9,24 +9,17 @@ namespace FlightSimulatorApp.View
     public partial class SettingWindow : Window
     {
         private bool isOk = false;
-
-        public bool IsOk
-        {
-            get { return isOk; }
-            set { isOk = value; }
-        }
-
+        // Property.
+        public bool IsOk { get { return isOk; } set { isOk = value; } }
         public SettingWindow()
         {
             InitializeComponent();
         }
-
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             IsOk = false;
             this.Close();
         }
-
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             string ip = ipText.Text;
@@ -35,11 +28,11 @@ namespace FlightSimulatorApp.View
             {
                 port = j;
             }
-            //and other validation checks if needed
+            // And other validation checks if needed.
            if ((port == -1) || (ip == "") || (portText.Text == ""))
             {
                 validation.Content = "Invalid port or ip, please try again";
-                //invalid
+                // Invalid.
             } else
             {
                 IsOk = true;

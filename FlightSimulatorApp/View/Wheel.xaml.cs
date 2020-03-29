@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulatorApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,16 +21,17 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class Wheel : UserControl
     {
-        private WheelVM vm;
+        private WheelVM viewModel;
         public Wheel()
         {
             
             InitializeComponent();
 
         }
-        public void SetVM(WheelVM wvm)
+        public void Init(MyFlightSimulatorModel model)
         {
-            vm = wvm;
+            viewModel = new WheelVM(model);
+            DataContext = viewModel;
         }
     }
 }
