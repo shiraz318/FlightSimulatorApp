@@ -17,6 +17,7 @@ namespace FlightSimulatorApp
         private ConnectVM connectVM;
         private bool isConnected;
         private MyFlightSimulatorModel mfsm;
+        private bool isDisConnected;
 
         public MainWindow()
         {
@@ -31,6 +32,8 @@ namespace FlightSimulatorApp
             connectVM = new ConnectVM(mfsm);
             DataContext = connectVM;
             isConnected = false;
+            isDisConnected = false;
+            Disconnect.IsEnabled = false;
             //
             ipLabel.Content = connectVM.Ip;
             PortLabel.Content = connectVM.Port;
@@ -39,12 +42,18 @@ namespace FlightSimulatorApp
             {
                 if (e.PropertyName.Equals("VM_Error") && (!connectVM.IsErrorAccured))
                 {
+                    if (!isDisConnected)
+                    {
+                        Application.Current.Dispatcher.Invoke((Action)delegate
+                        {
+                            errorLAbel.Content = "Connection faulted Error";
+                            Connect.IsEnabled = true;
+                            Disconnect.IsEnabled = false;
+                        });
+                    }
+
                     isConnected = false;
                     connectVM.IsErrorAccured = true;
-                    Application.Current.Dispatcher.Invoke((Action)delegate {
-                        errorLAbel.Content = "Connection faulted Error";
-                        Connect.IsEnabled = true;
-                    });
                 } 
             };
         }
@@ -52,8 +61,11 @@ namespace FlightSimulatorApp
         {
             if (!isConnected)
             {
+
                 Connect.IsEnabled = false;
+                Disconnect.IsEnabled = true;
                 isConnected = true;
+                isDisConnected = false;
                 connectVM.IsErrorAccured = false;
                 errorLAbel.Content = "";
                 // Click animation.
@@ -102,6 +114,15 @@ namespace FlightSimulatorApp
                 PortLabel.Content = connectVM.Port;
                 setting.IsOk = false;
             }
+        }
+
+        private void Disconnect_Click(object sender, RoutedEventArgs e)
+        {
+            isConnected = false;
+            Connect.IsEnabled = true;
+            Disconnect.IsEnabled = false;
+            isDisConnected = true;
+            connectVM.Disconnect();
         }
     }
 }

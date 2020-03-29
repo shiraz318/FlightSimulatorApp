@@ -192,5 +192,11 @@
   <ItemGroup>
     <Resource Include="View\airplane-emoji.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="79372-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="132792-200.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

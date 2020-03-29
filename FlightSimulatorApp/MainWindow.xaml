@@ -52,13 +52,13 @@
                 </TransformGroup>
             </View:Wheel.RenderTransform>
         </View:Wheel>
-        <Button Name="Connect" HorizontalAlignment="Left" Margin="147,530,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click" Grid.RowSpan="2" >
+        <Button Name="Connect" HorizontalAlignment="Left" Margin="245,530,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click" Grid.RowSpan="2" >
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Connect"></TextBlock>
                 <Image Width="25" Source="airplane2.jpg" ></Image>
             </StackPanel>
         </Button>
-        <Button Name="Setting" HorizontalAlignment="Left" Margin="284,530,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD" Grid.RowSpan="2">
+        <Button Name="Setting" HorizontalAlignment="Left" Margin="390,530,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD" Grid.RowSpan="2" Grid.ColumnSpan="3">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" Text="Setting"></TextBlock>
                 <Image  Width="25" Source="settingGray.jpg"></Image>
@@ -97,5 +97,11 @@
             </Label.RenderTransform>
         </Label>
         <Label x:Name="errorLAbel" Content="" HorizontalAlignment="Left" Margin="256,-1,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="273" Foreground="#FFCD3232" FontSize="14" FontWeight="Bold" FontFamily="Segoe Print" Background="#00000000"/>
+        <Button x:Name="Disconnect" HorizontalAlignment="Left" Margin="91,530,0,0" VerticalAlignment="Top" Width="92" Height="23" Grid.RowSpan="2" Click="Disconnect_Click" >
+            <StackPanel Orientation="Horizontal" Width="92">
+                <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Disconnect"/>
+                <Image Width="31" Source="132792-200.png" Height="17"  />
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>
