@@ -25,6 +25,8 @@ namespace FlightSimulatorApp.Model
         string Altimeter_indicated_altitude_ft { set; get; }
         string Latitude { get; set; }
         string Longtude { get; set; }
+        string ValidCoordinate { get; set; }
+
 
     }
 }

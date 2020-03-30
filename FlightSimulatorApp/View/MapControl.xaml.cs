@@ -25,25 +25,22 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class MapControl : UserControl
     {
-        public const int LATITUDE_UP_BORDER = 90;
-        public const int LATITUDE_DOWN_BORDER = -90;
-        public const int LONGTUDE_DOWN_BORDER = -180;
-        public const int LONGTUDE_UP_BORDER = 180;
+
         private MapVM viewModel;
          public MapControl()
         {
             InitializeComponent();
             // Initialize location and color of the push pin and the labels.
-            pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(37.806029,-122.407007);
-            latitudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(166, 183, 243));
-            longtudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(166, 183, 243));
+            //pushPin.Location = new Microsoft.Maps.MapControl.WPF.Location(37.806029,-122.407007);
+            //latitudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(166, 183, 243));
+            //longtudeLabel.Foreground = new SolidColorBrush(Color.FromRgb(166, 183, 243));
         }
 
         public void Init(MyFlightSimulatorModel model)
         {
             viewModel = new MapVM(model);
             DataContext = viewModel;
-            viewModel.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+           /* viewModel.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 if (e.PropertyName.Equals("VM_Latitude"))
                 {
@@ -96,7 +93,7 @@ namespace FlightSimulatorApp.View
                         Environment.Exit(0);
                     }
                 }
-            };
+            };*/
         }
         private void UserControl_ContextMenuClosing(object sender, ContextMenuEventArgs e)
         {

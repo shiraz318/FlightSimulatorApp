@@ -16,11 +16,13 @@
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="162*"/>
-            <ColumnDefinition Width="24*"/>
-            <ColumnDefinition Width="211*"/>
+            <ColumnDefinition Width="163*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="219*"/>
         </Grid.ColumnDefinitions>
-        <View:Dashboard x:Name="dashboard" Margin="289,-159,-276.4,263.8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3">
+        <View:Dashboard x:Name="dashboard" Margin="289,-159,-276.4,263.8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5">
             <View:Dashboard.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.7" ScaleY="0.72"/>
@@ -31,7 +33,7 @@
             </View:Dashboard.RenderTransform>
         </View:Dashboard>
 
-        <View:MapControl x:Name="map" RenderTransformOrigin="0.5,0.5" Margin="-79,-53,-13.4,-76.6" Grid.ColumnSpan="3" Grid.RowSpan="2">
+        <View:MapControl x:Name="map" RenderTransformOrigin="0.5,0.5" Margin="-79,-53,-13.4,-76.6" Grid.ColumnSpan="5" Grid.RowSpan="2">
             <View:MapControl.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.85" ScaleY="0.85"/>
@@ -42,7 +44,7 @@
             </View:MapControl.RenderTransform>
 
         </View:MapControl>
-        <View:Wheel x:Name="wheel" Margin="401,170,-210.4,-53.6" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="3" Grid.RowSpan="2">
+        <View:Wheel x:Name="wheel" Margin="75.4,170,-210.4,-53.6" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="4" Grid.RowSpan="2" Grid.Column="1">
             <View:Wheel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="0.6" ScaleY="0.6"/>
@@ -58,7 +60,7 @@
                 <Image Width="25" Source="airplane2.jpg" ></Image>
             </StackPanel>
         </Button>
-        <Button Name="Setting" HorizontalAlignment="Left" Margin="390,530,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD" Grid.RowSpan="2" Grid.ColumnSpan="3">
+        <Button Name="Setting" HorizontalAlignment="Left" Margin="64.4,530,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD" Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Column="1">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" Text="Setting"></TextBlock>
                 <Image  Width="25" Source="settingGray.jpg"></Image>
@@ -66,7 +68,7 @@
         </Button>
         <Label Content="IP :" HorizontalAlignment="Left" Margin="23,-1,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14"/>
         <Label Content="PORT :" HorizontalAlignment="Left" Margin="2,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14"/>
-        <Image Name="flyingAnimation" Width="70" Height="70" RenderTransformOrigin="-2.443,0.757" Margin="-66,456,401.6,22.8" Source="paper-plane.png">
+        <Image Name="flyingAnimation" Width="70" Height="70" RenderTransformOrigin="-2.443,0.757" Margin="-66,456,321.6,22.8" Source="paper-plane.png">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -96,7 +98,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="errorLAbel" Content="" HorizontalAlignment="Left" Margin="256,-1,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="273" Foreground="#FFCD3232" FontSize="14" FontWeight="Bold" FontFamily="Segoe Print" Background="#00000000"/>
+        <Label x:Name="errorLAbel" Content="" HorizontalAlignment="Left" Margin="256,-3,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4" Width="273" Foreground="#FFCD3232" FontSize="14" FontWeight="Bold" FontFamily="Segoe Print" Background="#00000000"/>
         <Button x:Name="Disconnect" HorizontalAlignment="Left" Margin="91,530,0,0" VerticalAlignment="Top" Width="92" Height="23" Grid.RowSpan="2" Click="Disconnect_Click" >
             <StackPanel Orientation="Horizontal" Width="92">
                 <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Disconnect"/>

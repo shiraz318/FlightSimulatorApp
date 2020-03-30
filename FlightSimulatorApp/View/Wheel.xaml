@@ -7,11 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <local:Joystick x:Name="joystick" ValueX="{Binding VM_Rudder, Mode=OneWayToSource}" ValueY="{Binding VM_Elevator, Mode=OneWayToSource}" Margin="0,8,0,-8.4"></local:Joystick>
-        <Slider x:Name="throttle" HorizontalAlignment="Left" Margin="575,282,0,0" VerticalAlignment="Top" Width="137" Height="25" Minimum="0" Maximum="1" Value="{Binding VM_Throttle, Mode=OneWayToSource}"/>
-        <Slider x:Name="aileron" HorizontalAlignment="Left" Margin="573,150,0,0" VerticalAlignment="Top" Width="137" Minimum="-1" Maximum="1" Value="{Binding VM_Aileron, Mode=OneWayToSource}" Height="25"/>
-        <Label Content="Aileron" HorizontalAlignment="Left" Margin="572,114,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Throttle" HorizontalAlignment="Left" Margin="575,246,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+        <local:Joystick x:Name="joystick" ValueX="{Binding VM_Rudder, Mode=OneWayToSource}" ValueY="{Binding VM_Elevator, Mode=OneWayToSource}" Margin="12,8,-12,-8.4"></local:Joystick>
+        <Slider x:Name="throttle" HorizontalAlignment="Left" Margin="319,427,0,-2.4" VerticalAlignment="Top" Width="195" Height="25" Minimum="0" Maximum="1" Value="{Binding VM_Throttle, Mode=OneWayToSource}"/>
+        <Slider x:Name="aileron" HorizontalAlignment="Left" Margin="517,232,0,0" VerticalAlignment="Top" Width="195" Minimum="-1" Maximum="1" Value="{Binding VM_Aileron, Mode=OneWayToSource}" Height="25" RenderTransformOrigin="0.5,0.5">
+            <Slider.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.196"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Slider.RenderTransform>
+        </Slider>
+        <Label Content="Aileron" HorizontalAlignment="Left" Margin="575,114,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+        <Label Content="Throttle" HorizontalAlignment="Left" Margin="215,419,0,-4.4" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
         <Label Content="Rudder" HorizontalAlignment="Left" Margin="4,126,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
         <Label Content="Elevator" HorizontalAlignment="Left" Margin="-4,174,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
         <Label Content="Aileron" HorizontalAlignment="Left" Margin="2,225,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>

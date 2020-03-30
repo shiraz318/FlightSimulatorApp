@@ -34,9 +34,11 @@ namespace FlightSimulatorApp
             isConnected = false;
             isDisConnected = false;
             Disconnect.IsEnabled = false;
+            Setting.IsEnabled = true;
             //
             ipLabel.Content = connectVM.Ip;
             PortLabel.Content = connectVM.Port;
+
 
             connectVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
@@ -44,24 +46,49 @@ namespace FlightSimulatorApp
                 {
                     if (!isDisConnected)
                     {
-                        Application.Current.Dispatcher.Invoke((Action)delegate
+                        try
                         {
-                            errorLAbel.Content = "Connection faulted Error";
-                            Connect.IsEnabled = true;
-                            Disconnect.IsEnabled = false;
-                        });
+                            Application.Current.Dispatcher.Invoke((Action)delegate
+                            {
+                                errorLAbel.Content = "Connection faulted Error";
+                                Connect.IsEnabled = true;
+                                Disconnect.IsEnabled = false;
+                                Setting.IsEnabled = true;
+                            });
+                        } catch(Exception e3)
+                        {
+
+                        }
                     }
 
                     isConnected = false;
                     connectVM.IsErrorAccured = true;
-                } 
+                }
+                else if (e.PropertyName.Equals("VM_TimeOutError"))
+                {
+                    try
+                    {
+                        Application.Current.Dispatcher.Invoke((Action)delegate
+                        {
+                            errorLAbel.Content = "Server is slow";
+                            Connect.IsEnabled = true;
+                            Disconnect.IsEnabled = false;
+                            Setting.IsEnabled = true;
+                        });
+                    }
+                    catch (Exception e4)
+                    {
+
+                    }
+                    isConnected = false;
+                }
             };
         }
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
             if (!isConnected)
             {
-
+                Setting.IsEnabled = false;
                 Connect.IsEnabled = false;
                 Disconnect.IsEnabled = true;
                 isConnected = true;
@@ -121,6 +148,7 @@ namespace FlightSimulatorApp
             isConnected = false;
             Connect.IsEnabled = true;
             Disconnect.IsEnabled = false;
+            Setting.IsEnabled = true;
             isDisConnected = true;
             connectVM.Disconnect();
         }

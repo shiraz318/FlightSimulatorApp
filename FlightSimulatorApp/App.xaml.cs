@@ -13,5 +13,9 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class App : Application
     {
+        private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

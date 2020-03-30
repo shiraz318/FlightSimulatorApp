@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.IO;
+using System.Net.NetworkInformation;
 
 namespace FlightSimulatorApp.Model
 {
@@ -26,9 +27,15 @@ namespace FlightSimulatorApp.Model
         private string altimeter_indicated_altitude_ft;
         private string latitude;
         private string longtude;
+        private string validation = "";
         private bool error = false;
+        private bool timeOutError = false;
         private Queue<string> messages = new Queue<string> { };
         private Dictionary<string, string> pathMap = new Dictionary<string, string> { };
+        public const int LATITUDE_UP_BORDER = 90;
+        public const int LATITUDE_DOWN_BORDER = -90;
+        public const int LONGTUDE_DOWN_BORDER = -180;
+        public const int LONGTUDE_UP_BORDER = 180;
         public MyFlightSimulatorModel()
         {
             this.stop = false;
@@ -44,10 +51,13 @@ namespace FlightSimulatorApp.Model
             Attitude_indicator_internal_roll_deg = "0";
             Attitude_indicator_internal_pitch_deg = "0";
             Altimeter_indicated_altitude_ft = "0";
+            Latitude = "37.806029";
+            Longtude = "-122.407007";
         }
         // Properties.
-        public string Latitude { get { return latitude; } set { latitude = value; NotifyPropertyChanged("Latitude"); } }
-        public bool Error { get { return error; } set { Disconnect();  NotifyPropertyChanged("Error"); } }
+        public string Latitude { get { return latitude; } set { latitude = value; NotifyPropertyChanged("Latitude"); NotifyPropertyChanged("Location"); } }
+        public bool Error { get { return error; } set { error = value;  if (error) { Disconnect(); NotifyPropertyChanged("Error"); } } }
+        public bool TimeOutError { get { return timeOutError; } set { timeOutError = value; if (timeOutError) { Disconnect(); NotifyPropertyChanged("TimeOutError"); } } }
         public string Indicated_heading_deg { get { return indicated_heading_deg; } set { indicated_heading_deg = value; NotifyPropertyChanged("Indicated_heading_deg"); } }
         public string Gps_indicated_vertical_speed { get { return gps_indicated_vertical_speed; } set { gps_indicated_vertical_speed = value; NotifyPropertyChanged("Gps_indicated_vertical_speed"); } }
         public string Gps_indicated_ground_speed_kt { get { return gps_indicated_ground_speed_kt; } set { gps_indicated_ground_speed_kt = value; NotifyPropertyChanged("Gps_indicated_ground_speed_kt"); } }
@@ -56,8 +66,8 @@ namespace FlightSimulatorApp.Model
         public string Attitude_indicator_internal_roll_deg { get { return attitude_indicator_internal_roll_deg; } set { attitude_indicator_internal_roll_deg = value; NotifyPropertyChanged("Attitude_indicator_internal_roll_deg"); } }
         public string Attitude_indicator_internal_pitch_deg { get { return attitude_indicator_internal_pitch_deg; } set { attitude_indicator_internal_pitch_deg = value; NotifyPropertyChanged("Attitude_indicator_internal_pitch_deg"); } }
         public string Altimeter_indicated_altitude_ft { get { return altimeter_indicated_altitude_ft; } set { altimeter_indicated_altitude_ft = value; NotifyPropertyChanged("Altimeter_indicated_altitude_ft"); } }
-        public string Longtude { get { return longtude; } set { longtude = value; NotifyPropertyChanged("Longtude"); } }
-
+        public string Longtude { get { return longtude; } set { longtude = value; NotifyPropertyChanged("Longtude"); NotifyPropertyChanged("Location"); } }
+        public string ValidCoordinate { get { return validation; } set { validation = value; NotifyPropertyChanged("ValidCoordinate");} }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void Connect(string ip, int port)
@@ -65,6 +75,8 @@ namespace FlightSimulatorApp.Model
             try
             {
                 stop = false;
+                Error = false;
+                TimeOutError = false;
                 messages = new Queue<string> { };
                 tcpClient = new TcpClient();
                 mutex = new Mutex();
@@ -203,19 +215,51 @@ namespace FlightSimulatorApp.Model
                         }
                         if (double.TryParse(result[8], out double i9))
                         {
-                            Latitude = i9.ToString();
+                            if (i9 < LATITUDE_DOWN_BORDER)
+                            {
+                                ValidCoordinate = "Invalid Coordinate";
+                                Latitude = LATITUDE_DOWN_BORDER.ToString();
+                            }
+                            if (i9 > LATITUDE_UP_BORDER)
+                            {
+                                ValidCoordinate = "Invalid Coordinate";
+                                Latitude = LATITUDE_UP_BORDER.ToString();
+                            }
+                            if (i9 > LATITUDE_DOWN_BORDER && i9 < LATITUDE_UP_BORDER)
+                            {
+                                ValidCoordinate = "";
+                                Latitude = i9.ToString();
+                            }
+
                         }
                         else
                         {
-                            Latitude = "Error";
+                            //Latitude = "Error";
                         }
                         if (double.TryParse(result[9], out double i10))
                         {
-                            Longtude = i10.ToString();
+                            if (i10 < LONGTUDE_DOWN_BORDER)
+                            {
+                                ValidCoordinate = "Invalid Coordinate";
+                                Longtude = LONGTUDE_DOWN_BORDER.ToString();
+                            }
+                            if (i10 > LONGTUDE_UP_BORDER)
+                            {
+                                ValidCoordinate = "Invalid Coordinate";
+                                Longtude = LONGTUDE_UP_BORDER.ToString();
+                            }
+                            if (i10 > LONGTUDE_DOWN_BORDER && i10 < LONGTUDE_UP_BORDER)
+                            {
+                                Longtude = i10.ToString();
+                            }
                         }
                         else
                         {
-                            Longtude = "Error";
+                            //Val = "Error";
+                        }
+                        if (!ValidCoordinate.Equals("Invalid Coordinate"))
+                        {
+                            NotifyPropertyChanged("Location");
                         }
                     } catch (Exception e)
                     {
@@ -239,8 +283,15 @@ namespace FlightSimulatorApp.Model
             }
             catch (Exception e)
             {
-                // Announce error accured.
-                Error = true;
+                string timeoutMessage = "A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.";
+                if (e.Message.Contains(timeoutMessage))
+                {
+                    TimeOutError = true;
+                } else
+                {
+                    // Announce error accured.
+                    Error = true;
+                }
                 stop = true;
                 return "";
             }
