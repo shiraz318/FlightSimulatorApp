@@ -19,8 +19,8 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Label Content="Aileron" HorizontalAlignment="Left" Margin="575,114,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Throttle" HorizontalAlignment="Left" Margin="215,419,0,-4.4" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+        <Label Content="Aileron" HorizontalAlignment="Left" Margin="575,114,0,0" VerticalAlignment="Top" Height="30" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+        <Label Content="Throttle" HorizontalAlignment="Left" Margin="215,419,0,-4.4" VerticalAlignment="Top" Height="35" Width="99" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
         <Label Content="Rudder" HorizontalAlignment="Left" Margin="4,126,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
         <Label Content="Elevator" HorizontalAlignment="Left" Margin="-4,174,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
         <Label Content="Aileron" HorizontalAlignment="Left" Margin="2,225,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>

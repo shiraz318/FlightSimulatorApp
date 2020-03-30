@@ -12,11 +12,11 @@ namespace FlightSimulatorApp.View
 	/// </summary>
 	public partial class Joystick : UserControl
 	{
-		public const double UP_BOARDER = 35;
-		public const double DOWN_BOARDER = -35;
-		public const double LEFT_BOARDER = -35;
-		public const double RIGHT_BOARDER = 35;
-		public const double RANGE = 35;
+		public const double UP_BOARDER = 40;
+		public const double DOWN_BOARDER = -40;
+		public const double LEFT_BOARDER = -40;
+		public const double RIGHT_BOARDER = 40;
+		public const double RANGE = 40;
 		private bool mousePressed = false;
 
 		private double startX, startY, currentX, currentY, positionY = 0, positionX = 0;
@@ -131,18 +131,47 @@ namespace FlightSimulatorApp.View
 				ValueY= -PositionY / RANGE;
 				knobPosition.X = PositionX;
 				knobPosition.Y = PositionY;
-				/*
+
+
+				/*double smallRadius = KnobBase.Width / 2;
 				double x = currentX - startX;
 				double y = currentY - startY;
-				double distance = Math.Sqrt(x * x + y * y);
+				double radius = Math.Abs(Base.Width - Knob.Width) / 2;
+				double distance = Math.Sqrt(x * x + y * y) + smallRadius;
 				if (distance < Math.Abs(Base.Width - Knob.Width) / 2)
 				{
 					knobPosition.X = x;
 					knobPosition.Y = y;
 				}
-				RudderX = x / (Math.Abs(Base.Width - KnobBase.Width) * 2);
-				ElevatorY = y / (Math.Abs(Base.Width - KnobBase.Width) * 2);
-				*/
+				else
+				{
+					if (x + smallRadius > radius)
+					{
+						knobPosition.X = radius - smallRadius;
+					} else if (x - smallRadius < -radius)
+					{
+						knobPosition.X = smallRadius - radius;
+					} else
+					{
+						knobPosition.X = x;
+					}
+					if (y + smallRadius > radius)
+					{
+						knobPosition.Y = radius - smallRadius;
+					}
+					else if (y - smallRadius < -radius)
+					{
+						knobPosition.Y = smallRadius - radius;
+					}
+					else
+					{
+						knobPosition.Y = y;
+					}
+					}
+					ValueX = knobPosition.X / RANGE;
+				ValueY = knobPosition.Y / RANGE;
+				}*/
+
 			}
 		}
 	}

@@ -57,7 +57,7 @@ namespace FlightSimulatorApp
                             });
                         } catch(Exception e3)
                         {
-
+                            string message = e3.Message;
                         }
                     }
 
@@ -78,7 +78,7 @@ namespace FlightSimulatorApp
                     }
                     catch (Exception e4)
                     {
-
+                        string message = e4.Message;
                     }
                     isConnected = false;
                 }

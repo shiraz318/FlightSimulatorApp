@@ -72,22 +72,26 @@ namespace FlightSimulatorApp.Model
 
         public void Connect(string ip, int port)
         {
-            try
+            new Thread(delegate ()
             {
-                stop = false;
-                Error = false;
-                TimeOutError = false;
-                messages = new Queue<string> { };
-                tcpClient = new TcpClient();
-                mutex = new Mutex();
-                tcpClient.Connect(ip, port);
-                strm = tcpClient.GetStream();
-                Start();
-            }
-            catch (Exception e)
-            {
-                Error = true;
-            }
+                try
+                {
+                    stop = false;
+                    Error = false;
+                    TimeOutError = false;
+                    messages = new Queue<string> { };
+                    tcpClient = new TcpClient();
+                    mutex = new Mutex();
+                    tcpClient.Connect(ip, port);
+                    strm = tcpClient.GetStream();
+                    Start();
+                }
+                catch (Exception e)
+                {
+                    string message = e.Message;
+                    Error = true;
+                }
+            }).Start();
 
         }
 
@@ -122,6 +126,7 @@ namespace FlightSimulatorApp.Model
                             mutex.ReleaseMutex();
                         } catch (Exception e)
                         {
+                            string message = e.Message;
                             Error = true;
                         }
                     }
@@ -263,6 +268,7 @@ namespace FlightSimulatorApp.Model
                         }
                     } catch (Exception e)
                     {
+                        string message = e.Message;
                         Error = true;
                     }
                 }
@@ -306,6 +312,7 @@ namespace FlightSimulatorApp.Model
             }
             catch (Exception e)
             {
+                string messageerror = e.Message;
                 Error = true;
                 stop = true;
             }
