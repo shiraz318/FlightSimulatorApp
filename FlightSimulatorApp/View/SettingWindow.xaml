@@ -11,7 +11,7 @@
         <ImageBrush ImageSource="etienne-jong-CYi31XLsxuY-unsplash.jpg" ></ImageBrush>
     </Window.Background>
     <ScrollViewer HorizontalScrollBarVisibility="Visible"  VerticalScrollBarVisibility="Visible">
-        <Viewbox HorizontalAlignment="Center" Height="359" Margin="0,0,-0.4,0" VerticalAlignment="Center" Width="610">
+        <Viewbox HorizontalAlignment="Center" Height="325" Margin="0,0,-0.4,0" VerticalAlignment="Center" Width="585">
             <Grid RenderTransformOrigin="0.483,0.574" AutomationProperties.HelpText="nbhvhmbkbjb" Width="584" Height="312">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="353*"/>
