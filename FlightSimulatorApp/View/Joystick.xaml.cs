@@ -12,62 +12,20 @@ namespace FlightSimulatorApp.View
 	/// </summary>
 	public partial class Joystick : UserControl
 	{
+		//borders
 		public const double UP_BOARDER = 40;
 		public const double DOWN_BOARDER = -40;
 		public const double LEFT_BOARDER = -40;
 		public const double RIGHT_BOARDER = 40;
+		
 		public const double RANGE = 40;
+		
 		private bool mousePressed = false;
-
 		private double startX, startY, currentX, currentY, positionY = 0, positionX = 0;
 
-		public double PositionX
-		{
-			get
-			{
-				return positionX;
-			}
-			set
-			{
-				// Check borders.
-				if (value > UP_BOARDER)
-				{
-					positionX = UP_BOARDER;
-				}
-				else if (value < DOWN_BOARDER)
-				{
-					positionX = DOWN_BOARDER;
-				}
-				else
-				{
-					positionX = value;
-				}
-			}
-		}
-		public double PositionY
-		{
-			get
-			{
-				return positionY;
-			}
-			set
-			{
-				// Check borders.
-				if (value < LEFT_BOARDER)
-				{
-					positionY = LEFT_BOARDER;
-				}
-				else if (value > RIGHT_BOARDER)
-				{
-					positionY = RIGHT_BOARDER;
-				}
-				else
-				{
-					positionY = value;
-				}
-			}
-		}
-	  public double ValueX
+		public double PositionX { get { return positionX; } set { if (value > UP_BOARDER) { positionX = UP_BOARDER; } else if (value < DOWN_BOARDER) { positionX = DOWN_BOARDER; } else { positionX = value; } } }
+		public double PositionY { get { return positionY; } set { if (value < LEFT_BOARDER) { positionY = LEFT_BOARDER; } else if (value > RIGHT_BOARDER) { positionY = RIGHT_BOARDER; } else { positionY = value; } } }
+	    public double ValueX
 		{
 			get { return (double)GetValue(ValueXProperty); }
 			set { SetValue(ValueXProperty, value); }
@@ -101,6 +59,7 @@ namespace FlightSimulatorApp.View
 			{
 				mousePressed = true;
 				Knob.CaptureMouse();
+				//initilaze the begining point
 				startX = e.GetPosition(this).X;
 				startY = e.GetPosition(this).Y;
 			}
@@ -111,6 +70,7 @@ namespace FlightSimulatorApp.View
 			mousePressed = false;
 			UIElement element = (UIElement)Knob;
 			element.ReleaseMouseCapture();
+			//reser the knob to the middle (0,0)
 			knobPosition.X = 0;
 			knobPosition.Y = 0;
 			PositionY = 0;
@@ -123,12 +83,15 @@ namespace FlightSimulatorApp.View
 		{
 			if (mousePressed)
 			{
+				//the place now
 				currentX = e.GetPosition(this).X;
 				currentY = e.GetPosition(this).Y;
 				PositionX = currentX - startX;
 				PositionY = currentY - startY;
+				//the point limited between -1 to 1
 				ValueX = PositionX / RANGE;
 				ValueY= -PositionY / RANGE;
+				//update the knob
 				knobPosition.X = PositionX;
 				knobPosition.Y = PositionY;
 

@@ -35,7 +35,6 @@ namespace FlightSimulatorApp.View
         private void Disconnect_Buttom_Click(object sender, RoutedEventArgs e)
         {
             stay = false;
-           // connectVM.setStop(false);
             connectVM.Disconnect();
             this.Close();
         }
