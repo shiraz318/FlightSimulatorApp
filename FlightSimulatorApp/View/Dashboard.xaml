@@ -6,27 +6,29 @@
              xmlns:local="clr-namespace:FlightSimulatorApp.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="1,0,-1,-0.4">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Label Content="airspeed-indicator-indicated-speed" HorizontalAlignment="Left" Height="31" Margin="180,168,0,0" VerticalAlignment="Top" Width="327" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold"/>
-        <Label Content="gps-indicated-ground-speed" HorizontalAlignment="Left" Height="30" Margin="520,167,0,0" VerticalAlignment="Top" Width="268" FontFamily="Hadassah Friedlaender" RenderTransformOrigin="0.5,0.5" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold"/>
-        <Label Content="gps-indicated-vertical-speed" HorizontalAlignment="Left" Margin="514,57,0,0" VerticalAlignment="Top" Width="272" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold" Grid.Row="1"/>
-        <Label Content="indicated-heading-deg" HorizontalAlignment="Left" Height="33" Margin="545,291,0,0" VerticalAlignment="Top" Width="253" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold" Grid.RowSpan="2"/>
-        <Label Content="gps-indicated-altitude" HorizontalAlignment="Left" Height="31" Margin="548,231,0,0" VerticalAlignment="Top" Width="217" FontFamily="Hadassah Friedlaender" Background="{x:Null}" Foreground="#FFA6B7F3" FontSize="19" FontWeight="Bold"/>
-        <Label Content="attitude-indicator-internal-roll-deg" HorizontalAlignment="Left" Height="32" Margin="187,231,0,0" VerticalAlignment="Top" Width="331" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold"/>
-        <Label Content="attitude-indicator-internal-pitch-deg" HorizontalAlignment="Left" Height="31" Margin="180,291,0,0" VerticalAlignment="Top" Width="346" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold" Grid.RowSpan="2"/>
-        <Label Content="altimeter-indicated-altitude" HorizontalAlignment="Left" Margin="219,57,0,0" VerticalAlignment="Top" Width="265" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold" Grid.Row="1"/>
-        <Label x:Name="airspeed_indicator_indicate_speed" Content="{Binding VM_Airspeed_indicator_indicated_speed_kt, Mode=OneWay}" HorizontalAlignment="Left" Margin="265,198,0,0" VerticalAlignment="Top" Width="166" Height="32" Foreground="#FF0E3411" Background="#FFFDFDFD" FontSize="16"/>
-        <Label x:Name="gps_indicated_ground_speed" Content="{Binding VM_Gps_indicated_ground_speed_kt, Mode=OneWay}" HorizontalAlignment="Left" Margin="567,198,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="#FFFDFCFC" FontSize="16" Foreground="#FF0E3411"/>
-        <Label x:Name="gps_indicated_vertical_speed" Content="{Binding VM_Gps_indicated_vertical_speed, Mode=OneWay}" HorizontalAlignment="Left" Margin="567,85,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="White" Grid.Row="1" FontSize="16" Foreground="#FF0E3411"/>
-        <Label x:Name="indicated_heading_deg" Content="{Binding VM_Indicated_heading_deg, Mode=OneWay}" HorizontalAlignment="Left" Margin="567,25,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="#FFFCFBFB" Grid.Row="1" FontSize="16" Foreground="#FF0E3411"/>
-        <Label x:Name="gps_indicated_altitude" Content="{Binding VM_Gps_indicated_altitude_ft, Mode=OneWay}" HorizontalAlignment="Left" Margin="567,259,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="#FFFCFCFC" FontSize="16" Foreground="#FF0E3411"/>
-        <Label x:Name="attitude_indicator_internal_roll_deg" Content="{Binding VM_Attitude_indicator_internal_roll_deg, Mode=OneWay}" HorizontalAlignment="Left" Margin="265,259,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="Snow" FontSize="16" Foreground="#FF0E3411"/>
-        <Label x:Name="attitude_indicator_internal_pitch_deg" Content="{Binding VM_Attitude_indicator_internal_pitch_deg, Mode=OneWay}" HorizontalAlignment="Left" Margin="265,25,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="#FFFDFCFC" Grid.Row="1" FontSize="16" Foreground="#FF0E3411"/>
-        <Label x:Name="altimeter_indicated_altitude" Content="{Binding VM_Altimeter_indicated_altitude_ft, Mode=OneWay}" HorizontalAlignment="Left" Margin="265,85,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="#FFFDFBFB" Grid.Row="1" FontSize="16" Foreground="#FF0E3411"/>
+    <Viewbox HorizontalAlignment="Center" Height="447" Margin="10,10,-9,-7.4" VerticalAlignment="Center" Width="788" Grid.RowSpan="2">
+        <Grid Margin="1,0,10,-0.4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="airspeed-indicator-indicated-speed" HorizontalAlignment="Left" Height="31" Margin="180,166,0,0" VerticalAlignment="Top" Width="327" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold"/>
+            <Label Content="gps-indicated-ground-speed" HorizontalAlignment="Left" Height="30" Margin="520,165,0,0" VerticalAlignment="Top" Width="268" FontFamily="Hadassah Friedlaender" RenderTransformOrigin="0.5,0.5" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold"/>
+            <Label Content="gps-indicated-vertical-speed" HorizontalAlignment="Left" Margin="514,59.2,0,0" VerticalAlignment="Top" Width="272" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold" Grid.Row="1"/>
+            <Label Content="indicated-heading-deg" HorizontalAlignment="Left" Height="33" Margin="545,289,-9,0" VerticalAlignment="Top" Width="253" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold" Grid.RowSpan="2"/>
+            <Label Content="gps-indicated-altitude" HorizontalAlignment="Left" Height="31" Margin="548,229,0,0" VerticalAlignment="Top" Width="217" FontFamily="Hadassah Friedlaender" Background="{x:Null}" Foreground="#FFA6B7F3" FontSize="19" FontWeight="Bold"/>
+            <Label Content="attitude-indicator-internal-roll-deg" HorizontalAlignment="Left" Height="32" Margin="187,229,0,0" VerticalAlignment="Top" Width="331" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold"/>
+            <Label Content="attitude-indicator-internal-pitch-deg" HorizontalAlignment="Left" Height="31" Margin="180,289,0,0" VerticalAlignment="Top" Width="346" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold" Grid.RowSpan="2"/>
+            <Label Content="altimeter-indicated-altitude" HorizontalAlignment="Left" Margin="219,59.2,0,0" VerticalAlignment="Top" Width="265" FontFamily="Hadassah Friedlaender" FontSize="19" Foreground="#FFA6B7F3" FontWeight="Bold" Grid.Row="1"/>
+            <Label x:Name="airspeed_indicator_indicate_speed" Content="{Binding VM_Airspeed_indicator_indicated_speed_kt, Mode=OneWay}" HorizontalAlignment="Left" Margin="265,196,0,0" VerticalAlignment="Top" Width="166" Height="32" Foreground="#FF0E3411" Background="#FFFDFDFD" FontSize="16"/>
+            <Label x:Name="gps_indicated_ground_speed" Content="{Binding VM_Gps_indicated_ground_speed_kt, Mode=OneWay}" HorizontalAlignment="Left" Margin="567,196,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="#FFFDFCFC" FontSize="16" Foreground="#FF0E3411"/>
+            <Label x:Name="gps_indicated_vertical_speed" Content="{Binding VM_Gps_indicated_vertical_speed, Mode=OneWay}" HorizontalAlignment="Left" Margin="567,87.2,0,-2.4" VerticalAlignment="Top" Width="166" Height="32" Background="White" Grid.Row="1" FontSize="16" Foreground="#FF0E3411"/>
+            <Label x:Name="indicated_heading_deg" Content="{Binding VM_Indicated_heading_deg, Mode=OneWay}" HorizontalAlignment="Left" Margin="567,27.2,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="#FFFCFBFB" Grid.Row="1" FontSize="16" Foreground="#FF0E3411"/>
+            <Label x:Name="gps_indicated_altitude" Content="{Binding VM_Gps_indicated_altitude_ft, Mode=OneWay}" HorizontalAlignment="Left" Margin="567,257,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="#FFFCFCFC" FontSize="16" Foreground="#FF0E3411"/>
+            <Label x:Name="attitude_indicator_internal_roll_deg" Content="{Binding VM_Attitude_indicator_internal_roll_deg, Mode=OneWay}" HorizontalAlignment="Left" Margin="265,257,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="Snow" FontSize="16" Foreground="#FF0E3411"/>
+            <Label x:Name="attitude_indicator_internal_pitch_deg" Content="{Binding VM_Attitude_indicator_internal_pitch_deg, Mode=OneWay}" HorizontalAlignment="Left" Margin="265,27.2,0,0" VerticalAlignment="Top" Width="166" Height="32" Background="#FFFDFCFC" Grid.Row="1" FontSize="16" Foreground="#FF0E3411"/>
+            <Label x:Name="altimeter_indicated_altitude" Content="{Binding VM_Altimeter_indicated_altitude_ft, Mode=OneWay}" HorizontalAlignment="Left" Margin="265,87.2,0,-2.4" VerticalAlignment="Top" Width="166" Height="32" Background="#FFFDFBFB" Grid.Row="1" FontSize="16" Foreground="#FF0E3411"/>
 
-    </Grid>
+        </Grid>
+    </Viewbox>
 </UserControl>

@@ -7,33 +7,23 @@
              xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" ContextMenuClosing="UserControl_ContextMenuClosing">
-    <Grid>
-        <m:Map CredentialsProvider="btkCtE604q5s8DFGKzH5~fNmBQFQbqEDL1GCszg8kJA~AovMeW3MTuA2-2RqtUxt42BNwcwFMGPHif4_AO_fk-jmeTqwEbRo9R9BxATfC7pN" Center="37.806029,-122.407007" ZoomLevel="2" Margin="0,75,-228,-157.4" >
-            <m:Map.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="0.5" ScaleY="0.7"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </m:Map.RenderTransform>
-            <m:Pushpin Name="pushPin" RenderTransformOrigin="0.5,0.5" OpacityMask="Black" Background="#FF77BAD3" Location="{Binding VM_Location, Mode=OneWay}">
-                <Image Source="airplane-emoji.png"></Image>
-                <m:Pushpin.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="2.5" ScaleY="2"/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.433"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </m:Pushpin.RenderTransform>
-            </m:Pushpin>
-        </m:Map>
-        <Label Content="Latitude :" HorizontalAlignment="Left" Margin="444,55,0,0" VerticalAlignment="Top" Width="70" Foreground="#FFA6B7F3" FontSize="14" FontFamily="Hadassah Friedlaender"/>
-        <Label x:Name="latitudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Latitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="506,55,0,0" VerticalAlignment="Top" Width="173" Foreground="#FFA6B7F3" FontSize="14" Height="26" FontFamily="Hadassah Friedlaender"/>
-        <Label Content="Longtude :" HorizontalAlignment="Left" Margin="243,55,0,0" VerticalAlignment="Top" Width="80" Foreground="#FFA6B7F3" FontSize="14" FontFamily="Hadassah Friedlaender"/>
-        <Label x:Name="longtudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Longitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="314,55,0,0" VerticalAlignment="Top" Width="181" Foreground="#FFA6B7F3" Height="26" FontSize="14" FontFamily="Hadassah Friedlaender"/>
-        <Label x:Name="ValidationLabel" Content="{Binding VM_ValidCoordinate, Mode=OneWay}" HorizontalAlignment="Left" Margin="340,26,0,0" VerticalAlignment="Top" Width="235" Foreground="#FFCD3232" Height="29" FontSize="14" FontFamily="Segoe Print"/>
-    </Grid>
+    <Viewbox Margin="0,-24,0,-0.4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="700" Height="440">
+        <Grid Height="380">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="113*"/>
+                <ColumnDefinition Width="114*"/>
+            </Grid.ColumnDefinitions>
+            <m:Map CredentialsProvider="btkCtE604q5s8DFGKzH5~fNmBQFQbqEDL1GCszg8kJA~AovMeW3MTuA2-2RqtUxt42BNwcwFMGPHif4_AO_fk-jmeTqwEbRo9R9BxATfC7pN" Center="37.806029,-122.407007" Margin="56,49,9.6,-23" Grid.ColumnSpan="2" Width="576" HorizontalAlignment="Center" ZoomLevel="0.0">
+                <m:Pushpin Name="pushPin" OpacityMask="Black" Background="#FF77BAD3" Location="{Binding VM_Location, Mode=OneWay}">
+                    <Image Source="airplane-emoji.png"></Image>
+                </m:Pushpin>
+            </m:Map>
+            <Label Content="Latitude :" HorizontalAlignment="Left" Margin="87.8,29,0,0" VerticalAlignment="Top" Width="70" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" Grid.Column="1" Height="26"/>
+            <Label x:Name="latitudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Latitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="149.8,29,-0.4,0" VerticalAlignment="Top" Width="173" Foreground="#FFA6B7F3" Height="26" FontFamily="Hadassah Friedlaender" Grid.Column="1"/>
+            <Label Content="Longtude :" HorizontalAlignment="Left" Margin="239,29,0,0" VerticalAlignment="Top" Width="80" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" Height="26"/>
+            <Label x:Name="longtudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Longitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="300,29,0,0" VerticalAlignment="Top" Width="181" Foreground="#FFA6B7F3" Height="26" FontFamily="Hadassah Friedlaender" Grid.ColumnSpan="2"/>
+            <Label x:Name="ValidationLabel" Content="{Binding VM_ValidCoordinate, Mode=OneWay}" HorizontalAlignment="Left" Margin="1.8,9,0,0" VerticalAlignment="Top" Width="235" Foreground="#FFCD3232" Height="26" FontFamily="Segoe Print" Grid.Column="1"/>
+        </Grid>
+    </Viewbox>
 </UserControl>
     
