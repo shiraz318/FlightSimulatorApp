@@ -11,136 +11,161 @@
         <SolidColorBrush Color="#FF0E3411" Opacity="0.93"/>
     </Window.Background>
     <ScrollViewer Margin="0,0,4,-2.2" HorizontalScrollBarVisibility="Visible">
-        <Viewbox Height="500" Width="1000">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="38*"/>
-                    <RowDefinition Height="543*"/>
-                    <RowDefinition Height="0*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="163*"/>
-                    <ColumnDefinition Width="40*"/>
-                    <ColumnDefinition Width="30*"/>
-                    <ColumnDefinition Width="45*"/>
-                    <ColumnDefinition Width="219*"/>
-                </Grid.ColumnDefinitions>
-                <View:Dashboard x:Name="dashboard" Margin="250,-224,-270.8,243.8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5" Grid.RowSpan="2">
-                    <View:Dashboard.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </View:Dashboard.RenderTransform>
-                </View:Dashboard>
 
-                <View:MapControl x:Name="map" RenderTransformOrigin="0.5,0.5" Margin="-266,-23,80.8,32.6" Grid.ColumnSpan="3" Grid.RowSpan="2">
-                    <View:MapControl.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1.09" ScaleY="1.13"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </View:MapControl.RenderTransform>
-                </View:MapControl>
-                <View:Wheel x:Name="wheel" Margin="496,29.4,-196.8,-116.2" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5" Grid.RowSpan="2" Grid.Row="1">
-                    <View:Wheel.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </View:Wheel.RenderTransform>
-                </View:Wheel>
-                <Button Name="Connect" HorizontalAlignment="Left" Margin="261,483.6,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click" RenderTransformOrigin="0.5,0.5" Grid.Row="1" >
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Connect"></TextBlock>
-                        <Image Width="25" Source="airplane2.jpg" ></Image>
-                    </StackPanel>
-                </Button>
-                <Button Name="Setting" HorizontalAlignment="Left" Margin="394,483.6,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" Text="Setting"></TextBlock>
-                        <Image  Width="25" Source="settingGray.jpg"></Image>
-                    </StackPanel>
-                </Button>
-                <Label Content="IP :" HorizontalAlignment="Left" Margin="-14,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14" Height="26" Width="37">
-                    <Label.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Label.RenderTransform>
-                </Label>
-                <Label Content="PORT :" HorizontalAlignment="Left" Margin="-71,29,0,525.8" RenderTransformOrigin="-5.317,-0.466" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14" Width="67" Grid.RowSpan="2">
-                    <Label.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Label.RenderTransform>
-                </Label>
+        <Grid>
+            <Viewbox Height="500" Margin="0,13,23,12.6">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="38*"/>
+                        <RowDefinition Height="543*"/>
+                        <RowDefinition Height="0*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="163*"/>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="45*"/>
+                        <ColumnDefinition Width="219*"/>
+                    </Grid.ColumnDefinitions>
+                    <View:Dashboard x:Name="dashboard" Margin="250,-224,-270.8,243.8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5" Grid.RowSpan="2">
+                        <View:Dashboard.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </View:Dashboard.RenderTransform>
+                    </View:Dashboard>
 
-                <Label x:Name="ipLabel" Height="26" Margin="67,9,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontWeight="Bold" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontSize="14" >
-                    <Label.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="-0.498"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Label.RenderTransform>
-                </Label>
-                <Label x:Name="PortLabel" Height="26" Margin="69,34,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontSize="14" FontFamily="Hadassah Friedlaender" FontWeight="Bold" Foreground="#FFA6B7F3" Grid.RowSpan="2">
-                    <Label.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="-0.498"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Label.RenderTransform>
-                </Label>
-                <Label x:Name="errorLAbel" Content="" HorizontalAlignment="Left" Margin="226,-1,0,0" VerticalAlignment="Top" Width="273" Foreground="#FFCD3232" FontSize="16" FontWeight="Bold" FontFamily="Segoe Print" Background="#00000000" Height="35"/>
-                <Button x:Name="Disconnect" HorizontalAlignment="Left" Margin="110,483.6,0,0" VerticalAlignment="Top" Width="92" Height="23" Click="Disconnect_Click" RenderTransformOrigin="0.5,0.5" Grid.Row="1" >
-                    <Button.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Button.RenderTransform>
-                    <StackPanel Orientation="Horizontal" Width="92">
-                        <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Disconnect"/>
-                        <Image Width="32" Source="132792-200.png" Height="17"  />
-                    </StackPanel>
-                </Button>
-            </Grid>
-        </Viewbox>
+                    <View:MapControl x:Name="map" RenderTransformOrigin="0.5,0.5" Margin="-266,-23,80.8,32.6" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                        <View:MapControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.09" ScaleY="1.13"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </View:MapControl.RenderTransform>
+                    </View:MapControl>
+                    <View:Wheel x:Name="wheel" Margin="496,29.4,-196.8,-116.2" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5" Grid.RowSpan="2" Grid.Row="1">
+                        <View:Wheel.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </View:Wheel.RenderTransform>
+                    </View:Wheel>
+                    <Button Name="Connect" HorizontalAlignment="Left" Margin="261,483.6,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Connect_Click" RenderTransformOrigin="0.5,0.5" Grid.Row="1" >
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Connect"></TextBlock>
+                            <Image Width="25" Source="airplane2.jpg" ></Image>
+                        </StackPanel>
+                    </Button>
+                    <Button Name="Setting" HorizontalAlignment="Left" Margin="394,483.6,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" Text="Setting"></TextBlock>
+                            <Image  Width="25" Source="settingGray.jpg"></Image>
+                        </StackPanel>
+                    </Button>
+                    <Label Content="IP :" HorizontalAlignment="Left" Margin="-46,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14" Height="26" Width="37">
+                        <Label.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Content="PORT :" HorizontalAlignment="Left" Margin="-103,29,0,525.8" RenderTransformOrigin="-5.317,-0.466" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14" Width="67" Grid.RowSpan="2">
+                        <Label.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Label.RenderTransform>
+                    </Label>
+
+                    <Label x:Name="ipLabel" Height="26" Margin="35,9,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontWeight="Bold" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontSize="14" >
+                        <Label.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.498"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label x:Name="PortLabel" Height="26" Margin="37,34,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontSize="14" FontFamily="Hadassah Friedlaender" FontWeight="Bold" Foreground="#FFA6B7F3" Grid.RowSpan="2">
+                        <Label.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.498"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label x:Name="errorLAbel" Content="" HorizontalAlignment="Left" Margin="226,-1,0,0" VerticalAlignment="Top" Width="273" Foreground="#FFCD3232" FontSize="16" FontWeight="Bold" FontFamily="Segoe Print" Background="#00000000" Height="35"/>
+                    <Button x:Name="Disconnect" HorizontalAlignment="Left" Margin="110,483.6,0,0" VerticalAlignment="Top" Width="92" Height="23" Click="Disconnect_Click" RenderTransformOrigin="0.5,0.5" Grid.Row="1" >
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
+                        <StackPanel Orientation="Horizontal" Width="92">
+                            <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Disconnect"/>
+                            <Image Width="32" Source="132792-200.png" Height="17"  />
+                        </StackPanel>
+                    </Button>
+
+                </Grid>
+            </Viewbox>
+
+            <Image x:Name="flyingAnimation" Width="60" Height="60" Margin="-7,458,979,7.6" Source="paper-plane.png" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="28.407"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Width="60" Height="60" Margin="-7,458,979,7.6" Source="paper-plane.png" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="28.407"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Grid>
     </ScrollViewer>
 </Window>

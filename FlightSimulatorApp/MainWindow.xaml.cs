@@ -84,6 +84,34 @@ namespace FlightSimulatorApp
                 }
             };
         }
+        private void ClickAnimation()
+        {
+            Thickness m = flyingAnimation.Margin;
+            //start - Margin="-7,458,979,7.6"
+            m.Top = 458;
+            m.Right = 979;
+            flyingAnimation.Margin = m;
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(DispacherTimer_Tick);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(12);
+            dispatcherTimer.Start();
+            
+        }
+        private void DispacherTimer_Tick(object sender, EventArgs e)
+        {
+            Thickness m = flyingAnimation.Margin;
+            m.Top -= 10;
+            m.Right -= 20;
+            flyingAnimation.Margin = m;
+            //end -Margin="1032,-62,-60,527.6"
+            if (flyingAnimation.Margin.Right < -1600 || flyingAnimation.Margin.Top < -1600)
+            {
+                dispatcherTimer.Stop();
+                m.Top = 458;
+                m.Right = 979;
+                flyingAnimation.Margin = m;
+            }
+        }
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
             if (!isConnected)
@@ -95,6 +123,7 @@ namespace FlightSimulatorApp
                 isDisConnected = false;
                 connectVM.IsErrorAccured = false;
                 errorLAbel.Content = "";
+                ClickAnimation();
                 connectVM.Connect();
             }
         }
