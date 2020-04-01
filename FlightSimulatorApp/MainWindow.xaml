@@ -10,7 +10,7 @@
     <Window.Background>
         <SolidColorBrush Color="#FF0E3411" Opacity="0.93"/>
     </Window.Background>
-    <ScrollViewer Margin="0,0,4,-2.2" HorizontalScrollBarVisibility="Visible">
+    <ScrollViewer Margin="0,0,0,0" HorizontalScrollBarVisibility="Visible">
 
         <Grid>
             <Viewbox Height="500" Margin="0,13,23,12.6">
@@ -27,7 +27,7 @@
                         <ColumnDefinition Width="45*"/>
                         <ColumnDefinition Width="219*"/>
                     </Grid.ColumnDefinitions>
-                    <View:Dashboard x:Name="dashboard" Margin="250,-224,-270.8,243.8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5" Grid.RowSpan="2">
+                    <View:Dashboard x:Name="dashboard" Margin="252,-228,-272.8,248.2" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5" Grid.RowSpan="2">
                         <View:Dashboard.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
@@ -38,17 +38,17 @@
                         </View:Dashboard.RenderTransform>
                     </View:Dashboard>
 
-                    <View:MapControl x:Name="map" RenderTransformOrigin="0.5,0.5" Margin="-266,-23,80.8,32.6" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                    <View:MapControl x:Name="map" RenderTransformOrigin="0.5,0.5" Margin="-276,-46,64.6,80.6" Grid.ColumnSpan="3" Grid.RowSpan="2">
                         <View:MapControl.RenderTransform>
                             <TransformGroup>
-                                <ScaleTransform ScaleX="1.09" ScaleY="1.13"/>
+                                <ScaleTransform ScaleY="0.97" ScaleX="1.04"/>
                                 <SkewTransform/>
                                 <RotateTransform/>
                                 <TranslateTransform/>
                             </TransformGroup>
                         </View:MapControl.RenderTransform>
                     </View:MapControl>
-                    <View:Wheel x:Name="wheel" Margin="496,29.4,-196.8,-116.2" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5" Grid.RowSpan="2" Grid.Row="1">
+                    <View:Wheel x:Name="wheel" Margin="502,21.4,-202.8,-107.8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5" Grid.RowSpan="2" Grid.Row="1">
                         <View:Wheel.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
@@ -86,7 +86,7 @@
                             <Image  Width="25" Source="settingGray.jpg"></Image>
                         </StackPanel>
                     </Button>
-                    <Label Content="IP :" HorizontalAlignment="Left" Margin="-46,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14" Height="26" Width="37">
+                    <Label Content="IP :" HorizontalAlignment="Left" Margin="-46,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14" Height="26" Width="37">
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -96,7 +96,7 @@
                             </TransformGroup>
                         </Label.RenderTransform>
                     </Label>
-                    <Label Content="PORT :" HorizontalAlignment="Left" Margin="-103,29,0,525.8" RenderTransformOrigin="-5.317,-0.466" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14" Width="67" Grid.RowSpan="2">
+                    <Label Content="PORT :" HorizontalAlignment="Left" Margin="-103,24,0,525.8" RenderTransformOrigin="-5.317,-0.466" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14" Width="67" Grid.RowSpan="2">
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -107,7 +107,7 @@
                         </Label.RenderTransform>
                     </Label>
 
-                    <Label x:Name="ipLabel" Height="26" Margin="35,9,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontWeight="Bold" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontSize="14" >
+                    <Label x:Name="ipLabel" Height="26" Margin="35,4,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontWeight="Bold" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontSize="14" >
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -117,7 +117,7 @@
                             </TransformGroup>
                         </Label.RenderTransform>
                     </Label>
-                    <Label x:Name="PortLabel" Height="26" Margin="37,34,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontSize="14" FontFamily="Hadassah Friedlaender" FontWeight="Bold" Foreground="#FFA6B7F3" Grid.RowSpan="2">
+                    <Label x:Name="PortLabel" Height="26" Margin="37,29,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontSize="14" FontFamily="Hadassah Friedlaender" FontWeight="Bold" Foreground="#FFA6B7F3" Grid.RowSpan="2">
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
@@ -127,7 +127,7 @@
                             </TransformGroup>
                         </Label.RenderTransform>
                     </Label>
-                    <Label x:Name="errorLAbel" Content="" HorizontalAlignment="Left" Margin="226,-1,0,0" VerticalAlignment="Top" Width="273" Foreground="#FFCD3232" FontSize="16" FontWeight="Bold" FontFamily="Segoe Print" Background="#00000000" Height="35"/>
+                    <Label x:Name="errorLAbel" Content="" HorizontalAlignment="Left" Margin="274,-7,0,0" VerticalAlignment="Top" Width="273" Foreground="#FFCD3232" FontSize="16" FontWeight="Bold" FontFamily="Segoe Print" Background="#00000000" Height="35"/>
                     <Button x:Name="Disconnect" HorizontalAlignment="Left" Margin="110,483.6,0,0" VerticalAlignment="Top" Width="92" Height="23" Click="Disconnect_Click" RenderTransformOrigin="0.5,0.5" Grid.Row="1" >
                         <Button.RenderTransform>
                             <TransformGroup>

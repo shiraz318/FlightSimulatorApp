@@ -51,7 +51,7 @@ namespace FlightSimulatorApp.Model
             Attitude_indicator_internal_roll_deg = "0";
             Attitude_indicator_internal_pitch_deg = "0";
             Altimeter_indicated_altitude_ft = "0";
-            Latitude = "37.806029";
+            Latitude = "0";
             Longtude = "-122.407007";
         }
         // Properties.
