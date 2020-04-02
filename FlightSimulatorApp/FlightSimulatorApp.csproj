@@ -63,16 +63,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\ClientSide.cs" />
     <Compile Include="Model\IFlightSimulatorModel.cs" />
     <Compile Include="Model\MyFlightSimulatorModel.cs" />
-    <Compile Include="Model\ServerSide.cs" />
     <Compile Include="ViewModel\ConnectVM.cs" />
     <Compile Include="ViewModel\DashboardVM.cs" />
     <Compile Include="ViewModel\MapVM.cs" />
-    <Compile Include="View\ConnectionError.xaml.cs">
-      <DependentUpon>ConnectionError.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\SettingWindow.xaml.cs">
       <DependentUpon>SettingWindow.xaml</DependentUpon>
     </Compile>
@@ -85,9 +80,6 @@
     </Compile>
     <Compile Include="View\MapControl.xaml.cs">
       <DependentUpon>MapControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TimeOutError.xaml.cs">
-      <DependentUpon>TimeOutError.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Wheel.xaml.cs">
       <DependentUpon>Wheel.xaml</DependentUpon>
@@ -104,10 +96,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\ConnectionError.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\SettingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,10 +109,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MapControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TimeOutError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

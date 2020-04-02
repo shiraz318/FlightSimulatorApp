@@ -14,29 +14,26 @@ namespace FlightSimulatorApp
     public partial class MainWindow : Window
     {
         private ConnectVM connectVM;
-        DispatcherTimer dispatcherTimer;
+        private DispatcherTimer dispatcherTimer;
         private bool isConnected;
         private bool isDisConnected;
-        public event DispatcherUnhandledExceptionEventHandler DispatcherUnhandledException;
+       
         public MainWindow()
         {
             InitializeComponent();
-            DispatcherUnhandledException += (Application.Current as App).Application_DispatcherUnhandledException;
             connectVM = (Application.Current as App).ConnectviewModel;
+            // Initialize the Data Context.
             DataContext = connectVM;
-            isConnected = false;
-            isDisConnected = false;
-            Disconnect.IsEnabled = false;
-            Setting.IsEnabled = true;
-            //
-            ipLabel.Content = connectVM.Ip;
-            PortLabel.Content = connectVM.Port;
-            //
             wheel.DataContext = (Application.Current as App).WheelviewModel;
             dashboard.DataContext = (Application.Current as App).DashboardviewModel;
             map.DataContext = (Application.Current as App).MapviewModel;
-
-
+            // Initialize connection.
+            isConnected = false;
+            isDisConnected = false;
+            SetIsEnabled(true);
+            // Initialize the ip and port.
+            ipLabel.Content = connectVM.Ip;
+            PortLabel.Content = connectVM.Port;
             connectVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 if (e.PropertyName.Equals("VM_Error") && (!connectVM.IsErrorAccured))
@@ -55,7 +52,6 @@ namespace FlightSimulatorApp
                             string message = e3.Message;
                         }
                     }
-
                     isConnected = false;
                     connectVM.IsErrorAccured = true;
                 }
@@ -90,6 +86,7 @@ namespace FlightSimulatorApp
                 }
             };
         }
+
         private void ClickAnimation()
         {
             Thickness m = flyingAnimation.Margin;
@@ -101,15 +98,15 @@ namespace FlightSimulatorApp
             dispatcherTimer.Tick += new EventHandler(DispacherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(12);
             dispatcherTimer.Start();
-            
         }
+
         private void DispacherTimer_Tick(object sender, EventArgs e)
         {
             Thickness m = flyingAnimation.Margin;
             m.Top -= 10;
             m.Right -= 20;
             flyingAnimation.Margin = m;
-            //end -Margin="1032,-62,-60,527.6"
+            // End of screen.
             if (flyingAnimation.Margin.Right < -1600 || flyingAnimation.Margin.Top < -1600)
             {
                 dispatcherTimer.Stop();
@@ -118,6 +115,7 @@ namespace FlightSimulatorApp
                 flyingAnimation.Margin = m;
             }
         }
+
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
             if (!isConnected)
@@ -127,10 +125,13 @@ namespace FlightSimulatorApp
                 isDisConnected = false;
                 connectVM.IsErrorAccured = false;
                 errorLAbel.Content = "";
+                // Animation of a paper airplane.
                 ClickAnimation();
+                // Connect.
                 connectVM.Connect();
             }
         }
+
         private void Setting_Click(object sender, RoutedEventArgs e)
         {
             SettingWindow setting = new SettingWindow();
@@ -151,8 +152,10 @@ namespace FlightSimulatorApp
             isConnected = false;
             SetIsEnabled(true);
             isDisConnected = true;
+            // Disconnect.
             connectVM.Disconnect();
         }
+
         private void SetIsEnabled(bool value)
         {
             Connect.IsEnabled = value;

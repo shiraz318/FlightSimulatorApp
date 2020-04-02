@@ -29,6 +29,7 @@ namespace FlightSimulatorApp.View
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
+
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)

@@ -9,12 +9,12 @@ namespace FlightSimulatorApp.Model
 {
     public interface IFlightSimulatorModel : INotifyPropertyChanged
     {
-        //connection to the flight simulator 
+        // Connection to the flight simulator. 
         void Connect(string ip, int port);
         void Disconnect();
         void Start();
         void SetSimulator(string var, double value);
-        //properties
+        // Properties.
         string Indicated_heading_deg { set; get; }
         string Gps_indicated_vertical_speed { set; get; }
         string Gps_indicated_ground_speed_kt { set; get; }
@@ -26,7 +26,5 @@ namespace FlightSimulatorApp.Model
         string Latitude { get; set; }
         string Longtude { get; set; }
         string ValidCoordinate { get; set; }
-
-
     }
 }

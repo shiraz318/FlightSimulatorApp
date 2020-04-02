@@ -11,8 +11,8 @@ namespace FlightSimulatorApp.View
 {
     public class ConnectVM : INotifyPropertyChanged
     {
-        private int port = int.Parse(ConfigurationManager.AppSettings.Get("port"));
-        private string ip = ConfigurationManager.AppSettings.Get("ip");
+        private int port;
+        private string ip;
         private bool isErrorAccured = false;
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
@@ -23,12 +23,15 @@ namespace FlightSimulatorApp.View
 
         public ConnectVM(IFlightSimulatorModel m)
         {
+            Ip = ConfigurationManager.AppSettings.Get("ip");
+            Port = int.Parse(ConfigurationManager.AppSettings.Get("port"));
             model = m;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
+
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
@@ -36,10 +39,12 @@ namespace FlightSimulatorApp.View
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+
         public void Connect()
         {
             model.Connect(Ip, Port);
         }
+
         public void Disconnect()
         {
             model.Disconnect();

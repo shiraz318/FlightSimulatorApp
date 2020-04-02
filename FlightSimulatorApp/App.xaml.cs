@@ -15,19 +15,23 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class App : Application
     {
-
         public void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             e.Handled = true;
             Environment.Exit(0);
         }
+
+        // Properties.
         public WheelVM WheelviewModel { get; internal set; }
         public DashboardVM DashboardviewModel { get; internal set; }
         public MapVM MapviewModel { get; internal set; }
         public ConnectVM ConnectviewModel { get; internal set; }
+       
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            // Initialize the model.
             MyFlightSimulatorModel model = new MyFlightSimulatorModel();
+            // Initialize the view models.
             WheelviewModel = new WheelVM(model);
             DashboardviewModel = new DashboardVM(model);
             MapviewModel = new MapVM(model);

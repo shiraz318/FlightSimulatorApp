@@ -24,7 +24,6 @@ namespace FlightSimulatorApp.View
         public Dashboard()
         {
             InitializeComponent();
-
         }
     }
 }

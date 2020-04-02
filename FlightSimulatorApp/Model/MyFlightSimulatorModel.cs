@@ -15,7 +15,7 @@ namespace FlightSimulatorApp.Model
     {
         private Mutex mutex = new Mutex();
         private TcpClient tcpClient;
-        NetworkStream strm;
+        private NetworkStream strm;
         volatile bool stop;
         private string indicated_heading_deg;
         private string gps_indicated_vertical_speed;
@@ -76,6 +76,7 @@ namespace FlightSimulatorApp.Model
                     messages = new Queue<string> { };
                     tcpClient = new TcpClient();
                     mutex = new Mutex();
+                    // Connect.
                     tcpClient.Connect(ip, port);
                     strm = tcpClient.GetStream();
                     Start();
@@ -86,7 +87,6 @@ namespace FlightSimulatorApp.Model
                     Error = true;
                 }
             }).Start();
-
         }
 
         public void Disconnect()
@@ -95,6 +95,7 @@ namespace FlightSimulatorApp.Model
             tcpClient.Dispose();
             mutex.Dispose();
             stop = true;
+            // Reset values.
             Reset();
         }
 
@@ -104,6 +105,7 @@ namespace FlightSimulatorApp.Model
 
                 while (!stop)
                 {
+                    // If there are messages in the queue.
                     if (messages.Count != 0)
                     {
                         try
@@ -117,6 +119,7 @@ namespace FlightSimulatorApp.Model
                             {
                                if (!double.TryParse(Read(), out double i1))
                                 {
+                                    // Return value from Read() is error.
                                     SetError = true;
                                 }
                             }
@@ -135,17 +138,16 @@ namespace FlightSimulatorApp.Model
             {
                 while (!stop)
                 {
-                   
                     try
                     {
                         string message = "get /instrumentation/gps/indicated-vertical-speed\nget /instrumentation/airspeed-indicator/indicated-speed-kt\nget /instrumentation/altimeter/indicated-altitude-ft\nget /instrumentation/attitude-indicator/internal-pitch-deg\nget /instrumentation/attitude-indicator/internal-roll-deg\nget /instrumentation/heading-indicator/indicated-heading-deg\nget /instrumentation/gps/indicated-altitude-ft\nget /instrumentation/gps/indicated-ground-speed-kt\n get /position/latitude-deg\nget /position/longitude-deg\n";
                         mutex.WaitOne();
                         Write(message);
-                        // Separate the read message by \n.
                         if (Error)
                         {
                             break;
                         }
+                        // Separate the read message by \n.
                         var result = Read().Split('\n');
                         if (Error || result.Length < 10)
                         {
@@ -218,6 +220,7 @@ namespace FlightSimulatorApp.Model
                         }
                         if (double.TryParse(result[8], out double i9))
                         {
+                            // Checks borders of value.
                             if (i9 < LATITUDE_DOWN_BORDER)
                             {
                                 ValidCoordinate = "Invalid Coordinate";
@@ -233,7 +236,6 @@ namespace FlightSimulatorApp.Model
                                 ValidCoordinate = "";
                                 Latitude = i9.ToString();
                             }
-
                         }
                         else
                         {
@@ -241,6 +243,7 @@ namespace FlightSimulatorApp.Model
                         }
                         if (double.TryParse(result[9], out double i10))
                         {
+                            // Checks borders of value.
                             if (i10 < LONGTUDE_DOWN_BORDER)
                             {
                                 ValidCoordinate = "Invalid Coordinate";
@@ -260,6 +263,7 @@ namespace FlightSimulatorApp.Model
                         {
                             ValidCoordinate = "Error getting Coordinate";
                         }
+                        // Coordinates are valid.
                         if (ValidCoordinate.Equals(""))
                         {
                             NotifyPropertyChanged("Location");
@@ -272,8 +276,8 @@ namespace FlightSimulatorApp.Model
                 }
                 Thread.Sleep(100);
             }).Start();
-
         }
+
         private string Read()
         {
             try
@@ -289,18 +293,20 @@ namespace FlightSimulatorApp.Model
             catch (Exception e)
             {
                 string timeoutMessage = "A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.";
+                // Timeout error.
                 if (e.Message.Contains(timeoutMessage))
                 {
                     TimeOutError = true;
+                  // Connection error.
                 } else
                 {
-                    // Announce error accured.
                     Error = true;
                 }
                 stop = true;
                 return "";
             } 
         }
+
         private void Write(string message)
         {
             try
@@ -316,12 +322,15 @@ namespace FlightSimulatorApp.Model
                 stop = true;
             }
         }
+
         public void SetSimulator(string var, double value)
         {
             string path = pathMap[var];
             string message = "set " + path + " " + value.ToString() + "\n";
+            // Adding a new message to the messages queue.
             messages.Enqueue(message);
         }
+
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
@@ -329,6 +338,7 @@ namespace FlightSimulatorApp.Model
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+
         public void Reset()
         {
             Indicated_heading_deg = "0";
