@@ -299,7 +299,7 @@ namespace FlightSimulatorApp.Model
                 }
                 stop = true;
                 return "";
-            }
+            } 
         }
         private void Write(string message)
         {

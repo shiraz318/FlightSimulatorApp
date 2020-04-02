@@ -13,23 +13,16 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        DispatcherTimer dispatcherTimer;
         private ConnectVM connectVM;
+        DispatcherTimer dispatcherTimer;
         private bool isConnected;
-        private MyFlightSimulatorModel mfsm;
         private bool isDisConnected;
-
+        public event DispatcherUnhandledExceptionEventHandler DispatcherUnhandledException;
         public MainWindow()
         {
             InitializeComponent();
-            // Initialize the model.
-            mfsm = new MyFlightSimulatorModel();
-            // Initialize the components with a common model.
-            wheel.Init(mfsm);
-            dashboard.Init(mfsm);
-            map.Init(mfsm);
-            //
-            connectVM = new ConnectVM(mfsm);
+            DispatcherUnhandledException += (Application.Current as App).Application_DispatcherUnhandledException;
+            connectVM = (Application.Current as App).ConnectviewModel;
             DataContext = connectVM;
             isConnected = false;
             isDisConnected = false;
@@ -38,6 +31,10 @@ namespace FlightSimulatorApp
             //
             ipLabel.Content = connectVM.Ip;
             PortLabel.Content = connectVM.Port;
+            //
+            wheel.DataContext = (Application.Current as App).WheelviewModel;
+            dashboard.DataContext = (Application.Current as App).DashboardviewModel;
+            map.DataContext = (Application.Current as App).MapviewModel;
 
 
             connectVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
@@ -51,9 +48,7 @@ namespace FlightSimulatorApp
                             Application.Current.Dispatcher.Invoke((Action)delegate
                             {
                                 errorLAbel.Content = "Connection faulted Error";
-                                Connect.IsEnabled = true;
-                                Disconnect.IsEnabled = false;
-                                Setting.IsEnabled = true;
+                                SetIsEnabled(true);
                             });
                         } catch(Exception e3)
                         {
@@ -71,9 +66,7 @@ namespace FlightSimulatorApp
                         Application.Current.Dispatcher.Invoke((Action)delegate
                         {
                             errorLAbel.Content = "Server is slow";
-                            Connect.IsEnabled = true;
-                            Disconnect.IsEnabled = false;
-                            Setting.IsEnabled = true;
+                            SetIsEnabled(true);
                         });
                     }
                     catch (Exception e4)
@@ -129,9 +122,7 @@ namespace FlightSimulatorApp
         {
             if (!isConnected)
             {
-                Setting.IsEnabled = false;
-                Connect.IsEnabled = false;
-                Disconnect.IsEnabled = true;
+                SetIsEnabled(false);
                 isConnected = true;
                 isDisConnected = false;
                 connectVM.IsErrorAccured = false;
@@ -158,12 +149,16 @@ namespace FlightSimulatorApp
         private void Disconnect_Click(object sender, RoutedEventArgs e)
         {
             isConnected = false;
-            Connect.IsEnabled = true;
-            Disconnect.IsEnabled = false;
-            Setting.IsEnabled = true;
+            SetIsEnabled(true);
             isDisConnected = true;
             connectVM.Disconnect();
         }
+        private void SetIsEnabled(bool value)
+        {
+            Connect.IsEnabled = value;
+            Disconnect.IsEnabled = !value;
+            Setting.IsEnabled = value;
+        } 
 
     }
 }

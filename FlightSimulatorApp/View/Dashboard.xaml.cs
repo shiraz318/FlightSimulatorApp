@@ -21,16 +21,10 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class Dashboard : UserControl
     {
-        DashboardVM viewModel;
         public Dashboard()
         {
             InitializeComponent();
-           
-        }
-        public void Init(MyFlightSimulatorModel model)
-        {
-            viewModel = new DashboardVM(model);
-            DataContext = viewModel;
+
         }
     }
 }

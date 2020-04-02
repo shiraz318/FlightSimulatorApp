@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace FlightSimulatorApp.View
 {
-    class DashboardVM : INotifyPropertyChanged
+    public class DashboardVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
