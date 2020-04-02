@@ -20,9 +20,9 @@
             </m:Map>
             <Label Content="Latitude :" HorizontalAlignment="Left" Margin="452.2,30,0,0" VerticalAlignment="Top" Width="70" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" Grid.Column="1" Height="26"/>
             <Label x:Name="latitudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Latitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="506.2,30,-57.4,0" VerticalAlignment="Top" Width="173" Foreground="#FFA6B7F3" Height="26" FontFamily="Hadassah Friedlaender" Grid.Column="1"/>
-            <Label Content="Longtude :" HorizontalAlignment="Left" Margin="286.4,30,0,0" VerticalAlignment="Top" Width="80" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" Height="26" Grid.Column="1"/>
+            <Label Content="Longitude :" HorizontalAlignment="Left" Margin="286.4,30,0,0" VerticalAlignment="Top" Width="80" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" Height="26" Grid.Column="1"/>
             <Label x:Name="longtudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Longitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="348.4,30,0,0" VerticalAlignment="Top" Width="181" Foreground="#FFA6B7F3" Height="26" FontFamily="Hadassah Friedlaender" Grid.Column="1"/>
-            <Label x:Name="ValidationLabel" Content="{Binding VM_ValidCoordinate, Mode=OneWay}" HorizontalAlignment="Left" Margin="348.4,4,0,0" VerticalAlignment="Top" Width="235" Foreground="#FFCD3232" Height="26" FontFamily="Segoe Print" Grid.Column="1"/>
+            <Label x:Name="ValidationLabel" Content="{Binding VM_ValidCoordinate, Mode=OneWay}" HorizontalAlignment="Left" Margin="348.4,4,0,0" VerticalAlignment="Top" Width="235" Foreground="#FFCD3232" Height="40" FontFamily="Segoe Print" Grid.Column="1"/>
         </Grid>
     </Viewbox>
 </UserControl>

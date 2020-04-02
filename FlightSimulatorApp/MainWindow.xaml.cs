@@ -81,6 +81,19 @@ namespace FlightSimulatorApp
                         string message = e4.Message;
                     }
                     isConnected = false;
+                } else if (e.PropertyName.Equals("VM_SetError")) 
+                {
+                    try
+                    {
+                        Application.Current.Dispatcher.Invoke((Action)delegate
+                        {
+                            errorLAbel.Content = "Can not update new values";
+                        });
+                    }
+                    catch (Exception e4)
+                    {
+                        string message = e4.Message;
+                    }
                 }
             };
         }

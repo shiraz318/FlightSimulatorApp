@@ -17,5 +17,10 @@ namespace FlightSimulatorApp
         {
             Environment.Exit(0);
         }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+
+        }
     }
 }
