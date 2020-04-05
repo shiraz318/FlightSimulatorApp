@@ -26,5 +26,10 @@ namespace FlightSimulatorApp.Model
         string Latitude { get; set; }
         string Longtude { get; set; }
         string ValidCoordinate { get; set; }
+        string DashBoardError { get; set; }
+        string TimeOutError { get; set; }
+        string SetError { get; set; }
+        string Error { get; set; }
+
     }
 }

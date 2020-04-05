@@ -7,31 +7,32 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Viewbox HorizontalAlignment="Center" Height="440" Margin="-6,10,0,-0.4" VerticalAlignment="Center" Width="806">
-    <Grid>
-        <local:Joystick x:Name="joystick" ValueX="{Binding VM_Rudder, Mode=OneWayToSource}" ValueY="{Binding VM_Elevator, Mode=OneWayToSource}" Margin="60,8,-60,-8.4"></local:Joystick>
-        <Slider x:Name="throttle" HorizontalAlignment="Left" Margin="319,427,0,-2.4" VerticalAlignment="Top" Width="195" Height="25" Minimum="0" Maximum="1" Value="{Binding VM_Throttle, Mode=OneWayToSource}"/>
-        <Slider x:Name="aileron" HorizontalAlignment="Left" Margin="517,232,0,0" VerticalAlignment="Top" Width="195" Minimum="-1" Maximum="1" Value="{Binding VM_Aileron, Mode=OneWayToSource}" Height="25" RenderTransformOrigin="0.5,0.5">
-            <Slider.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90.196"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Slider.RenderTransform>
-        </Slider>
-        <Label Content="Aileron" HorizontalAlignment="Left" Margin="575,114,0,0" VerticalAlignment="Top" Height="30" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Throttle" HorizontalAlignment="Left" Margin="215,419,0,-4.4" VerticalAlignment="Top" Height="35" Width="99" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Rudder" HorizontalAlignment="Left" Margin="4,126,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Elevator" HorizontalAlignment="Left" Margin="-4,174,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Aileron" HorizontalAlignment="Left" Margin="2,225,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Content="Throttle" HorizontalAlignment="Left" Margin="-6,271,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
-        <Label Name="rudderLable" Content="{Binding Path=ValueX, ElementName=joystick, Mode=OneWay}" HorizontalAlignment="Left" Margin="91,132,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.755,-7.352" Width="126" Height="29" Background="White" FontWeight="Bold" FontSize="14" Foreground="#FF0E3411"/>
-        <Label x:Name="elevatorLable" Content="{Binding Path=ValueY, ElementName=joystick, Mode=OneWay}" HorizontalAlignment="Left" Margin="91,180,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.755,-7.352" Width="126" Height="29" Background="White" FontWeight="Bold" FontSize="14" Foreground="#FF0E3411"/>
-        <Label x:Name="AileronLable" Content="{Binding ElementName=aileron, Path=Value}" HorizontalAlignment="Left" Margin="91,231,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.755,-7.352" Width="126" Height="29" Background="White" FontWeight="Bold" FontSize="14" Foreground="#FF0E3411"/>
-        <Label x:Name="ThrottleLable" Content="{Binding ElementName=throttle, Path=Value}" HorizontalAlignment="Left" Margin="91,276,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.755,-7.352" Width="126" Height="29" Background="White" FontWeight="Bold" FontSize="14" Foreground="#FF0E3411"/>
-        
+        <Grid>
+            <local:Joystick x:Name="joystick" ValueX="{Binding VM_Rudder, Mode=OneWayToSource}" ValueY="{Binding VM_Elevator, Mode=OneWayToSource}" Margin="60,8,-60,-8.4"></local:Joystick>
+            <Slider x:Name="throttle" HorizontalAlignment="Left" Margin="319,427,0,-2.4" VerticalAlignment="Top" Width="195" Height="25" Minimum="0" Maximum="1" Value="{Binding VM_Throttle, Mode=OneWayToSource}"/>
+            <Slider x:Name="aileron" HorizontalAlignment="Left" Margin="517,232,0,0" VerticalAlignment="Top" Width="195" Minimum="-1" Maximum="1" Value="{Binding VM_Aileron, Mode=OneWayToSource}" Height="25" RenderTransformOrigin="0.5,0.5">
+                <Slider.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90.196"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Slider.RenderTransform>
+            </Slider>
+            <Label Content="Aileron" HorizontalAlignment="Left" Margin="575,114,0,0" VerticalAlignment="Top" Height="30" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+            <Label Content="Throttle" HorizontalAlignment="Left" Margin="215,419,0,-4.4" VerticalAlignment="Top" Height="35" Width="99" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+            <Label Content="Rudder" HorizontalAlignment="Left" Margin="4,126,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+            <Label Content="Elevator" HorizontalAlignment="Left" Margin="-4,174,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+            <Label Content="Aileron" HorizontalAlignment="Left" Margin="2,225,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+            <Label Content="Throttle" HorizontalAlignment="Left" Margin="-6,271,0,0" VerticalAlignment="Top" Height="35" Width="128" Background="#00000000" Foreground="#FFA6B7F3" FontSize="22" FontFamily="Hadassah Friedlaender" FontWeight="Bold"/>
+            <Label Name="rudderLable" Content="{Binding Path=ValueX, ElementName=joystick, Mode=OneWay}" HorizontalAlignment="Left" Margin="91,132,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.755,-7.352" Width="126" Height="29" Background="White" FontWeight="Bold" FontSize="14" Foreground="#FF0E3411"/>
+            <Label x:Name="elevatorLable" Content="{Binding Path=ValueY, ElementName=joystick, Mode=OneWay}" HorizontalAlignment="Left" Margin="91,180,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.755,-7.352" Width="126" Height="29" Background="White" FontWeight="Bold" FontSize="14" Foreground="#FF0E3411"/>
+            <Label x:Name="AileronLable" Content="{Binding ElementName=aileron, Path=Value}" HorizontalAlignment="Left" Margin="91,231,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.755,-7.352" Width="126" Height="29" Background="White" FontWeight="Bold" FontSize="14" Foreground="#FF0E3411"/>
+            <Label x:Name="ThrottleLable" Content="{Binding ElementName=throttle, Path=Value}" HorizontalAlignment="Left" Margin="91,276,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.755,-7.352" Width="126" Height="29" Background="White" FontWeight="Bold" FontSize="14" Foreground="#FF0E3411"/>
+            <Label Content="{Binding VM_SetError, Mode=OneWay}" HorizontalAlignment="Left" Margin="280,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.529,0.524" Width="286" Height="37" Foreground="#FFCD3232" FontSize="20" FontFamily="Segoe Print" FontWeight="Bold"/>
 
-    </Grid>
-        </Viewbox>
+
+        </Grid>
+    </Viewbox>
 </UserControl>

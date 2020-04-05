@@ -13,13 +13,14 @@ namespace FlightSimulatorApp.View
     {
         private int port;
         private string ip;
-        private bool isErrorAccured = false;
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
         // Properties.
         public string Ip { get { return ip; } set { ip = value; } }
         public int Port { get { return port; } set { port = value; } }
-        public bool IsErrorAccured { get { return isErrorAccured; } set { isErrorAccured = value; } }
+        public string VM_TimeOutError { get { return model.TimeOutError; } }
+        public string VM_Error { get { return model.Error; } }
+
 
         public ConnectVM(IFlightSimulatorModel m)
         {

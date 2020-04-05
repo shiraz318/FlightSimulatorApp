@@ -28,9 +28,10 @@ namespace FlightSimulatorApp.Model
         private string latitude;
         private string longtude;
         private string validation = "";
-        private bool error = false;
-        private bool timeOutError = false;
-        private bool setError = false;
+        private string error = "";
+        private string timeOutError = "";
+        private string  setError = "";
+        private string dashBoardError = "";
         private Queue<string> messages = new Queue<string> { };
         private Dictionary<string, string> pathMap = new Dictionary<string, string> { };
         public const int LATITUDE_UP_BORDER = 90;
@@ -45,13 +46,13 @@ namespace FlightSimulatorApp.Model
             pathMap.Add("rudder", "/controls/flight/rudder");
             pathMap.Add("elevator", "/controls/flight/elevator");
             Reset();
-
+            
         }
         // Properties.
-        public string Latitude { get { return latitude; } set { latitude = value; NotifyPropertyChanged("Latitude"); } }
-        public bool Error { get { return error; } set { error = value;  if (error) { Disconnect(); NotifyPropertyChanged("Error"); } } }
-        public bool TimeOutError { get { return timeOutError; } set { timeOutError = value; if (timeOutError) { Disconnect(); NotifyPropertyChanged("TimeOutError"); } } }
-        public bool SetError { get { return setError; } set { setError = value; NotifyPropertyChanged("SetError"); } }
+        public string Error { get { return error; } set { error = value; NotifyPropertyChanged("Error"); if (!error.Equals("")) { Disconnect(); } } }
+        public string TimeOutError { get { return timeOutError; } set { timeOutError = value; NotifyPropertyChanged("TimeOutError"); } }
+        public string SetError { get { return setError; } set { setError = value; NotifyPropertyChanged("SetError"); } }
+        public string DashBoardError { get { return dashBoardError; } set { dashBoardError = value; NotifyPropertyChanged("DashBoardError"); } }
         public string Indicated_heading_deg { get { return indicated_heading_deg; } set { indicated_heading_deg = value; NotifyPropertyChanged("Indicated_heading_deg"); } }
         public string Gps_indicated_vertical_speed { get { return gps_indicated_vertical_speed; } set { gps_indicated_vertical_speed = value; NotifyPropertyChanged("Gps_indicated_vertical_speed"); } }
         public string Gps_indicated_ground_speed_kt { get { return gps_indicated_ground_speed_kt; } set { gps_indicated_ground_speed_kt = value; NotifyPropertyChanged("Gps_indicated_ground_speed_kt"); } }
@@ -61,6 +62,7 @@ namespace FlightSimulatorApp.Model
         public string Attitude_indicator_internal_pitch_deg { get { return attitude_indicator_internal_pitch_deg; } set { attitude_indicator_internal_pitch_deg = value; NotifyPropertyChanged("Attitude_indicator_internal_pitch_deg"); } }
         public string Altimeter_indicated_altitude_ft { get { return altimeter_indicated_altitude_ft; } set { altimeter_indicated_altitude_ft = value; NotifyPropertyChanged("Altimeter_indicated_altitude_ft"); } }
         public string Longtude { get { return longtude; } set { longtude = value; NotifyPropertyChanged("Longtude"); } }
+        public string Latitude { get { return latitude; } set { latitude = value; NotifyPropertyChanged("Latitude"); } }
         public string ValidCoordinate { get { return validation; } set { validation = value; NotifyPropertyChanged("ValidCoordinate");} }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -71,8 +73,8 @@ namespace FlightSimulatorApp.Model
                 try
                 {
                     stop = false;
-                    Error = false;
-                    TimeOutError = false;
+                    Error = "";
+                    TimeOutError = "";
                     messages = new Queue<string> { };
                     tcpClient = new TcpClient();
                     mutex = new Mutex();
@@ -84,7 +86,7 @@ namespace FlightSimulatorApp.Model
                 catch (Exception e)
                 {
                     string message = e.Message;
-                    Error = true;
+                    Error = "Connection faulted Error";
                 }
             }).Start();
         }
@@ -111,23 +113,26 @@ namespace FlightSimulatorApp.Model
                         try
                         {
                             mutex.WaitOne();
-                            if (!Error)
+                            if (Error.Equals(""))
                             {
                                 Write(messages.Dequeue());
                             }
-                            if (!Error)
+                            if (Error.Equals(""))
                             {
                                if (!double.TryParse(Read(), out double i1))
                                 {
                                     // Return value from Read() is error.
-                                    SetError = true;
+                                    SetError = "Can not update new values";
+                                } else
+                                {
+                                    SetError = "";
                                 }
                             }
                             mutex.ReleaseMutex();
                         } catch (Exception e)
                         {
                             string message = e.Message;
-                            Error = true;
+                            Error = "Connection faulted Error";
                         }
                     }
                 }
@@ -143,24 +148,27 @@ namespace FlightSimulatorApp.Model
                         string message = "get /instrumentation/gps/indicated-vertical-speed\nget /instrumentation/airspeed-indicator/indicated-speed-kt\nget /instrumentation/altimeter/indicated-altitude-ft\nget /instrumentation/attitude-indicator/internal-pitch-deg\nget /instrumentation/attitude-indicator/internal-roll-deg\nget /instrumentation/heading-indicator/indicated-heading-deg\nget /instrumentation/gps/indicated-altitude-ft\nget /instrumentation/gps/indicated-ground-speed-kt\n get /position/latitude-deg\nget /position/longitude-deg\n";
                         mutex.WaitOne();
                         Write(message);
-                        if (Error)
+                        if (!Error.Equals(""))
                         {
                             break;
                         }
                         // Separate the read message by \n.
                         var result = Read().Split('\n');
-                        if (Error || result.Length < 10)
+                        if (!Error.Equals("") || result.Length < 10)
                         {
                             break;
                         }
                         mutex.ReleaseMutex();
+                        
                         if (double.TryParse(result[0], out double i1))
                         {
                             Gps_indicated_vertical_speed = i1.ToString();
+                            DashBoardError = "";
                         }
                         else
                         {
                             Gps_indicated_vertical_speed = "Error";
+                            DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[1], out double i2))
                         {
@@ -169,6 +177,7 @@ namespace FlightSimulatorApp.Model
                         else
                         {
                             Airspeed_indicator_indicated_speed_kt = "Error";
+                            DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[2], out double i3))
                         {
@@ -177,6 +186,7 @@ namespace FlightSimulatorApp.Model
                         else
                         {
                             Altimeter_indicated_altitude_ft = "Error";
+                            DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[3], out double i4))
                         {
@@ -185,6 +195,7 @@ namespace FlightSimulatorApp.Model
                         else
                         {
                             Attitude_indicator_internal_pitch_deg = "Error";
+                            DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[4], out double i5))
                         {
@@ -193,6 +204,7 @@ namespace FlightSimulatorApp.Model
                         else
                         {
                             Attitude_indicator_internal_roll_deg = "Error";
+                            DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[5], out double i6))
                         {
@@ -201,6 +213,7 @@ namespace FlightSimulatorApp.Model
                         else
                         {
                             Indicated_heading_deg = "Error";
+                            DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[6], out double i7))
                         {
@@ -209,6 +222,7 @@ namespace FlightSimulatorApp.Model
                         else
                         {
                             Gps_indicated_altitude_ft = "Error";
+                            DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[7], out double i8))
                         {
@@ -217,6 +231,7 @@ namespace FlightSimulatorApp.Model
                         else
                         {
                             Gps_indicated_ground_speed_kt = "Error";
+                            DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[8], out double i9))
                         {
@@ -271,7 +286,7 @@ namespace FlightSimulatorApp.Model
                     } catch (Exception e)
                     {
                         string message = e.Message;
-                        Error = true;
+                        Error = "Connection faulted Error";
                     }
                 }
                 Thread.Sleep(100);
@@ -286,6 +301,7 @@ namespace FlightSimulatorApp.Model
                 Byte[] data = new Byte[1024];
                 String responseData = String.Empty;
                 Int32 bytes = strm.Read(data, 0, data.Length);
+                TimeOutError = "";
                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 
                 return responseData;
@@ -296,13 +312,13 @@ namespace FlightSimulatorApp.Model
                 // Timeout error.
                 if (e.Message.Contains(timeoutMessage))
                 {
-                    TimeOutError = true;
+                    TimeOutError = "Server is slow";
                   // Connection error.
                 } else
                 {
-                    Error = true;
+                    Error = "Connection faulted Error";
+                    stop = true;
                 }
-                stop = true;
                 return "";
             } 
         }
@@ -318,7 +334,7 @@ namespace FlightSimulatorApp.Model
             catch (Exception e)
             {
                 string messageerror = e.Message;
-                Error = true;
+                Error = "Connection faulted Error";
                 stop = true;
             }
         }
@@ -353,6 +369,8 @@ namespace FlightSimulatorApp.Model
             Longtude = "-122.407007";
             NotifyPropertyChanged("Location");
             ValidCoordinate = "";
+            DashBoardError = "";
+            SetError = "";
         }
     }
 }

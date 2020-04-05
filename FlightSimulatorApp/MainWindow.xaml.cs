@@ -36,7 +36,7 @@ namespace FlightSimulatorApp
             PortLabel.Content = connectVM.Port;
             connectVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                if (e.PropertyName.Equals("VM_Error") && (!connectVM.IsErrorAccured))
+                if (e.PropertyName.Equals("VM_Error"))
                 {
                     if (!isDisConnected)
                     {
@@ -44,39 +44,39 @@ namespace FlightSimulatorApp
                         {
                             Application.Current.Dispatcher.Invoke((Action)delegate
                             {
-                                errorLAbel.Content = "Connection faulted Error";
-                                SetIsEnabled(true);
+                                if (connectVM.VM_Error.Equals(""))
+                                {
+                                    errorLAbel.Content = "";
+
+                                }
+                                else
+                                {
+                                    errorLAbel.Content = "Connection faulted Error";
+                                    SetIsEnabled(true);
+                                    isConnected = false;
+                                }
                             });
                         } catch(Exception e3)
                         {
                             string message = e3.Message;
                         }
                     }
-                    isConnected = false;
-                    connectVM.IsErrorAccured = true;
+                    
                 }
                 else if (e.PropertyName.Equals("VM_TimeOutError"))
                 {
                     try
                     {
-                        Application.Current.Dispatcher.Invoke((Action)delegate
-                        {
-                            errorLAbel.Content = "Server is slow";
-                            SetIsEnabled(true);
-                        });
-                    }
-                    catch (Exception e4)
-                    {
-                        string message = e4.Message;
-                    }
-                    isConnected = false;
-                } else if (e.PropertyName.Equals("VM_SetError")) 
-                {
-                    try
-                    {
-                        Application.Current.Dispatcher.Invoke((Action)delegate
-                        {
-                            errorLAbel.Content = "Can not update new values";
+                        Application.Current.Dispatcher.Invoke((Action)delegate {
+
+                            if (connectVM.VM_TimeOutError.Equals("") && connectVM.VM_Error.Equals(""))
+                            {
+                                errorLAbel.Content = "";
+                            }
+                            else
+                            {
+                                errorLAbel.Content = "Server is slow";
+                            }
                         });
                     }
                     catch (Exception e4)
@@ -123,7 +123,6 @@ namespace FlightSimulatorApp
                 SetIsEnabled(false);
                 isConnected = true;
                 isDisConnected = false;
-                connectVM.IsErrorAccured = false;
                 errorLAbel.Content = "";
                 // Animation of a paper airplane.
                 ClickAnimation();
@@ -152,6 +151,7 @@ namespace FlightSimulatorApp
             isConnected = false;
             SetIsEnabled(true);
             isDisConnected = true;
+            errorLAbel.Content = "";
             // Disconnect.
             connectVM.Disconnect();
         }

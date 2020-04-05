@@ -21,6 +21,7 @@ namespace FlightSimulatorApp.View
         public string VM_Attitude_indicator_internal_roll_deg { get { return model.Attitude_indicator_internal_roll_deg; } }
         public string VM_Attitude_indicator_internal_pitch_deg { get { return model.Attitude_indicator_internal_pitch_deg; } }
         public string VM_Altimeter_indicated_altitude_ft { get { return model.Altimeter_indicated_altitude_ft; } }
+        public string VM_DashBoardError { get { return model.DashBoardError; } }
 
         public DashboardVM(IFlightSimulatorModel m)
         {
