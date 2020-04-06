@@ -13,7 +13,7 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ConnectVM connectVM;
+        private MainVM mainVM;
         private DispatcherTimer dispatcherTimer;
         private bool isConnected;
         private bool isDisConnected;
@@ -21,30 +21,35 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
-            connectVM = (Application.Current as App).ConnectviewModel;
+            mainVM = (Application.Current as App).MainViewModel;
+
             // Initialize the Data Context.
-            DataContext = connectVM;
-            wheel.DataContext = (Application.Current as App).WheelviewModel;
-            dashboard.DataContext = (Application.Current as App).DashboardviewModel;
-            map.DataContext = (Application.Current as App).MapviewModel;
+            DataContext = mainVM;
+            wheel.DataContext = mainVM.WheelViewModel;
+            dashboard.DataContext = mainVM.DashboardViewModel;
+            map.DataContext = mainVM.MapViewModel;
+
             // Initialize connection.
             isConnected = false;
             isDisConnected = false;
             SetIsEnabled(true);
+
             // Initialize the ip and port.
-            ipLabel.Content = connectVM.Ip;
-            PortLabel.Content = connectVM.Port;
-            connectVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            ipLabel.Content = mainVM.Ip;
+            PortLabel.Content = mainVM.Port;
+
+            mainVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 if (e.PropertyName.Equals("VM_Error"))
                 {
+                    // If the user pressed disconnect button this is not an error.
                     if (!isDisConnected)
                     {
                         try
                         {
                             Application.Current.Dispatcher.Invoke((Action)delegate
                             {
-                                if (connectVM.VM_Error.Equals(""))
+                                if (mainVM.VM_Error.Equals(""))
                                 {
                                     errorLAbel.Content = "";
 
@@ -69,7 +74,7 @@ namespace FlightSimulatorApp
                     {
                         Application.Current.Dispatcher.Invoke((Action)delegate {
 
-                            if (connectVM.VM_TimeOutError.Equals("") && connectVM.VM_Error.Equals(""))
+                            if (mainVM.VM_TimeOutError.Equals("") && mainVM.VM_Error.Equals(""))
                             {
                                 errorLAbel.Content = "";
                             }
@@ -106,6 +111,7 @@ namespace FlightSimulatorApp
             m.Top -= 10;
             m.Right -= 20;
             flyingAnimation.Margin = m;
+
             // End of screen.
             if (flyingAnimation.Margin.Right < -1600 || flyingAnimation.Margin.Top < -1600)
             {
@@ -124,10 +130,12 @@ namespace FlightSimulatorApp
                 isConnected = true;
                 isDisConnected = false;
                 errorLAbel.Content = "";
+
                 // Animation of a paper airplane.
                 ClickAnimation();
+
                 // Connect.
-                connectVM.Connect();
+                mainVM.Connect();
             }
         }
 
@@ -135,13 +143,14 @@ namespace FlightSimulatorApp
         {
             SettingWindow setting = new SettingWindow();
             setting.ShowDialog();
+
             // If user enteres ip and port to change and pressed ok.
             if (setting.IsOk)
             {
-                connectVM.Ip = setting.ipText.Text;
-                connectVM.Port = int.Parse(setting.portText.Text);
-                ipLabel.Content = connectVM.Ip;
-                PortLabel.Content = connectVM.Port;
+                mainVM.Ip = setting.ipText.Text;
+                mainVM.Port = int.Parse(setting.portText.Text);
+                ipLabel.Content = mainVM.Ip;
+                PortLabel.Content = mainVM.Port;
                 setting.IsOk = false;
             }
         }
@@ -152,8 +161,9 @@ namespace FlightSimulatorApp
             SetIsEnabled(true);
             isDisConnected = true;
             errorLAbel.Content = "";
+
             // Disconnect.
-            connectVM.Disconnect();
+            mainVM.Disconnect();
         }
 
         private void SetIsEnabled(bool value)

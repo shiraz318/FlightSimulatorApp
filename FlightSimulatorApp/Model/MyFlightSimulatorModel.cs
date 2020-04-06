@@ -13,10 +13,7 @@ namespace FlightSimulatorApp.Model
 {
     public class MyFlightSimulatorModel : IFlightSimulatorModel
     {
-        private Mutex mutex = new Mutex();
-        private TcpClient tcpClient;
-        private NetworkStream strm;
-        volatile bool stop;
+        // Dashboard members.
         private string indicated_heading_deg;
         private string gps_indicated_vertical_speed;
         private string gps_indicated_ground_speed_kt;
@@ -25,29 +22,29 @@ namespace FlightSimulatorApp.Model
         private string attitude_indicator_internal_roll_deg;
         private string attitude_indicator_internal_pitch_deg;
         private string altimeter_indicated_altitude_ft;
+
+        // Map members.
+        public const int LATITUDE_UP_BORDER = 90;
+        public const int LATITUDE_DOWN_BORDER = -90;
+        public const int LONGTUDE_DOWN_BORDER = -180;
+        public const int LONGTUDE_UP_BORDER = 180;
         private string latitude;
         private string longtude;
+
+        // Error members.
         private string validation = "";
         private string error = "";
         private string timeOutError = "";
         private string  setError = "";
         private string dashBoardError = "";
+
         private Queue<string> messages = new Queue<string> { };
         private Dictionary<string, string> pathMap = new Dictionary<string, string> { };
-        public const int LATITUDE_UP_BORDER = 90;
-        public const int LATITUDE_DOWN_BORDER = -90;
-        public const int LONGTUDE_DOWN_BORDER = -180;
-        public const int LONGTUDE_UP_BORDER = 180;
-        public MyFlightSimulatorModel()
-        {
-            this.stop = false;
-            pathMap.Add("aileron", "/controls/flight/aileron");
-            pathMap.Add("throttle", "/controls/engines/current-engine/throttle");
-            pathMap.Add("rudder", "/controls/flight/rudder");
-            pathMap.Add("elevator", "/controls/flight/elevator");
-            Reset();
-            
-        }
+        private Mutex mutex = new Mutex();
+        private TcpClient tcpClient;
+        private NetworkStream strm;
+        volatile bool stop;
+
         // Properties.
         public string Error { get { return error; } set { error = value; NotifyPropertyChanged("Error"); if (!error.Equals("")) { Disconnect(); } } }
         public string TimeOutError { get { return timeOutError; } set { timeOutError = value; NotifyPropertyChanged("TimeOutError"); } }
@@ -64,7 +61,18 @@ namespace FlightSimulatorApp.Model
         public string Longtude { get { return longtude; } set { longtude = value; NotifyPropertyChanged("Longtude"); } }
         public string Latitude { get { return latitude; } set { latitude = value; NotifyPropertyChanged("Latitude"); } }
         public string ValidCoordinate { get { return validation; } set { validation = value; NotifyPropertyChanged("ValidCoordinate");} }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public MyFlightSimulatorModel()
+        {
+            this.stop = false;
+            pathMap.Add("aileron", "/controls/flight/aileron");
+            pathMap.Add("throttle", "/controls/engines/current-engine/throttle");
+            pathMap.Add("rudder", "/controls/flight/rudder");
+            pathMap.Add("elevator", "/controls/flight/elevator");
+            Reset();
+        }
 
         public void Connect(string ip, int port)
         {
@@ -78,6 +86,7 @@ namespace FlightSimulatorApp.Model
                     messages = new Queue<string> { };
                     tcpClient = new TcpClient();
                     mutex = new Mutex();
+
                     // Connect.
                     tcpClient.Connect(ip, port);
                     strm = tcpClient.GetStream();
@@ -303,7 +312,6 @@ namespace FlightSimulatorApp.Model
                 Int32 bytes = strm.Read(data, 0, data.Length);
                 TimeOutError = "";
                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-
                 return responseData;
             }
             catch (Exception e)
@@ -357,6 +365,7 @@ namespace FlightSimulatorApp.Model
 
         public void Reset()
         {
+            // Dashboard.
             Indicated_heading_deg = "0";
             Gps_indicated_vertical_speed = "0";
             Gps_indicated_ground_speed_kt = "0";
@@ -365,9 +374,13 @@ namespace FlightSimulatorApp.Model
             Attitude_indicator_internal_roll_deg = "0";
             Attitude_indicator_internal_pitch_deg = "0";
             Altimeter_indicated_altitude_ft = "0";
+
+            // Map.
             Latitude = "0";
             Longtude = "-122.407007";
             NotifyPropertyChanged("Location");
+
+            // Errors.
             ValidCoordinate = "";
             DashBoardError = "";
             SetError = "";

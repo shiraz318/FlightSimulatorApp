@@ -65,7 +65,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\IFlightSimulatorModel.cs" />
     <Compile Include="Model\MyFlightSimulatorModel.cs" />
-    <Compile Include="ViewModel\ConnectVM.cs" />
+    <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\DashboardVM.cs" />
     <Compile Include="ViewModel\MapVM.cs" />
     <Compile Include="View\SettingWindow.xaml.cs">

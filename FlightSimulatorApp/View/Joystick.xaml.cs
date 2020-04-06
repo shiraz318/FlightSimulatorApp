@@ -67,6 +67,7 @@ namespace FlightSimulatorApp.View
 			mousePressed = false;
 			UIElement element = (UIElement)Knob;
 			element.ReleaseMouseCapture();
+
 			// Reset the knob to the center (0,0).
 			knobPosition.X = 0;
 			knobPosition.Y = 0;
@@ -91,47 +92,6 @@ namespace FlightSimulatorApp.View
 				// Update the knob.
 				knobPosition.X = PositionX;
 				knobPosition.Y = PositionY;
-
-
-				/*double smallRadius = KnobBase.Width / 2;
-				double x = currentX - startX;
-				double y = currentY - startY;
-				double radius = Math.Abs(Base.Width - Knob.Width) / 2;
-				double distance = Math.Sqrt(x * x + y * y) + smallRadius;
-				if (distance < Math.Abs(Base.Width - Knob.Width) / 2)
-				{
-					knobPosition.X = x;
-					knobPosition.Y = y;
-				}
-				else
-				{
-					if (x + smallRadius > radius)
-					{
-						knobPosition.X = radius - smallRadius;
-					} else if (x - smallRadius < -radius)
-					{
-						knobPosition.X = smallRadius - radius;
-					} else
-					{
-						knobPosition.X = x;
-					}
-					if (y + smallRadius > radius)
-					{
-						knobPosition.Y = radius - smallRadius;
-					}
-					else if (y - smallRadius < -radius)
-					{
-						knobPosition.Y = smallRadius - radius;
-					}
-					else
-					{
-						knobPosition.Y = y;
-					}
-					}
-					ValueX = knobPosition.X / RANGE;
-				ValueY = knobPosition.Y / RANGE;
-				}*/
-
 			}
 		}
 	}

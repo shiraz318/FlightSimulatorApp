@@ -48,7 +48,7 @@
                             </TransformGroup>
                         </View:MapControl.RenderTransform>
                     </View:MapControl>
-                    <View:Wheel x:Name="wheel" Margin="502,21.4,-202.8,-107.8" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5" Grid.RowSpan="2" Grid.Row="1">
+                    <View:Wheel x:Name="wheel" Margin="506,21.8,-206.8,-108.4" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="5" Grid.RowSpan="2" Grid.Row="1">
                         <View:Wheel.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>

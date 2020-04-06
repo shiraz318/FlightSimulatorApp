@@ -31,6 +31,7 @@ namespace FlightSimulatorApp.View
             {
                 port = j;
             }
+
             //  And other validation checks if needed.
            if ((port == -1) || (ip == "") || (portText.Text == ""))
             {
