@@ -76,7 +76,7 @@ namespace FlightSimulatorApp.Model
 
         public void Connect(string ip, int port)
         {
-            new Thread(delegate ()
+            Thread connectThread = new Thread(delegate ()
             {
                 try
                 {
@@ -97,7 +97,9 @@ namespace FlightSimulatorApp.Model
                     string message = e.Message;
                     Error = "Connection faulted Error";
                 }
-            }).Start();
+            });
+            connectThread.IsBackground = true;
+            connectThread.Start();
         }
 
         public void Disconnect()
@@ -112,7 +114,7 @@ namespace FlightSimulatorApp.Model
 
         public void Start()
         {
-            new Thread(delegate () {
+            Thread setThread = new Thread(delegate () {
 
                 while (!stop)
                 {
@@ -128,7 +130,7 @@ namespace FlightSimulatorApp.Model
                             }
                             if (Error.Equals(""))
                             {
-                               if (!double.TryParse(Read(), out double i1))
+                                if (!double.TryParse(Read(), out double i1))
                                 {
                                     // Return value from Read() is error.
                                     SetError = "Can not update new values";
@@ -146,9 +148,11 @@ namespace FlightSimulatorApp.Model
                     }
                 }
 
-            }).Start();
+            });
+            setThread.IsBackground = true;
+            setThread.Start();
 
-            new Thread(delegate ()
+            Thread getThread = new Thread(delegate ()
             {
                 while (!stop)
                 {
@@ -168,7 +172,7 @@ namespace FlightSimulatorApp.Model
                             break;
                         }
                         mutex.ReleaseMutex();
-                        
+
                         if (double.TryParse(result[0], out double i1))
                         {
                             Gps_indicated_vertical_speed = i1.ToString();
@@ -279,7 +283,7 @@ namespace FlightSimulatorApp.Model
                                 Longtude = LONGTUDE_UP_BORDER.ToString();
                             }
                             if (i10 > LONGTUDE_DOWN_BORDER && i10 < LONGTUDE_UP_BORDER)
-                            { 
+                            {
                                 Longtude = i10.ToString();
                             }
                         }
@@ -299,7 +303,9 @@ namespace FlightSimulatorApp.Model
                     }
                 }
                 Thread.Sleep(100);
-            }).Start();
+            });
+            getThread.IsBackground = true;
+            getThread.Start();
         }
 
         private string Read()

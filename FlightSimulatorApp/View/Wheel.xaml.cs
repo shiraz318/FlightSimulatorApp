@@ -21,11 +21,17 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class Wheel : UserControl
     {
-        public Wheel()
-        {
-            
-            InitializeComponent();
+        WheelVM wheelViewModel;
 
+        public Wheel()
+        {   
+            InitializeComponent();
+        }
+
+        public void SetViewModel(WheelVM wheelVM)
+        {
+            wheelViewModel = wheelVM;
+            DataContext = wheelViewModel;
         }
     }
 }

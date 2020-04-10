@@ -25,9 +25,17 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class MapControl : UserControl
     {
+        MapVM mapViewModel;
+
          public MapControl()
         { 
             InitializeComponent();
+        }
+        
+        public void SetViewModel(MapVM mapVm)
+        {
+            mapViewModel = mapVm;
+            DataContext = mapViewModel;
         }
 
         private void UserControl_ContextMenuClosing(object sender, ContextMenuEventArgs e)

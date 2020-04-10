@@ -25,9 +25,11 @@ namespace FlightSimulatorApp
 
             // Initialize the Data Context.
             DataContext = mainVM;
-            wheel.DataContext = mainVM.WheelViewModel;
-            dashboard.DataContext = mainVM.DashboardViewModel;
-            map.DataContext = mainVM.MapViewModel;
+
+            // Initialize ViewModels.
+            wheel.SetViewModel(mainVM.WheelViewModel);
+            dashboard.SetViewModel(mainVM.DashboardViewModel);
+            map.SetViewModel(mainVM.MapViewModel);
 
             // Initialize connection.
             isConnected = false;
@@ -52,7 +54,6 @@ namespace FlightSimulatorApp
                                 if (mainVM.VM_Error.Equals(""))
                                 {
                                     errorLAbel.Content = "";
-
                                 }
                                 else
                                 {
