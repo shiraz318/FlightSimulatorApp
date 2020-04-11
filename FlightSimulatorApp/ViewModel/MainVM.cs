@@ -17,21 +17,18 @@ namespace FlightSimulatorApp.View
         private IFlightSimulatorModel model;
         // Properties.
         private WheelVM wheelViewModel;
-
         public WheelVM WheelViewModel
         {
             get { return wheelViewModel; }
             set { wheelViewModel = value; }
         }
         private DashboardVM dashboardViewModel;
-
         public DashboardVM DashboardViewModel
         {
             get { return dashboardViewModel; }
             set { dashboardViewModel = value; }
         }
         private MapVM mapViewModel;
-
         public MapVM MapViewModel
         {
             get { return mapViewModel; }

@@ -17,7 +17,6 @@ namespace FlightSimulatorApp.View
         public double VM_Elevator { set { model.SetSimulator("elevator", value); } }
         public double VM_Aileron { set { model.SetSimulator("aileron", value); } }
         public double VM_Throttle { set { model.SetSimulator("throttle", value); } }
-        public string VM_SetError { get { return model.SetError; } }
 
         public WheelVM(IFlightSimulatorModel m)
         {

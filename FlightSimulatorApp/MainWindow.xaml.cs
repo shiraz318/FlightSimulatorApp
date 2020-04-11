@@ -173,6 +173,5 @@ namespace FlightSimulatorApp
             Disconnect.IsEnabled = !value;
             Setting.IsEnabled = value;
         } 
-
     }
 }

@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace FlightSimulatorApp.View
 {
@@ -19,6 +20,7 @@ namespace FlightSimulatorApp.View
 		public const double RANGE = 40;
 		private bool mousePressed = false;
 		private double startX, startY, currentX, currentY, positionY = 0, positionX = 0;
+		private readonly Storyboard centerKnob;
 		// Properties.
 		public double PositionX { get { return positionX; } set { if (value > UP_BOARDER) { positionX = UP_BOARDER; } else if (value < DOWN_BOARDER) { positionX = DOWN_BOARDER; } else { positionX = value; } } }
 		public double PositionY { get { return positionY; } set { if (value < LEFT_BOARDER) { positionY = LEFT_BOARDER; } else if (value > RIGHT_BOARDER) { positionY = RIGHT_BOARDER; } else { positionY = value; } } }
@@ -44,6 +46,7 @@ namespace FlightSimulatorApp.View
 		public Joystick()
 		{
 			InitializeComponent();
+			centerKnob = Knob.Resources["CenterKnob"] as Storyboard;
 		}
 
 		private void CenterKnob_Completed(object sender, EventArgs e)
@@ -59,6 +62,7 @@ namespace FlightSimulatorApp.View
 				// Initilaze the begining point.
 				startX = e.GetPosition(this).X;
 				startY = e.GetPosition(this).Y;
+				centerKnob.Stop();
 			}
 		}
 
@@ -69,12 +73,11 @@ namespace FlightSimulatorApp.View
 			element.ReleaseMouseCapture();
 
 			// Reset the knob to the center (0,0).
-			knobPosition.X = 0;
-			knobPosition.Y = 0;
 			PositionY = 0;
 			PositionX = 0;
 			ValueX = 0;
 			ValueY = 0;
+			centerKnob.Begin();
 		}
 
 		private void Joystick_MouseMove(object sender, MouseEventArgs e)

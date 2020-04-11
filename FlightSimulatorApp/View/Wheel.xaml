@@ -30,8 +30,6 @@
             <Label x:Name="elevatorLable" Content="{Binding Path=ValueY, ElementName=joystick, Mode=OneWay}" HorizontalAlignment="Left" Margin="67,180,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.755,-7.352" Width="160" Height="29" Background="White" FontSize="16" Foreground="#FF0E3411"/>
             <Label x:Name="AileronLable" Content="{Binding ElementName=aileron, Path=Value}" HorizontalAlignment="Left" Margin="67,231,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.755,-7.352" Width="160" Height="29" Background="White" FontSize="16" Foreground="#FF0E3411"/>
             <Label x:Name="ThrottleLable" Content="{Binding ElementName=throttle, Path=Value}" HorizontalAlignment="Left" Margin="67,276,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.755,-7.352" Width="160" Height="29" Background="White" FontSize="16" Foreground="#FF0E3411"/>
-            <Label Content="{Binding VM_SetError, Mode=OneWay}" HorizontalAlignment="Left" Margin="280,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.529,0.524" Width="286" Height="37" Foreground="#FFCD3232" FontSize="20" FontFamily="Segoe Print" FontWeight="Bold"/>
-
 
         </Grid>
     </Viewbox>

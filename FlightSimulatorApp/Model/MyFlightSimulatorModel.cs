@@ -35,7 +35,6 @@ namespace FlightSimulatorApp.Model
         private string validation = "";
         private string error = "";
         private string timeOutError = "";
-        private string  setError = "";
         private string dashBoardError = "";
 
         private Queue<string> messages = new Queue<string> { };
@@ -48,7 +47,6 @@ namespace FlightSimulatorApp.Model
         // Properties.
         public string Error { get { return error; } set { error = value; NotifyPropertyChanged("Error"); if (!error.Equals("")) { Disconnect(); } } }
         public string TimeOutError { get { return timeOutError; } set { timeOutError = value; NotifyPropertyChanged("TimeOutError"); } }
-        public string SetError { get { return setError; } set { setError = value; NotifyPropertyChanged("SetError"); } }
         public string DashBoardError { get { return dashBoardError; } set { dashBoardError = value; NotifyPropertyChanged("DashBoardError"); } }
         public string Indicated_heading_deg { get { return indicated_heading_deg; } set { indicated_heading_deg = value; NotifyPropertyChanged("Indicated_heading_deg"); } }
         public string Gps_indicated_vertical_speed { get { return gps_indicated_vertical_speed; } set { gps_indicated_vertical_speed = value; NotifyPropertyChanged("Gps_indicated_vertical_speed"); } }
@@ -130,14 +128,7 @@ namespace FlightSimulatorApp.Model
                             }
                             if (Error.Equals(""))
                             {
-                                if (!double.TryParse(Read(), out double i1))
-                                {
-                                    // Return value from Read() is error.
-                                    SetError = "Can not update new values";
-                                } else
-                                {
-                                    SetError = "";
-                                }
+                                Read();
                             }
                             mutex.ReleaseMutex();
                         } catch (Exception e)
@@ -163,13 +154,15 @@ namespace FlightSimulatorApp.Model
                         Write(message);
                         if (!Error.Equals(""))
                         {
+                            mutex.ReleaseMutex();
                             break;
                         }
                         // Separate the read message by \n.
                         var result = Read().Split('\n');
                         if (!Error.Equals("") || result.Length < 10)
                         {
-                            break;
+                            mutex.ReleaseMutex();
+                            continue;
                         }
                         mutex.ReleaseMutex();
 
@@ -301,8 +294,8 @@ namespace FlightSimulatorApp.Model
                         string message = e.Message;
                         Error = "Connection faulted Error";
                     }
+                    Thread.Sleep(100);
                 }
-                Thread.Sleep(100);
             });
             getThread.IsBackground = true;
             getThread.Start();
@@ -389,7 +382,6 @@ namespace FlightSimulatorApp.Model
             // Errors.
             ValidCoordinate = "";
             DashBoardError = "";
-            SetError = "";
         }
     }
 }
