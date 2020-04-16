@@ -69,7 +69,7 @@
                         </Button.RenderTransform>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Connect"></TextBlock>
-                            <Image Width="25" Source="airplane2.jpg" ></Image>
+                            <Image Width="25" Source="View/images/airplane2.jpg" ></Image>
                         </StackPanel>
                     </Button>
                     <Button Name="Setting" HorizontalAlignment="Left" Margin="394,483.6,0,0" VerticalAlignment="Top" Width="78" Height="23" Click="Setting_Click" Background="#FFDDDDDD" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
@@ -83,7 +83,7 @@
                         </Button.RenderTransform>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" Text="Setting"></TextBlock>
-                            <Image  Width="25" Source="settingGray.jpg"></Image>
+                            <Image  Width="25" Source="View/images/settingGray.jpg"></Image>
                         </StackPanel>
                     </Button>
                     <Label Content="IP :" HorizontalAlignment="Left" Margin="-46,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-5.317,-0.466" Background="{x:Null}" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" FontWeight="Bold" FontSize="14" Height="26" Width="37">
@@ -139,14 +139,13 @@
                         </Button.RenderTransform>
                         <StackPanel Orientation="Horizontal" Width="92">
                             <TextBlock Margin="0.0,0.0" VerticalAlignment="Center" Text="Disconnect"/>
-                            <Image Width="32" Source="132792-200.png" Height="17"  />
+                            <Image Width="32" Source="View/images/132792-200.png" Height="17"  />
                         </StackPanel>
                     </Button>
 
                 </Grid>
             </Viewbox>
-
-            <Image x:Name="flyingAnimation" Width="60" Height="60" Margin="-7,458,979,7.6" Source="paper-plane.png" RenderTransformOrigin="0.5,0.5">
+            <Image x:Name="flyingAnimation" Width="60" Height="60" Margin="-7,458,979,7.6" Source="View/images/paper-plane.png" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -156,7 +155,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Width="60" Height="60" Margin="-7,458,979,7.6" Source="paper-plane.png" RenderTransformOrigin="0.5,0.5">
+            <Image Width="60" Height="60" Margin="-7,458,979,7.6" Source="View/images/paper-plane.png" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

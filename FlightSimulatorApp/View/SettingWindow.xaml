@@ -8,7 +8,7 @@
         Title="SettingWindow" Height="389.2" Width="616" >
     
     <Window.Background>
-        <ImageBrush ImageSource="etienne-jong-CYi31XLsxuY-unsplash.jpg" ></ImageBrush>
+        <ImageBrush ImageSource="images/etienne-jong-CYi31XLsxuY-unsplash.jpg" ></ImageBrush>
     </Window.Background>
     <ScrollViewer HorizontalScrollBarVisibility="Visible"  VerticalScrollBarVisibility="Visible">
         <Viewbox HorizontalAlignment="Center" Height="325" Margin="0,0,-0.4,0" VerticalAlignment="Center" Width="585">

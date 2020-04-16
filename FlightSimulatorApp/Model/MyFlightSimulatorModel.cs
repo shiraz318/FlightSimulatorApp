@@ -24,10 +24,10 @@ namespace FlightSimulatorApp.Model
         private string altimeter_indicated_altitude_ft;
 
         // Map members.
-        public const int LATITUDE_UP_BORDER = 90;
-        public const int LATITUDE_DOWN_BORDER = -90;
-        public const int LONGTUDE_DOWN_BORDER = -180;
-        public const int LONGTUDE_UP_BORDER = 180;
+        public const int LatitudeUpBorder = 90;
+        public const int LatitudeDownBorder = -90;
+        public const int LongitudeDownBorder = -180;
+        public const int LongitudeUpBorder = 180;
         private string latitude;
         private string longtude;
 
@@ -242,17 +242,17 @@ namespace FlightSimulatorApp.Model
                         if (double.TryParse(result[8], out double i9))
                         {
                             // Checks borders of value.
-                            if (i9 < LATITUDE_DOWN_BORDER)
+                            if (i9 < LatitudeDownBorder)
                             {
                                 ValidCoordinate = "Invalid Coordinate";
-                                Latitude = LATITUDE_DOWN_BORDER.ToString();
+                                Latitude = LatitudeDownBorder.ToString();
                             }
-                            if (i9 > LATITUDE_UP_BORDER)
+                            if (i9 > LatitudeUpBorder)
                             {
                                 ValidCoordinate = "Invalid Coordinate";
-                                Latitude = LATITUDE_UP_BORDER.ToString();
+                                Latitude = LatitudeUpBorder.ToString();
                             }
-                            if (i9 > LATITUDE_DOWN_BORDER && i9 < LATITUDE_UP_BORDER)
+                            if (i9 > LatitudeDownBorder && i9 < LatitudeUpBorder)
                             {
                                 ValidCoordinate = "";
                                 Latitude = i9.ToString();
@@ -265,17 +265,17 @@ namespace FlightSimulatorApp.Model
                         if (double.TryParse(result[9], out double i10))
                         {
                             // Checks borders of value.
-                            if (i10 < LONGTUDE_DOWN_BORDER)
+                            if (i10 < LongitudeDownBorder)
                             {
                                 ValidCoordinate = "Invalid Coordinate";
-                                Longtude = LONGTUDE_DOWN_BORDER.ToString();
+                                Longtude = LongitudeDownBorder.ToString();
                             }
-                            if (i10 > LONGTUDE_UP_BORDER)
+                            if (i10 > LongitudeUpBorder)
                             {
                                 ValidCoordinate = "Invalid Coordinate";
-                                Longtude = LONGTUDE_UP_BORDER.ToString();
+                                Longtude = LongitudeUpBorder.ToString();
                             }
-                            if (i10 > LONGTUDE_DOWN_BORDER && i10 < LONGTUDE_UP_BORDER)
+                            if (i10 > LongitudeDownBorder && i10 < LongitudeUpBorder)
                             {
                                 Longtude = i10.ToString();
                             }

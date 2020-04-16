@@ -13,17 +13,17 @@ namespace FlightSimulatorApp.View
 	/// </summary>
 	public partial class Joystick : UserControl
 	{
-		public const double UP_BOARDER = 40;
-		public const double DOWN_BOARDER = -40;
-		public const double LEFT_BOARDER = -40;
-		public const double RIGHT_BOARDER = 40;
-		public const double RANGE = 40;
+		public const double UpBorder = 40;
+		public const double DownBorder = -40;
+		public const double LeftBorder = -40;
+		public const double RightBorder = 40;
+		public const double Range = 40;
 		private bool mousePressed = false;
 		private double startX, startY, currentX, currentY, positionY = 0, positionX = 0;
 		private readonly Storyboard centerKnob;
 		// Properties.
-		public double PositionX { get { return positionX; } set { if (value > UP_BOARDER) { positionX = UP_BOARDER; } else if (value < DOWN_BOARDER) { positionX = DOWN_BOARDER; } else { positionX = value; } } }
-		public double PositionY { get { return positionY; } set { if (value < LEFT_BOARDER) { positionY = LEFT_BOARDER; } else if (value > RIGHT_BOARDER) { positionY = RIGHT_BOARDER; } else { positionY = value; } } }
+		public double PositionX { get { return positionX; } set { if (value > UpBorder) { positionX = UpBorder; } else if (value < DownBorder) { positionX = DownBorder; } else { positionX = value; } } }
+		public double PositionY { get { return positionY; } set { if (value < LeftBorder) { positionY = LeftBorder; } else if (value > RightBorder) { positionY = RightBorder; } else { positionY = value; } } }
 	    public double ValueX
 		{
 			get { return (double)GetValue(ValueXProperty); }
@@ -90,8 +90,8 @@ namespace FlightSimulatorApp.View
 				PositionX = currentX - startX;
 				PositionY = currentY - startY;
 				// The point limited between -1 to 1.
-				ValueX = PositionX / RANGE;
-				ValueY= -PositionY / RANGE;
+				ValueX = PositionX / Range;
+				ValueY= -PositionY / Range;
 				// Update the knob.
 				knobPosition.X = PositionX;
 				knobPosition.Y = PositionY;
