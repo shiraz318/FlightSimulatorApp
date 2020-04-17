@@ -60,6 +60,7 @@ namespace FlightSimulatorApp
                                     errorLAbel.Content = "Connection faulted Error";
                                     SetIsEnabled(true);
                                     isConnected = false;
+                                    wheel.ResetSliders();
                                 }
                             });
                         } catch(Exception e3)
@@ -162,6 +163,7 @@ namespace FlightSimulatorApp
             SetIsEnabled(true);
             isDisConnected = true;
             errorLAbel.Content = "";
+            wheel.ResetSliders();
 
             // Disconnect.
             mainVM.Disconnect();

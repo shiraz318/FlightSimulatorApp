@@ -33,5 +33,11 @@ namespace FlightSimulatorApp.View
             wheelViewModel = wheelVM;
             DataContext = wheelViewModel;
         }
+
+        public void ResetSliders()
+        {
+            throttle.Value = 0;
+            aileron.Value = 0;
+        }
     }
 }

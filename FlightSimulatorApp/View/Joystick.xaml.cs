@@ -13,17 +13,14 @@ namespace FlightSimulatorApp.View
 	/// </summary>
 	public partial class Joystick : UserControl
 	{
-		public const double UpBorder = 40;
-		public const double DownBorder = -40;
-		public const double LeftBorder = -40;
-		public const double RightBorder = 40;
-		public const double Range = 40;
+		public const double Range = 80;
+		private double radius = Range / 2;
 		private bool mousePressed = false;
 		private double startX, startY, currentX, currentY, positionY = 0, positionX = 0;
 		private readonly Storyboard centerKnob;
 		// Properties.
-		public double PositionX { get { return positionX; } set { if (value > UpBorder) { positionX = UpBorder; } else if (value < DownBorder) { positionX = DownBorder; } else { positionX = value; } } }
-		public double PositionY { get { return positionY; } set { if (value < LeftBorder) { positionY = LeftBorder; } else if (value > RightBorder) { positionY = RightBorder; } else { positionY = value; } } }
+		public double PositionX { get { return positionX; } set { positionX = value; } }
+		public double PositionY { get { return positionY; } set { positionY = value; } }
 	    public double ValueX
 		{
 			get { return (double)GetValue(ValueXProperty); }
@@ -87,15 +84,67 @@ namespace FlightSimulatorApp.View
 				// The place now.
 				currentX = e.GetPosition(this).X;
 				currentY = e.GetPosition(this).Y;
-				PositionX = currentX - startX;
-				PositionY = currentY - startY;
-				// The point limited between -1 to 1.
-				ValueX = PositionX / Range;
-				ValueY= -PositionY / Range;
+				double x = currentX - startX;
+				double y = currentY - startY;
+				Point p = UpdatePosition(x, y);
+				PositionX = p.X;
+				PositionY = p.Y;
+				ValueX = PositionX / radius ;
+				ValueY= -PositionY / radius;
 				// Update the knob.
 				knobPosition.X = PositionX;
 				knobPosition.Y = PositionY;
 			}
+		}
+
+		private Point UpdatePosition(double x, double y)
+		{
+			double pow = Math.Pow(x, 2) + Math.Pow(y, 2);
+			double basePow = Math.Pow(radius, 2);
+			if (pow <= basePow)
+			{
+				// Valid.
+				return new Point(x, y);
+			}
+			else
+			{
+				// Outside of the circle.
+				return ClosestIntersection(new Point(-x, -y));
+			}
+		}
+		
+		public Point ClosestIntersection(Point currentPoint)
+		{
+			Point inter1;
+			Point inter2;
+			// Calculate the intersection points.
+			CalculateIntersections(currentPoint, out inter1, out inter2);
+			double dist1 = Math.Sqrt((inter1.X * inter1.X) + (inter1.Y * inter1.Y));
+			double dist2 = Math.Sqrt((inter2.X * inter2.X) + (inter2.Y * inter2.Y));
+			// Returns the closest point.
+			if (dist1 < dist2)
+			{
+				return inter1;
+			}
+			else
+			{
+				return inter2;
+			}
+		}
+		
+		private void CalculateIntersections(Point currentPoint, out Point inter1, out Point inter2)
+		{
+			double dx, dy, A, C, delta, t;
+			dx = currentPoint.X;
+			dy = currentPoint.Y;
+			// Calculate A,C for line equation.
+			A = dx * dx + dy * dy;
+			C = -radius * radius;
+			delta = -4 * A * C;
+			t = ((Math.Sqrt(delta)) / (2 * A));
+			// Two options.
+			inter1 = new Point(t * dx, t * dy);
+			inter2 = new Point(-t * dx, -t * dy);
 		}
 	}
 }
