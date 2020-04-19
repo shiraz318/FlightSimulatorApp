@@ -37,15 +37,15 @@ namespace FlightSimulatorApp.View
 
         public string Ip { get { return ip; } set { ip = value; } }
         public int Port { get { return port; } set { port = value; } }
-        public string VM_TimeOutError { get { return model.TimeOutError; } }
-        public string VM_Error { get { return model.Error; } }
+        public string VMTimeOutError { get { return model.TimeOutError; } }
+        public string VMError { get { return model.Error; } }
 
         public MainVM(IFlightSimulatorModel m)
         {
             model = m;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                NotifyPropertyChanged("VM_" + e.PropertyName);
+                NotifyPropertyChanged("VM" + e.PropertyName);
             };
             // Initialize other view models
             WheelViewModel = new WheelVM(model);

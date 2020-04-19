@@ -13,17 +13,17 @@ namespace FlightSimulatorApp.View
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
         // Properties.
-        public double VM_Rudder { set { model.SetSimulator("rudder", value); } }
-        public double VM_Elevator { set { model.SetSimulator("elevator", value); } }
-        public double VM_Aileron { set { model.SetSimulator("aileron", value); } }
-        public double VM_Throttle { set { model.SetSimulator("throttle", value); } }
+        public double VMRudder { set { model.SetSimulator("rudder", value); } }
+        public double VMElevator { set { model.SetSimulator("elevator", value); } }
+        public double VMAileron { set { model.SetSimulator("aileron", value); } }
+        public double VMThrottle { set { model.SetSimulator("throttle", value); } }
 
         public WheelVM(IFlightSimulatorModel m)
         {
             model = m;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                NotifyPropertyChanged("VM_" + e.PropertyName);
+                NotifyPropertyChanged("VM" + e.PropertyName);
             };
         }
 

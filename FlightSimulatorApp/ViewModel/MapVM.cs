@@ -16,17 +16,17 @@ namespace FlightSimulatorApp.View
         public event PropertyChangedEventHandler PropertyChanged;
         private IFlightSimulatorModel model;
         // Properties.
-        public string VM_Latitude { get { return model.Latitude; } }
-        public string VM_Longtude { get { return model.Longtude; } }
-        public Location VM_Location { get { return new Location(double.Parse(model.Latitude), double.Parse(model.Longtude)); } }
-        public string VM_ValidCoordinate { get { return model.ValidCoordinate; } }
+        public string VMLatitude { get { return model.Latitude; } }
+        public string VMLongtude { get { return model.Longtude; } }
+        public Location VMLocation { get { return new Location(double.Parse(model.Latitude), double.Parse(model.Longtude)); } }
+        public string VMValidCoordinate { get { return model.ValidCoordinate; } }
 
         public MapVM(IFlightSimulatorModel m)
         {
             model = m;
             model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                NotifyPropertyChanged("VM_" + e.PropertyName);
+                NotifyPropertyChanged("VM" + e.PropertyName);
             };
         }
 

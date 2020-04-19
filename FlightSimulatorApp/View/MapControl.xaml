@@ -14,7 +14,7 @@
                 <ColumnDefinition Width="114*"/>
             </Grid.ColumnDefinitions>
             <m:Map CredentialsProvider="btkCtE604q5s8DFGKzH5~fNmBQFQbqEDL1GCszg8kJA~AovMeW3MTuA2-2RqtUxt42BNwcwFMGPHif4_AO_fk-jmeTqwEbRo9R9BxATfC7pN" Center="0,-122.407007" Margin="56,49,-0.4,-104" Grid.ColumnSpan="2" Width="586" HorizontalAlignment="Center" ZoomLevel="0.0">
-                <m:Pushpin Name="pushPin" OpacityMask="Black" Background="#FF77BAD3" Location="{Binding VM_Location, Mode=OneWay}">
+                <m:Pushpin Name="pushPin" OpacityMask="Black" Background="#FF77BAD3" Location="{Binding VMLocation, Mode=OneWay}">
                     <Image Source="images/airplane-emoji.png"></Image>
                 </m:Pushpin>
             </m:Map>
@@ -22,7 +22,7 @@
             <Label x:Name="latitudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Latitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="506.2,30,-57.4,0" VerticalAlignment="Top" Width="173" Foreground="#FFA6B7F3" Height="26" FontFamily="Hadassah Friedlaender" Grid.Column="1"/>
             <Label Content="Longitude :" HorizontalAlignment="Left" Margin="286.4,30,0,0" VerticalAlignment="Top" Width="80" Foreground="#FFA6B7F3" FontFamily="Hadassah Friedlaender" Height="26" Grid.Column="1"/>
             <Label x:Name="longtudeLabel" Content="{Binding ElementName=pushPin, Path=Location.Longitude, Mode=OneWay}" HorizontalAlignment="Left" Margin="348.4,30,0,0" VerticalAlignment="Top" Width="181" Foreground="#FFA6B7F3" Height="26" FontFamily="Hadassah Friedlaender" Grid.Column="1"/>
-            <Label x:Name="ValidationLabel" Content="{Binding VM_ValidCoordinate, Mode=OneWay}" HorizontalAlignment="Left" Margin="348.4,4,0,0" VerticalAlignment="Top" Width="235" Foreground="#FFCD3232" Height="40" FontFamily="Segoe Print" Grid.Column="1" FontWeight="Bold"/>
+            <Label x:Name="ValidationLabel" Content="{Binding VMValidCoordinate, Mode=OneWay}" HorizontalAlignment="Left" Margin="348.4,4,0,0" VerticalAlignment="Top" Width="235" Foreground="#FFCD3232" Height="40" FontFamily="Segoe Print" Grid.Column="1" FontWeight="Bold"/>
         </Grid>
     </Viewbox>
 </UserControl>

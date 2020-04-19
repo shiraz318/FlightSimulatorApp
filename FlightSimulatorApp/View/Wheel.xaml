@@ -8,9 +8,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Viewbox HorizontalAlignment="Center" Height="440" Margin="-6,10,0,-0.4" VerticalAlignment="Center" Width="806">
         <Grid>
-            <local:Joystick x:Name="joystick" ValueX="{Binding VM_Rudder, Mode=OneWayToSource}" ValueY="{Binding VM_Elevator, Mode=OneWayToSource}" Margin="60,8,-60,-8.4"></local:Joystick>
-            <Slider x:Name="throttle" HorizontalAlignment="Left" Margin="319,427,0,-2.4" VerticalAlignment="Top" Width="195" Height="25" Minimum="0" Maximum="1" Value="{Binding VM_Throttle, Mode=OneWayToSource}"/>
-            <Slider x:Name="aileron" HorizontalAlignment="Left" Margin="517,232,0,0" VerticalAlignment="Top" Width="195" Minimum="-1" Maximum="1" Value="{Binding VM_Aileron, Mode=OneWayToSource}" Height="25" RenderTransformOrigin="0.5,0.5">
+            <local:Joystick x:Name="joystick" ValueX="{Binding VMRudder, Mode=OneWayToSource}" ValueY="{Binding VMElevator, Mode=OneWayToSource}" Margin="60,8,-60,-8.4"></local:Joystick>
+            <Slider x:Name="throttle" HorizontalAlignment="Left" Margin="319,427,0,-2.4" VerticalAlignment="Top" Width="195" Height="25" Minimum="0" Maximum="1" Value="{Binding VMThrottle, Mode=OneWayToSource}"/>
+            <Slider x:Name="aileron" HorizontalAlignment="Left" Margin="517,232,0,0" VerticalAlignment="Top" Width="195" Minimum="-1" Maximum="1" Value="{Binding VMAileron, Mode=OneWayToSource}" Height="25" RenderTransformOrigin="0.5,0.5">
                 <Slider.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

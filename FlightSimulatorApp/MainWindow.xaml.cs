@@ -38,11 +38,11 @@ namespace FlightSimulatorApp
 
             // Initialize the ip and port.
             ipLabel.Content = mainVM.Ip;
-            PortLabel.Content = mainVM.Port;
+            portLabel.Content = mainVM.Port;
 
             mainVM.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                if (e.PropertyName.Equals("VM_Error"))
+                if (e.PropertyName.Equals("VMError"))
                 {
                     // If the user pressed disconnect button this is not an error.
                     if (!isDisConnected)
@@ -51,7 +51,7 @@ namespace FlightSimulatorApp
                         {
                             Application.Current.Dispatcher.Invoke((Action)delegate
                             {
-                                if (mainVM.VM_Error.Equals(""))
+                                if (mainVM.VMError.Equals(""))
                                 {
                                     errorLAbel.Content = "";
                                 }
@@ -70,13 +70,13 @@ namespace FlightSimulatorApp
                     }
                     
                 }
-                else if (e.PropertyName.Equals("VM_TimeOutError"))
+                else if (e.PropertyName.Equals("VMTimeOutError"))
                 {
                     try
                     {
                         Application.Current.Dispatcher.Invoke((Action)delegate {
 
-                            if (mainVM.VM_TimeOutError.Equals("") && mainVM.VM_Error.Equals(""))
+                            if (mainVM.VMTimeOutError.Equals("") && mainVM.VMError.Equals(""))
                             {
                                 errorLAbel.Content = "";
                             }
@@ -152,7 +152,7 @@ namespace FlightSimulatorApp
                 mainVM.Ip = setting.ipText.Text;
                 mainVM.Port = int.Parse(setting.portText.Text);
                 ipLabel.Content = mainVM.Ip;
-                PortLabel.Content = mainVM.Port;
+                portLabel.Content = mainVM.Port;
                 setting.IsOk = false;
             }
         }

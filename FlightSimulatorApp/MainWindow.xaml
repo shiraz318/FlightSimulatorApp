@@ -117,7 +117,7 @@
                             </TransformGroup>
                         </Label.RenderTransform>
                     </Label>
-                    <Label x:Name="PortLabel" Height="26" Margin="37,29,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontSize="14" FontFamily="Hadassah Friedlaender" FontWeight="Bold" Foreground="#FFA6B7F3" Grid.RowSpan="2">
+                    <Label x:Name="portLabel" Height="26" Margin="37,29,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="101" Background="{x:Null}" FontSize="14" FontFamily="Hadassah Friedlaender" FontWeight="Bold" Foreground="#FFA6B7F3" Grid.RowSpan="2">
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>

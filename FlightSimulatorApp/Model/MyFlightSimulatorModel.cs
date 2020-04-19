@@ -14,14 +14,14 @@ namespace FlightSimulatorApp.Model
     public class MyFlightSimulatorModel : IFlightSimulatorModel
     {
         // Dashboard members.
-        private string indicated_heading_deg;
-        private string gps_indicated_vertical_speed;
-        private string gps_indicated_ground_speed_kt;
-        private string airspeed_indicator_indicated_speed_kt;
-        private string gps_indicated_altitude_ft;
-        private string attitude_indicator_internal_roll_deg;
-        private string attitude_indicator_internal_pitch_deg;
-        private string altimeter_indicated_altitude_ft;
+        private string heading;
+        private string verticalSpeed;
+        private string groundSpeed;
+        private string airspeed;
+        private string gpsAltitude;
+        private string roll;
+        private string pitch;
+        private string altimeterAltitude;
 
         // Map members.
         public const int LatitudeUpBorder = 90;
@@ -48,14 +48,14 @@ namespace FlightSimulatorApp.Model
         public string Error { get { return error; } set { error = value; NotifyPropertyChanged("Error"); if (!error.Equals("")) { Disconnect(); } } }
         public string TimeOutError { get { return timeOutError; } set { timeOutError = value; NotifyPropertyChanged("TimeOutError"); } }
         public string DashBoardError { get { return dashBoardError; } set { dashBoardError = value; NotifyPropertyChanged("DashBoardError"); } }
-        public string Indicated_heading_deg { get { return indicated_heading_deg; } set { indicated_heading_deg = value; NotifyPropertyChanged("Indicated_heading_deg"); } }
-        public string Gps_indicated_vertical_speed { get { return gps_indicated_vertical_speed; } set { gps_indicated_vertical_speed = value; NotifyPropertyChanged("Gps_indicated_vertical_speed"); } }
-        public string Gps_indicated_ground_speed_kt { get { return gps_indicated_ground_speed_kt; } set { gps_indicated_ground_speed_kt = value; NotifyPropertyChanged("Gps_indicated_ground_speed_kt"); } }
-        public string Airspeed_indicator_indicated_speed_kt { get { return airspeed_indicator_indicated_speed_kt; } set { airspeed_indicator_indicated_speed_kt = value; NotifyPropertyChanged("Airspeed_indicator_indicated_speed_kt"); } }
-        public string Gps_indicated_altitude_ft { get { return gps_indicated_altitude_ft; } set { gps_indicated_altitude_ft = value; NotifyPropertyChanged("Gps_indicated_altitude_ft"); } }
-        public string Attitude_indicator_internal_roll_deg { get { return attitude_indicator_internal_roll_deg; } set { attitude_indicator_internal_roll_deg = value; NotifyPropertyChanged("Attitude_indicator_internal_roll_deg"); } }
-        public string Attitude_indicator_internal_pitch_deg { get { return attitude_indicator_internal_pitch_deg; } set { attitude_indicator_internal_pitch_deg = value; NotifyPropertyChanged("Attitude_indicator_internal_pitch_deg"); } }
-        public string Altimeter_indicated_altitude_ft { get { return altimeter_indicated_altitude_ft; } set { altimeter_indicated_altitude_ft = value; NotifyPropertyChanged("Altimeter_indicated_altitude_ft"); } }
+        public string Heading { get { return heading; } set { heading = value; NotifyPropertyChanged("Heading"); } }
+        public string VerticalSpeed { get { return verticalSpeed; } set { verticalSpeed = value; NotifyPropertyChanged("VerticalSpeed"); } }
+        public string GroundSpeed { get { return groundSpeed; } set { groundSpeed = value; NotifyPropertyChanged("GroundSpeed"); } }
+        public string Airspeed { get { return airspeed; } set { airspeed = value; NotifyPropertyChanged("Airspeed"); } }
+        public string GpsAltitude { get { return gpsAltitude; } set { gpsAltitude = value; NotifyPropertyChanged("GpsAltitude"); } }
+        public string Roll { get { return roll; } set { roll = value; NotifyPropertyChanged("Roll"); } }
+        public string Pitch { get { return pitch; } set { pitch = value; NotifyPropertyChanged("Pitch"); } }
+        public string AltimeterAltitude { get { return altimeterAltitude; } set { altimeterAltitude = value; NotifyPropertyChanged("AltimeterAltitude"); } }
         public string Longtude { get { return longtude; } set { longtude = value; NotifyPropertyChanged("Longtude"); } }
         public string Latitude { get { return latitude; } set { latitude = value; NotifyPropertyChanged("Latitude"); } }
         public string ValidCoordinate { get { return validation; } set { validation = value; NotifyPropertyChanged("ValidCoordinate");} }
@@ -168,75 +168,75 @@ namespace FlightSimulatorApp.Model
 
                         if (double.TryParse(result[0], out double i1))
                         {
-                            Gps_indicated_vertical_speed = i1.ToString();
+                            VerticalSpeed = i1.ToString();
                             DashBoardError = "";
                         }
                         else
                         {
-                            Gps_indicated_vertical_speed = "Error";
+                            VerticalSpeed = "Error";
                             DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[1], out double i2))
                         {
-                            Airspeed_indicator_indicated_speed_kt = i2.ToString();
+                            Airspeed = i2.ToString();
                         }
                         else
                         {
-                            Airspeed_indicator_indicated_speed_kt = "Error";
+                            Airspeed = "Error";
                             DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[2], out double i3))
                         {
-                            Altimeter_indicated_altitude_ft = i3.ToString();
+                            AltimeterAltitude = i3.ToString();
                         }
                         else
                         {
-                            Altimeter_indicated_altitude_ft = "Error";
+                            AltimeterAltitude = "Error";
                             DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[3], out double i4))
                         {
-                            Attitude_indicator_internal_pitch_deg = i4.ToString();
+                            Pitch = i4.ToString();
                         }
                         else
                         {
-                            Attitude_indicator_internal_pitch_deg = "Error";
+                            Pitch = "Error";
                             DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[4], out double i5))
                         {
-                            Attitude_indicator_internal_roll_deg = i5.ToString();
+                            Roll = i5.ToString();
                         }
                         else
                         {
-                            Attitude_indicator_internal_roll_deg = "Error";
+                            Roll = "Error";
                             DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[5], out double i6))
                         {
-                            Indicated_heading_deg = i6.ToString();
+                            Heading = i6.ToString();
                         }
                         else
                         {
-                            Indicated_heading_deg = "Error";
+                            Heading = "Error";
                             DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[6], out double i7))
                         {
-                            Gps_indicated_altitude_ft = i7.ToString();
+                            GpsAltitude = i7.ToString();
                         }
                         else
                         {
-                            Gps_indicated_altitude_ft = "Error";
+                            GpsAltitude = "Error";
                             DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[7], out double i8))
                         {
-                            Gps_indicated_ground_speed_kt = i8.ToString();
+                            GroundSpeed = i8.ToString();
                         }
                         else
                         {
-                            Gps_indicated_ground_speed_kt = "Error";
+                            GroundSpeed = "Error";
                             DashBoardError = "Error in the DashBoard";
                         }
                         if (double.TryParse(result[8], out double i9))
@@ -365,14 +365,14 @@ namespace FlightSimulatorApp.Model
         public void Reset()
         {
             // Dashboard.
-            Indicated_heading_deg = "0";
-            Gps_indicated_vertical_speed = "0";
-            Gps_indicated_ground_speed_kt = "0";
-            Airspeed_indicator_indicated_speed_kt = "0";
-            Gps_indicated_altitude_ft = "0";
-            Attitude_indicator_internal_roll_deg = "0";
-            Attitude_indicator_internal_pitch_deg = "0";
-            Altimeter_indicated_altitude_ft = "0";
+            Heading = "0";
+            VerticalSpeed = "0";
+            GroundSpeed = "0";
+            Airspeed = "0";
+            GpsAltitude = "0";
+            Roll = "0";
+            Pitch = "0";
+            AltimeterAltitude = "0";
 
             // Map.
             Latitude = "0";

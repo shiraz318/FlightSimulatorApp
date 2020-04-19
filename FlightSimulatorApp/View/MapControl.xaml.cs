@@ -32,9 +32,9 @@ namespace FlightSimulatorApp.View
             InitializeComponent();
         }
         
-        public void SetViewModel(MapVM mapVm)
+        public void SetViewModel(MapVM mapVM)
         {
-            mapViewModel = mapVm;
+            mapViewModel = mapVM;
             DataContext = mapViewModel;
         }
 
