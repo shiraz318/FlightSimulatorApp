@@ -1,0 +1,12 @@
+209323237, Nili Cohen
+318715083, Shiraz Berger
+
+Implementation:
+We used the architecture of MVVM using view model for each component of the view, and one general view model that contains those three view models.
+In addition, we reset the model and the main view model in the App level in order to seperate between the model and the view.
+
+Additional Features:
+1. In the main window we added a sweet little animmation of a paper airplane that flies accross the screen when the connect button is pressed.
+2. In the main window we added a disconnect button that the user can press if he wishes to disconnect from the server.
+3. In the settings window we added expanders next to the IP and port boxes. When the expenders are clicked, they display an explenation of the terms IP or port.
+4. Our app supports resizing of the screen. This enables the user to decrease the screen size while still being able to see all its contents by using scroll bars, and enlarge the screen while maintaining the screen's content's size.
