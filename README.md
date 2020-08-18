@@ -25,7 +25,7 @@ To really connect to the new ip and port click the "connect" button.
 
 
 #### Versioning  
-We used [Github](https://github.com/shiraz318/FlightControlWeb) for version control
+We used [Github](https://github.com/shiraz318/FlightSimulatorApp) for version control
 
 #### Authors
 Nili Cohen and Shiraz Berger.
