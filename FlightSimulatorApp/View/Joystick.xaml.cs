@@ -50,6 +50,7 @@ namespace FlightSimulatorApp.View
 		{
 		}
 
+		// Define the action when the mouse is down.
 		private void Joystick_MouseDown(object sender, MouseButtonEventArgs e)
 		{
 			if (!mousePressed)
@@ -63,6 +64,7 @@ namespace FlightSimulatorApp.View
 			}
 		}
 
+		// Define the action when the mouse is up.
 		private void Joystick_MouseUp(object sender, MouseButtonEventArgs e)
 		{
 			mousePressed = false;
@@ -77,6 +79,7 @@ namespace FlightSimulatorApp.View
 			centerKnob.Begin();
 		}
 
+		// Define the action when the mouse moves.
 		private void Joystick_MouseMove(object sender, MouseEventArgs e)
 		{
 			if (mousePressed)
@@ -97,6 +100,7 @@ namespace FlightSimulatorApp.View
 			}
 		}
 
+		// Update the position of the joystick center.
 		private Point UpdatePosition(double x, double y)
 		{
 			double pow = Math.Pow(x, 2) + Math.Pow(y, 2);
@@ -108,11 +112,12 @@ namespace FlightSimulatorApp.View
 			}
 			else
 			{
-				// Outside of the circle.
+				// Outside the circle.
 				return ClosestIntersection(new Point(-x, -y));
 			}
 		}
 		
+		// Find the closest intersection point.
 		public Point ClosestIntersection(Point currentPoint)
 		{
 			Point inter1;
@@ -122,16 +127,10 @@ namespace FlightSimulatorApp.View
 			double dist1 = Math.Sqrt((inter1.X * inter1.X) + (inter1.Y * inter1.Y));
 			double dist2 = Math.Sqrt((inter2.X * inter2.X) + (inter2.Y * inter2.Y));
 			// Returns the closest point.
-			if (dist1 < dist2)
-			{
-				return inter1;
-			}
-			else
-			{
-				return inter2;
-			}
+			return (dist1 < dist2) ? inter1 : inter2;
 		}
 		
+		// Calculate the intersection points.
 		private void CalculateIntersections(Point currentPoint, out Point inter1, out Point inter2)
 		{
 			double dx, dy, A, C, delta, t;

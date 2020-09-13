@@ -28,6 +28,7 @@ namespace FlightSimulatorApp.View
             InitializeComponent();
         }
 
+        // Set the view model and data context.
         public void SetViewModel(DashboardVM dashboardVM)
         {
             dashboardViewModel = dashboardVM;

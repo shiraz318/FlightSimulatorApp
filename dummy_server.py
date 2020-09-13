@@ -24,7 +24,7 @@ VERTICAL_SPEED = '/instrumentation/gps/indicated-vertical-speed'
 #Longitue 34.8854, 34.8854
 # PITCH: (3, 5),
 EXAMPLE_FIELDS = {THROTTLE: (0, 1), AILERON: (-1, 1), ELEVATOR: (-1, 1), RUDDER: (-1, 1),
-                  LATITUDE: (-90.2, -90.2), LONGITUDE: (-180.2, -180.2), AIR_SPEED: (0, 2), ALTITUDE: (1, 3),
+                  LATITUDE: (35, 80), LONGITUDE: (-120, 120), AIR_SPEED: (0, 2), ALTITUDE: (1, 3),
                   ROLL: (2, 4), PITCH: (3, 3), ALTIMETER: (4, 6), HEADING: (5, 7),
                   GROUND_SPEED: (6, 8), VERTICAL_SPEED: (7, 9)}
 

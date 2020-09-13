@@ -17,12 +17,14 @@ namespace FlightSimulatorApp.View
             InitializeComponent();
         }
 
+        // Define the action when the cancel button is pressed.
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             IsOk = false;
             this.Close();
         }
 
+        // Define the action when the ok button is pressed.
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             string ip = ipText.Text;

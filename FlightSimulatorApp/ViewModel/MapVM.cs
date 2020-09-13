@@ -30,6 +30,7 @@ namespace FlightSimulatorApp.View
             };
         }
 
+        // Notify propery changed.
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)

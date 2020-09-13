@@ -56,6 +56,7 @@ namespace FlightSimulatorApp.View
             Port = int.Parse(ConfigurationManager.AppSettings.Get("port"));
         }
 
+        // Notify property changed.
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
@@ -64,11 +65,13 @@ namespace FlightSimulatorApp.View
             }
         }
 
+        // Connect to the flight simulator.
         public void Connect()
         {
             model.Connect(Ip, Port);
         }
 
+        // Disconnect from the flight simulator.
         public void Disconnect()
         {
             model.Disconnect();

@@ -37,9 +37,9 @@ namespace FlightSimulatorApp.Model
         private string timeOutError = "";
         private string dashBoardError = "";
 
-        private Queue<string> messages = new Queue<string> { };
-        private Dictionary<string, string> pathMap = new Dictionary<string, string> { };
-        private Mutex mutex = new Mutex();
+        private Queue<string> messages;
+        private Dictionary<string, string> pathMap;
+        private Mutex mutex;
         private TcpClient tcpClient;
         private NetworkStream strm;
         volatile bool stop;
@@ -64,7 +64,12 @@ namespace FlightSimulatorApp.Model
 
         public MyFlightSimulatorModel()
         {
+            
+            this.messages = new Queue<string> { };
+            this.pathMap = new Dictionary<string, string> { };
+            this.mutex = new Mutex();
             this.stop = false;
+
             pathMap.Add("aileron", "/controls/flight/aileron");
             pathMap.Add("throttle", "/controls/engines/current-engine/throttle");
             pathMap.Add("rudder", "/controls/flight/rudder");
@@ -72,6 +77,7 @@ namespace FlightSimulatorApp.Model
             Reset();
         }
 
+        // Connect to the flight simulator.
         public void Connect(string ip, int port)
         {
             Thread connectThread = new Thread(delegate ()
@@ -100,6 +106,7 @@ namespace FlightSimulatorApp.Model
             connectThread.Start();
         }
 
+        // Disconnect from the flight simulator.
         public void Disconnect()
         {
             tcpClient.Close();
@@ -110,8 +117,9 @@ namespace FlightSimulatorApp.Model
             Reset();
         }
 
-        public void Start()
-        {
+        // Define the set thread actions.
+        private void startSetThread() {
+            
             Thread setThread = new Thread(delegate () {
 
                 while (!stop)
@@ -122,18 +130,12 @@ namespace FlightSimulatorApp.Model
                         try
                         {
                             mutex.WaitOne();
-                            if (Error.Equals(""))
-                            {
-                                Write(messages.Dequeue());
-                            }
-                            if (Error.Equals(""))
-                            {
-                                Read();
-                            }
+                            if (Error.Equals("")) Write(messages.Dequeue());
+                            if (Error.Equals("")) Read();
                             mutex.ReleaseMutex();
-                        } catch (Exception e)
+
+                        } catch
                         {
-                            string message = e.Message;
                             Error = "Connection faulted Error";
                         }
                     }
@@ -142,14 +144,21 @@ namespace FlightSimulatorApp.Model
             });
             setThread.IsBackground = true;
             setThread.Start();
+        }
+
+        // Define the get thread actions.
+        private void startGetThread() {
 
             Thread getThread = new Thread(delegate ()
             {
+                Properties[] dashboardProperties = 
+                {VerticalSpeed, Airspeed, AltimeterAltitude, Pitch, Roll, Heading, GpsAltitude, GroundSpeed};
+                string message = "get /instrumentation/gps/indicated-vertical-speed\nget /instrumentation/airspeed-indicator/indicated-speed-kt\nget /instrumentation/altimeter/indicated-altitude-ft\nget /instrumentation/attitude-indicator/internal-pitch-deg\nget /instrumentation/attitude-indicator/internal-roll-deg\nget /instrumentation/heading-indicator/indicated-heading-deg\nget /instrumentation/gps/indicated-altitude-ft\nget /instrumentation/gps/indicated-ground-speed-kt\n get /position/latitude-deg\nget /position/longitude-deg\n";
+
                 while (!stop)
                 {
                     try
                     {
-                        string message = "get /instrumentation/gps/indicated-vertical-speed\nget /instrumentation/airspeed-indicator/indicated-speed-kt\nget /instrumentation/altimeter/indicated-altitude-ft\nget /instrumentation/attitude-indicator/internal-pitch-deg\nget /instrumentation/attitude-indicator/internal-roll-deg\nget /instrumentation/heading-indicator/indicated-heading-deg\nget /instrumentation/gps/indicated-altitude-ft\nget /instrumentation/gps/indicated-ground-speed-kt\n get /position/latitude-deg\nget /position/longitude-deg\n";
                         mutex.WaitOne();
                         Write(message);
                         if (!Error.Equals(""))
@@ -159,141 +168,18 @@ namespace FlightSimulatorApp.Model
                         }
                         // Separate the read message by \n.
                         var result = Read().Split('\n');
+
                         if (!Error.Equals("") || result.Length < 10)
                         {
                             mutex.ReleaseMutex();
                             continue;
                         }
                         mutex.ReleaseMutex();
+                        
+                        int index = dashboardUpdate();
+                        mapUpdate(index);
 
-                        if (double.TryParse(result[0], out double i1))
-                        {
-                            VerticalSpeed = i1.ToString();
-                            DashBoardError = "";
-                        }
-                        else
-                        {
-                            VerticalSpeed = "Error";
-                            DashBoardError = "Error in the DashBoard";
-                        }
-                        if (double.TryParse(result[1], out double i2))
-                        {
-                            Airspeed = i2.ToString();
-                        }
-                        else
-                        {
-                            Airspeed = "Error";
-                            DashBoardError = "Error in the DashBoard";
-                        }
-                        if (double.TryParse(result[2], out double i3))
-                        {
-                            AltimeterAltitude = i3.ToString();
-                        }
-                        else
-                        {
-                            AltimeterAltitude = "Error";
-                            DashBoardError = "Error in the DashBoard";
-                        }
-                        if (double.TryParse(result[3], out double i4))
-                        {
-                            Pitch = i4.ToString();
-                        }
-                        else
-                        {
-                            Pitch = "Error";
-                            DashBoardError = "Error in the DashBoard";
-                        }
-                        if (double.TryParse(result[4], out double i5))
-                        {
-                            Roll = i5.ToString();
-                        }
-                        else
-                        {
-                            Roll = "Error";
-                            DashBoardError = "Error in the DashBoard";
-                        }
-                        if (double.TryParse(result[5], out double i6))
-                        {
-                            Heading = i6.ToString();
-                        }
-                        else
-                        {
-                            Heading = "Error";
-                            DashBoardError = "Error in the DashBoard";
-                        }
-                        if (double.TryParse(result[6], out double i7))
-                        {
-                            GpsAltitude = i7.ToString();
-                        }
-                        else
-                        {
-                            GpsAltitude = "Error";
-                            DashBoardError = "Error in the DashBoard";
-                        }
-                        if (double.TryParse(result[7], out double i8))
-                        {
-                            GroundSpeed = i8.ToString();
-                        }
-                        else
-                        {
-                            GroundSpeed = "Error";
-                            DashBoardError = "Error in the DashBoard";
-                        }
-                        if (double.TryParse(result[8], out double i9))
-                        {
-                            // Checks borders of value.
-                            if (i9 < LatitudeDownBorder)
-                            {
-                                ValidCoordinate = "Invalid Coordinate";
-                                Latitude = LatitudeDownBorder.ToString();
-                            }
-                            if (i9 > LatitudeUpBorder)
-                            {
-                                ValidCoordinate = "Invalid Coordinate";
-                                Latitude = LatitudeUpBorder.ToString();
-                            }
-                            if (i9 > LatitudeDownBorder && i9 < LatitudeUpBorder)
-                            {
-                                ValidCoordinate = "";
-                                Latitude = i9.ToString();
-                            }
-                        }
-                        else
-                        {
-                            ValidCoordinate = "Error getting Coordinate";
-                        }
-                        if (double.TryParse(result[9], out double i10))
-                        {
-                            // Checks borders of value.
-                            if (i10 < LongitudeDownBorder)
-                            {
-                                ValidCoordinate = "Invalid Coordinate";
-                                Longtude = LongitudeDownBorder.ToString();
-                            }
-                            if (i10 > LongitudeUpBorder)
-                            {
-                                ValidCoordinate = "Invalid Coordinate";
-                                Longtude = LongitudeUpBorder.ToString();
-                            }
-                            if (i10 > LongitudeDownBorder && i10 < LongitudeUpBorder)
-                            {
-                                Longtude = i10.ToString();
-                            }
-                        }
-                        else
-                        {
-                            ValidCoordinate = "Error getting Coordinate";
-                        }
-                        // Coordinates are valid.
-                        if (ValidCoordinate.Equals(""))
-                        {
-                            NotifyPropertyChanged("Location");
-                        }
-                    } catch (Exception e)
-                    {
-                        string message = e.Message;
-                        Error = "Connection faulted Error";
-                    }
+                    } catch {Error = "Connection faulted Error";}
                     Thread.Sleep(100);
                 }
             });
@@ -301,6 +187,66 @@ namespace FlightSimulatorApp.Model
             getThread.Start();
         }
 
+        // Update the map related data.
+        private void mapUpdate(int index) {
+
+            coordinateUpdate(index, LatitudeDownBorder, LatitudeUpBorder, Latitude);
+            coordinateUpdate(++index, LongitudeDownBorder, LongitudeUpBorder, Longtude);
+
+            // Coordinates are valid.
+            if (ValidCoordinate.Equals(""))
+            {
+                 NotifyPropertyChanged("Location");
+            }
+        }
+
+        // Update the dashboard related data.
+        private int dashboardUpdate() {
+             int j;
+             for (j = 0; j < dashboardProperties.Length; j++) {
+                 if (double.TryParse(result[j], out double a)) {
+                               
+                      dashboardProperties[j] = a.ToString;
+                      if (j == 0)  DashBoardError = "";
+                 }
+                 else {
+                            
+                    dashboardProperties[j] = "Error";
+                    DashBoardError = "Error in the DashBoard";
+                 }
+             }
+             return j;
+        }
+
+        // Update the coordinates.
+        private void coordinateUpdate(int i, Properties downBorderProperty, Properties upBorderProperty, Properties property) {
+            
+            if (double.TryParse (result[i], out double b)) {
+                // Check validation of the coordinate.      
+                if (b < downBorderProperty || b > upBorderProperty) {
+                            
+                   ValidCoordinate = "Invalid Coordinate";
+                   propery = (b < downBorderProperty) ? downBorderProperty.ToString() : upBorderProperty.ToString();
+                }
+                if (b > downBorderProperty && b < upBorderProperty)
+                {
+                     ValidCoordinate = "";
+                     property = b.ToString();
+                }
+            } else
+            {
+                ValidCoordinate = "Error getting Coordinate";
+            }
+        }
+
+        // Start communicate with the flight simulator.
+        public void Start()
+        {
+            startSetThread();
+            startGetThread();
+        }
+
+        // Read data from the flight simulator.
         private string Read()
         {
             try
@@ -330,6 +276,7 @@ namespace FlightSimulatorApp.Model
             } 
         }
 
+        // Write data to the flight simulator.
         private void Write(string message)
         {
             try
@@ -346,6 +293,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
+        // Insert a set message to the messages queueue.
         public void SetSimulator(string var, double value)
         {
             string path = pathMap[var];
@@ -354,6 +302,7 @@ namespace FlightSimulatorApp.Model
             messages.Enqueue(message);
         }
 
+        // Notify propery changed.
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
@@ -362,6 +311,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
+        // Reset.
         public void Reset()
         {
             // Dashboard.

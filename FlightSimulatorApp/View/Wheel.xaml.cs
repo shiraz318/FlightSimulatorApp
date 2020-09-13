@@ -28,12 +28,14 @@ namespace FlightSimulatorApp.View
             InitializeComponent();
         }
 
+        // Set the view model and data context.
         public void SetViewModel(WheelVM wheelVM)
         {
             wheelViewModel = wheelVM;
             DataContext = wheelViewModel;
         }
 
+        // Reset the sliders.
         public void ResetSliders()
         {
             throttle.Value = 0;
